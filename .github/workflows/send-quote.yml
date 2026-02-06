@@ -1,0 +1,34 @@
+name: Send Moneyball Quote
+
+on:
+  schedule:
+    # 12 PM EST = 5 PM UTC (EST is UTC-5)
+    - cron: '0 17 * * *'
+  workflow_dispatch:
+
+jobs:
+  send-quote:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Send quote
+        env:
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: python Moneyballscript.py
+
+      - name: Commit updated quote state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add moneyball_quotes.json
+          git diff --staged --quiet || git commit -m "Mark quote as used"
+          git push

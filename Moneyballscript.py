@@ -1,174 +1,87 @@
-import tweepy
+#!/usr/bin/env python3
+"""
+Moneyball Quote SMS Bot
+Sends a daily Moneyball quote via text message (email-to-SMS gateway)
+"""
+
+import smtplib
 import random
 import json
-import logging
 import os
+from email.mime.text import MIMEText
 from datetime import datetime
 from pathlib import Path
 
-class MoneyballTwitterBot:
-    def __init__(self):
-        self.setup_logging()
-        self.load_credentials()
-        self.setup_twitter_api()
-        self.load_quotes()
-        
-    def setup_logging(self):
-        """Set up logging configuration"""
-        logging.basicConfig(
-            level=logging.INFO,
-            format='%(asctime)s - %(levelname)s - %(message)s',
-            handlers=[
-                logging.FileHandler('twitter_bot.log'),
-                logging.StreamHandler()
-            ]
-        )
-        
-    def load_credentials(self):
-        """Load Twitter API credentials from environment variables or config file"""
-        # Try environment variables first (for GitHub Actions)
-        self.api_key = os.getenv('TWITTER_API_KEY')
-        self.api_secret = os.getenv('TWITTER_API_SECRET')
-        self.access_token = os.getenv('TWITTER_ACCESS_TOKEN')
-        self.access_token_secret = os.getenv('TWITTER_ACCESS_TOKEN_SECRET')
-        
-        # If not in environment, try config file
-        if not all([self.api_key, self.api_secret, self.access_token, self.access_token_secret]):
-            try:
-                with open('twitter_config.json', 'r') as file:
-                    config = json.load(file)
-                    self.api_key = config['api_key']
-                    self.api_secret = config['api_secret']
-                    self.access_token = config['access_token']
-                    self.access_token_secret = config['access_token_secret']
-            except FileNotFoundError:
-                logging.error("Twitter credentials not found in environment or config file!")
-                raise
-            
-    def setup_twitter_api(self):
-        """Initialize Twitter API client"""
-        try:
-            auth = tweepy.OAuthHandler(self.api_key, self.api_secret)
-            auth.set_access_token(self.access_token, self.access_token_secret)
-            self.api = tweepy.API(auth)
-            # Verify credentials
-            self.api.verify_credentials()
-            logging.info("Twitter API authentication successful")
-        except Exception as e:
-            logging.error(f"Twitter API authentication failed: {str(e)}")
-            raise
+# SMS Configuration
+PHONE_NUMBER = "7178476602"
+SMS_GATEWAY = "vtext.com"
+SMS_EMAIL = f"{PHONE_NUMBER}@{SMS_GATEWAY}"
 
-    def load_quotes(self):
-        """Load Moneyball quotes from JSON file"""
-        try:
-            with open('moneyball_quotes.json', 'r') as file:
-                self.quotes = json.load(file)
-            logging.info(f"Loaded {len(self.quotes)} quotes")
-        except FileNotFoundError:
-            logging.info("Quotes file not found, creating default quotes")
-            self.quotes = self.create_default_quotes()
-            self.save_quotes()
+# Yahoo Mail Configuration
+EMAIL_ADDRESS = os.environ.get("EMAIL_ADDRESS", "dmant2000@yahoo.com")
+EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD", "ydws boof sawz duwn")
+SMTP_SERVER = "smtp.mail.yahoo.com"
+SMTP_PORT = 465
 
-    def create_default_quotes(self):
-        """Create default list of Moneyball quotes"""
-        return [
-            {
-                "quote": "We're all told at some point in time that we can no longer play the children's game. We just don't know when that's gonna be. Some of us are told at eighteen, some of us are told at forty, but we're all told.",
-                "character": "Mets Scout",
-                "used": False
-            },
-            {
-                "quote": "How can you not be romantic about baseball?",
-                "character": "Billy Beane",
-                "used": False
-            },
-            {
-                "quote": "I hate losing more than I want to win.",
-                "character": "Billy Beane",
-                "used": False
-            },
-            {
-                "quote": "Your goal shouldn't be to buy players, your goal should be to buy wins.",
-                "character": "Peter Brand",
-                "used": False
-            },
-            {
-                "quote": "There is an epidemic failure within the game to understand what is really happening.",
-                "character": "Peter Brand",
-                "used": False
-            },
-            {
-                "quote": "47, actually 51 I don't know why I lied just then.",
-                "character": "Peter Brand",
-                "used": False
-            },
-            {
-                "quote": "It's hard not to be romantic about baseball.",
-                "character": "Billy Beane",
-                "used": False
-            },
-            {
-                "quote": "People who run ball clubs, they think in terms of buying players. Your goal shouldn't be to buy players, your goal should be to buy wins.",
-                "character": "Peter Brand",
-                "used": False
-            },
-            {
-                "quote": "The first guy through the wall always gets bloody.",
-                "character": "Billy Beane",
-                "used": False
-            },
-            {
-                "quote": "Adapt or die.",
-                "character": "Billy Beane",
-                "used": False
-            }
-        ]
+# Paths
+SCRIPT_DIR = Path(__file__).parent
+QUOTES_FILE = SCRIPT_DIR / "moneyball_quotes.json"
 
-    def save_quotes(self):
-        """Save quotes back to JSON file"""
-        with open('moneyball_quotes.json', 'w') as file:
-            json.dump(self.quotes, file, indent=4)
-        logging.info("Quotes saved to file")
 
-    def get_unused_quote(self):
-        """Get a random unused quote"""
-        unused_quotes = [q for q in self.quotes if not q['used']]
-        if not unused_quotes:
-            # Reset all quotes to unused if we've used them all
-            for quote in self.quotes:
-                quote['used'] = False
-            unused_quotes = self.quotes
-            logging.info("Reset all quotes to unused")
-        
-        selected_quote = random.choice(unused_quotes)
-        return selected_quote
+def load_quotes():
+    """Load quotes from JSON file."""
+    with open(QUOTES_FILE, "r") as f:
+        return json.load(f)
 
-    def format_tweet(self, quote):
-        """Format quote for Twitter"""
-        tweet_text = f"\"{quote['quote']}\"\n- {quote['character']}\n\n#Moneyball #Baseball"
-        return tweet_text
 
-    def post_quote(self):
-        """Post a quote to Twitter"""
-        try:
-            # Get and format quote
-            quote = self.get_unused_quote()
-            tweet_text = self.format_tweet(quote)
-            
-            # Post to Twitter
-            self.api.update_status(tweet_text)
-            
-            # Mark quote as used
-            quote['used'] = True
-            self.save_quotes()
-            
-            logging.info(f"Successfully posted quote to Twitter: {quote['quote'][:50]}...")
-            return True
-            
-        except Exception as e:
-            logging.error(f"Error posting to Twitter: {str(e)}")
-            return False
+def save_quotes(quotes):
+    """Save quotes back to JSON file."""
+    with open(QUOTES_FILE, "w") as f:
+        json.dump(quotes, f, indent=4)
+
+
+def get_unused_quote(quotes):
+    """Get a random unused quote. Resets all if every quote has been used."""
+    unused = [q for q in quotes if not q["used"]]
+    if not unused:
+        for q in quotes:
+            q["used"] = False
+        unused = quotes
+        print("All quotes used — reset cycle.")
+    return random.choice(unused)
+
+
+def format_message(quote):
+    """Format quote for SMS."""
+    return f'"{quote["quote"]}"\n- {quote["character"]}'
+
+
+def send_sms(message):
+    """Send SMS via email-to-SMS gateway."""
+    msg = MIMEText(message)
+    msg["From"] = EMAIL_ADDRESS
+    msg["To"] = SMS_EMAIL
+    msg["Subject"] = "Moneyball"
+
+    with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT) as server:
+        server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+        server.send_message(msg)
+
+    print(f"SMS sent at {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+
+
+def send_quote():
+    """Pick a random unused quote and text it."""
+    quotes = load_quotes()
+    quote = get_unused_quote(quotes)
+
+    message = format_message(quote)
+    send_sms(message)
+
+    quote["used"] = True
+    save_quotes(quotes)
+    print(f"Sent: {quote['quote'][:50]}...")
+
 
 if __name__ == "__main__":
-    bot = MoneyballTwitterBot()
-    bot.post_quote()
+    send_quote()
