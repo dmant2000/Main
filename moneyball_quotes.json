@@ -2,161 +2,271 @@
     {
         "quote": "We're all told at some point in time that we can no longer play the children's game. We just don't know when that's gonna be. Some of us are told at eighteen, some of us are told at forty, but we're all told.",
         "character": "Mets Scout",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "How can you not be romantic about baseball?",
         "character": "Billy Beane",
+        "movie": "Moneyball",
         "used": true
     },
     {
         "quote": "I hate losing more than I want to win.",
         "character": "Billy Beane",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "Your goal shouldn't be to buy players, your goal should be to buy wins.",
         "character": "Peter Brand",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "There is an epidemic failure within the game to understand what is really happening.",
         "character": "Peter Brand",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "The first guy through the wall always gets bloody.",
         "character": "Billy Beane",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "Adapt or die.",
         "character": "Billy Beane",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "It's a process, it's a process, it's a process.",
         "character": "Billy Beane",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "You don't put a team together with a computer, Billy.",
         "character": "Grady Fuson",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "He gets on base.",
         "character": "Peter Brand",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "Would you rather get one shot in the head or five in the chest and bleed to death?",
         "character": "Billy Beane",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "When your enemy's making mistakes, don't interrupt him.",
         "character": "Billy Beane",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "I know you've taken it in the teeth out there, but the first guy through the wall, he always gets bloody. Always.",
         "character": "Owner John Henry",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "You're not solving the problem. You're not even looking at the problem.",
         "character": "Peter Brand",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "We've got to think differently.",
         "character": "Billy Beane",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "This is the kind of thing that makes people want to kill economists.",
         "character": "Art Howe",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "It's about getting things down to one number. Using stats the way we read them, we'll find value in players that nobody else can see.",
         "character": "Peter Brand",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "I pay you to get on first, not get thrown out at second.",
         "character": "Billy Beane",
+        "movie": "Moneyball",
+        "used": false
+    },
+    {
+        "quote": "The problem we're trying to solve is that there are rich teams and there are poor teams. Then there's fifty feet of crap, and then there's us.",
+        "character": "Billy Beane",
+        "movie": "Moneyball",
+        "used": false
+    },
+    {
+        "quote": "We're like organ donors for the rich. Boston's taken our kidneys, Yankees have taken our heart.",
+        "character": "Billy Beane",
+        "movie": "Moneyball",
+        "used": false
+    },
+    {
+        "quote": "If he's a good hitter, why doesn't he hit good?",
+        "character": "Billy Beane",
+        "movie": "Moneyball",
+        "used": false
+    },
+    {
+        "quote": "If we pull this off, we change the game. We change the game for good.",
+        "character": "Billy Beane",
+        "movie": "Moneyball",
+        "used": false
+    },
+    {
+        "quote": "I made one decision in my life based on money, and I swore I would never do it again.",
+        "character": "Billy Beane",
+        "movie": "Moneyball",
+        "used": false
+    },
+    {
+        "quote": "People are overlooked for a variety of biased reasons and perceived flaws.",
+        "character": "Peter Brand",
+        "movie": "Moneyball",
+        "used": false
+    },
+    {
+        "quote": "You guys are just sitting around talking the same old good body nonsense like we're selling jeans.",
+        "character": "Billy Beane",
+        "movie": "Moneyball",
+        "used": false
+    },
+    {
+        "quote": "Baseball isn't just numbers. It's not science. If it was, anybody could do what we do.",
+        "character": "Grady Fuson",
+        "movie": "Moneyball",
+        "used": false
+    },
+    {
+        "quote": "It's threatening their livelihoods, it's threatening their jobs, it's threatening the way that they do things.",
+        "character": "Owner John Henry",
+        "movie": "Moneyball",
+        "used": false
+    },
+    {
+        "quote": "It's incredibly hard.",
+        "character": "Ron Washington",
+        "movie": "Moneyball",
         "used": false
     },
     {
         "quote": "It ain't what you don't know that gets you into trouble. It's what you know for sure that just ain't so.",
-        "character": "Mark Twain (The Big Short opening)",
+        "character": "Mark Twain (Opening)",
+        "movie": "The Big Short",
         "used": false
     },
     {
         "quote": "I have a feeling in a few years people are going to be doing what they always do when the economy tanks. They will be blaming immigrants and poor people.",
         "character": "Mark Baum",
-        "used": false
-    },
-    {
-        "quote": "Everyone's walking around like they're in a damn Enya video. They're all getting screwed, you know. You know what they care about? They care about the ball game, or they care about what actress just went into rehab.",
-        "character": "Mark Baum",
+        "movie": "The Big Short",
         "used": false
     },
     {
         "quote": "I'm standing in front of a burning house, and I'm offering you fire insurance on it.",
         "character": "Jared Vennett",
+        "movie": "The Big Short",
         "used": false
     },
     {
         "quote": "You have no idea the kind of crap people are pulling, and everyone's looking the other way.",
         "character": "Mark Baum",
+        "movie": "The Big Short",
         "used": false
     },
     {
         "quote": "The truth is like poetry. And most people hate poetry.",
-        "character": "Overheard at a DC bar (The Big Short)",
+        "character": "Overheard at a DC bar",
+        "movie": "The Big Short",
         "used": false
     },
     {
         "quote": "I didn't get into this business to be popular. I got into this business to be right.",
         "character": "Michael Burry",
+        "movie": "The Big Short",
         "used": false
     },
     {
         "quote": "Fraud has never, ever worked. Eventually things go south. When the hell did we forget all that?",
         "character": "Mark Baum",
+        "movie": "The Big Short",
         "used": false
     },
     {
         "quote": "People hate to think about bad things happening, so they always underestimate their likelihood.",
         "character": "Michael Burry",
+        "movie": "The Big Short",
         "used": false
     },
     {
         "quote": "I may have been early, but I'm not wrong.",
         "character": "Michael Burry",
+        "movie": "The Big Short",
         "used": false
     },
     {
         "quote": "Just don't dance.",
         "character": "Ben Rickert",
+        "movie": "The Big Short",
         "used": false
     },
     {
         "quote": "If we're right, people lose homes. People lose jobs. People lose retirement savings, people lose pensions.",
         "character": "Charlie Geller",
-        "used": false
-    },
-    {
-        "quote": "You want to know what I think? I think you're a pessimist.",
-        "character": "Lawrence Fields to Mark Baum",
+        "movie": "The Big Short",
         "used": false
     },
     {
         "quote": "In the years that followed, hundreds of bankers and rating agencies executives went to jail. The SEC was completely restructured. Just kidding.",
-        "character": "Narrator (The Big Short)",
+        "character": "Narrator",
+        "movie": "The Big Short",
+        "used": false
+    },
+    {
+        "quote": "Tell me the difference between stupid and illegal and I'll have my wife's brother arrested.",
+        "character": "Jared Vennett",
+        "movie": "The Big Short",
+        "used": false
+    },
+    {
+        "quote": "I'm jacked! I'm jacked to the tits!",
+        "character": "Jared Vennett",
+        "movie": "The Big Short",
+        "used": false
+    },
+    {
+        "quote": "Short everything that man has touched.",
+        "character": "Mark Baum",
+        "movie": "The Big Short",
+        "used": false
+    },
+    {
+        "quote": "That's dumb, Lawrence. There are always markers.",
+        "character": "Michael Burry",
+        "movie": "The Big Short",
+        "used": false
+    },
+    {
+        "quote": "Everyone's walking around like they're in a damn Enya video.",
+        "character": "Mark Baum",
+        "movie": "The Big Short",
         "used": false
     }
 ]
