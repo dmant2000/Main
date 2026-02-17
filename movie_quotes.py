@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Moneyball Quote SMS Bot
-Sends a daily Moneyball quote via text message (email-to-SMS gateway)
+Movie Quote SMS Bot
+Sends a daily movie quote via text message (email-to-SMS gateway)
 """
 
 import smtplib
@@ -25,7 +25,7 @@ SMTP_PORT = 465
 
 # Paths
 SCRIPT_DIR = Path(__file__).parent
-QUOTES_FILE = SCRIPT_DIR / "moneyball_quotes.json"
+QUOTES_FILE = SCRIPT_DIR / "quotes.json"
 
 
 def load_quotes():
