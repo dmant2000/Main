@@ -53,16 +53,15 @@ def get_unused_quote(quotes):
 
 def format_message(quote):
     """Format quote for SMS."""
-    movie = quote.get("movie", "Moneyball")
-    return f'"{quote["quote"]}"\n- {quote["character"]} ({movie})'
+    return f'"{quote["quote"]}"\n- {quote["character"]}'
 
 
-def send_sms(message, movie):
+def send_sms(message):
     """Send SMS via email-to-SMS gateway."""
     msg = MIMEText(message)
     msg["From"] = EMAIL_ADDRESS
     msg["To"] = SMS_EMAIL
-    msg["Subject"] = movie
+    msg["Subject"] = ""
 
     with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT) as server:
         server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
@@ -77,8 +76,7 @@ def send_quote():
     quote = get_unused_quote(quotes)
 
     message = format_message(quote)
-    movie = quote.get("movie", "Moneyball")
-    send_sms(message, movie)
+    send_sms(message)
 
     quote["used"] = True
     save_quotes(quotes)
