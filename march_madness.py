@@ -3,6 +3,10 @@
 March Madness SMS Bot
 Texts game matchups, rounds, and spreads for every NCAA Tournament game.
 Uses The Odds API for live odds/spreads.
+
+Designed to run hourly via cron. Each run checks for games starting within
+the next hour and sends one text per game right before tipoff.
+Tracks which games have already been texted to avoid duplicates.
 """
 
 import smtplib
@@ -11,6 +15,7 @@ import os
 import sys
 from email.mime.text import MIMEText
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 from urllib.request import urlopen, Request
 from urllib.error import URLError
 
@@ -30,17 +35,12 @@ ODDS_API_KEY = os.environ.get("ODDS_API_KEY", "")
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 SPORT_KEY = "basketball_ncaab"  # NCAA Basketball
 
-# March Madness round dates (2026 - update yearly)
-# These get auto-detected from game context, but serve as fallback labels
-ROUND_LABELS = {
-    "First Four": "First Four",
-    "Round of 64": "Round of 64",
-    "Round of 32": "Round of 32",
-    "Sweet 16": "Sweet 16",
-    "Elite 8": "Elite Eight",
-    "Final Four": "Final Four",
-    "Championship": "National Championship",
-}
+# Tracking file to avoid duplicate texts
+SCRIPT_DIR = Path(__file__).parent
+SENT_GAMES_FILE = SCRIPT_DIR / "sent_games.json"
+
+# How far ahead to look for upcoming games (minutes)
+ALERT_WINDOW_MINUTES = 65  # Slightly over an hour to cover cron drift
 
 
 def api_get(url):
@@ -54,13 +54,30 @@ def api_get(url):
         return None
 
 
-def get_todays_games():
-    """Fetch today's NCAAB games with spreads from The Odds API."""
+def load_sent_games():
+    """Load the set of game IDs we've already texted about."""
+    if SENT_GAMES_FILE.exists():
+        try:
+            data = json.loads(SENT_GAMES_FILE.read_text())
+            # Clean out entries older than 2 days
+            cutoff = (datetime.now(timezone.utc) - timedelta(days=2)).isoformat()
+            return {k: v for k, v in data.items() if v > cutoff}
+        except (json.JSONDecodeError, KeyError):
+            return {}
+    return {}
+
+
+def save_sent_games(sent):
+    """Save the set of game IDs we've texted about."""
+    SENT_GAMES_FILE.write_text(json.dumps(sent, indent=2))
+
+
+def get_upcoming_games():
+    """Fetch NCAAB games starting within the next hour."""
     if not ODDS_API_KEY:
         print("ERROR: ODDS_API_KEY not set")
         sys.exit(1)
 
-    # Get odds with spreads for NCAAB
     url = (
         f"{ODDS_API_BASE}/sports/{SPORT_KEY}/odds/"
         f"?apiKey={ODDS_API_KEY}"
@@ -74,25 +91,54 @@ def get_todays_games():
         print("Failed to fetch odds data")
         return []
 
-    # Filter to today's games (ET timezone)
-    now_utc = datetime.now(timezone.utc)
-    today_start = now_utc.replace(hour=0, minute=0, second=0, microsecond=0)
-    tomorrow_start = today_start + timedelta(days=1)
-
-    # Also include tomorrow for games starting after midnight ET
-    # (covers late-night games and next-day scheduling)
-    window_end = tomorrow_start + timedelta(hours=6)
+    now = datetime.now(timezone.utc)
+    window_end = now + timedelta(minutes=ALERT_WINDOW_MINUTES)
 
     games = []
     for event in data:
         game_time = datetime.fromisoformat(event["commence_time"].replace("Z", "+00:00"))
 
-        if today_start <= game_time <= window_end:
+        # Only games starting between now and the alert window
+        if now <= game_time <= window_end:
             game = parse_game(event)
             if game:
                 games.append(game)
 
-    # Sort by game time
+    games.sort(key=lambda g: g["time"])
+    return games
+
+
+def get_todays_games():
+    """Fetch all of today's NCAAB games (for morning summary mode)."""
+    if not ODDS_API_KEY:
+        print("ERROR: ODDS_API_KEY not set")
+        sys.exit(1)
+
+    url = (
+        f"{ODDS_API_BASE}/sports/{SPORT_KEY}/odds/"
+        f"?apiKey={ODDS_API_KEY}"
+        f"&regions=us"
+        f"&markets=spreads"
+        f"&oddsFormat=american"
+    )
+
+    data = api_get(url)
+    if data is None:
+        print("Failed to fetch odds data")
+        return []
+
+    now = datetime.now(timezone.utc)
+    today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    tomorrow_end = today_start + timedelta(days=1, hours=6)
+
+    games = []
+    for event in data:
+        game_time = datetime.fromisoformat(event["commence_time"].replace("Z", "+00:00"))
+        if today_start <= game_time <= tomorrow_end:
+            game = parse_game(event)
+            if game:
+                games.append(game)
+
     games.sort(key=lambda g: g["time"])
     return games
 
@@ -109,7 +155,6 @@ def parse_game(event):
     et_offset = timezone(timedelta(hours=-5))
     game_time_et = game_time.astimezone(et_offset)
 
-    # Extract spread from bookmakers
     spread = get_best_spread(event.get("bookmakers", []), home)
 
     return {
@@ -133,7 +178,6 @@ def get_best_spread(bookmakers, home_team):
                 if spread:
                     return spread
 
-    # Fall back to first available
     for book in bookmakers:
         spread = extract_spread(book, home_team)
         if spread:
@@ -166,8 +210,6 @@ def detect_round(game_count):
     elif game_count >= 3:
         return "Sweet 16"
     elif game_count == 2:
-        return "Elite Eight"
-    elif game_count == 2:
         return "Final Four"
     elif game_count == 1:
         return "Championship"
@@ -175,55 +217,31 @@ def detect_round(game_count):
         return "March Madness"
 
 
-def format_game_message(game, round_name):
-    """Format a single game for SMS."""
-    spread_str = "No line"
-    if game["spread"]:
-        pts = game["spread"]["points"]
-        team = game["spread"]["team"]
-        if pts < 0:
-            spread_str = f"{team} {pts}"
-        elif pts > 0:
-            spread_str = f"{team} +{pts}"
-        else:
-            spread_str = "Pick'em"
+def format_spread(spread):
+    """Format spread for display."""
+    if not spread:
+        return "No line"
+    pts = spread["points"]
+    team = spread["team"]
+    if pts < 0:
+        return f"{team} {pts}"
+    elif pts > 0:
+        return f"{team} +{pts}"
+    return "Pick'em"
+
+
+def format_game_text(game, round_name):
+    """Format a single game as one complete text message."""
+    spread_str = format_spread(game["spread"])
 
     return (
+        f"MARCH MADNESS\n"
+        f"{round_name}\n"
+        f"\n"
         f"{game['away']} vs {game['home']}\n"
-        f"{game['time_et']} | {spread_str}"
+        f"Tip: {game['time_et']}\n"
+        f"Spread: {spread_str}"
     )
-
-
-def format_daily_message(games, round_name):
-    """Format all games into SMS messages."""
-    if not games:
-        return None
-
-    today = datetime.now().strftime("%m/%d")
-    header = f"MARCH MADNESS {today}\n{round_name} - {len(games)} games\n"
-    divider = "---\n"
-
-    # SMS has ~160 char limit per segment, but email-to-SMS handles longer
-    # messages by splitting them. Keep it readable.
-    game_lines = []
-    for game in games:
-        game_lines.append(format_game_message(game, round_name))
-
-    # Split into chunks if too many games (SMS readability)
-    messages = []
-    chunk_size = 4  # 4 games per text
-    for i in range(0, len(game_lines), chunk_size):
-        chunk = game_lines[i:i + chunk_size]
-        part = ""
-        if i == 0:
-            part = header + divider
-        else:
-            part = f"GAMES {i+1}-{i+len(chunk)}\n" + divider
-
-        part += ("\n" + divider).join(chunk)
-        messages.append(part)
-
-    return messages
 
 
 def send_sms(message):
@@ -245,24 +263,40 @@ def send_sms(message):
 
 
 def run():
-    """Main entry point: fetch today's games and text them."""
-    print(f"Fetching March Madness games for {datetime.now().strftime('%Y-%m-%d')}...")
+    """
+    Main entry point. Runs hourly via cron.
+    Finds games starting in the next ~hour and texts each one individually.
+    Tracks sent games to avoid duplicates.
+    """
+    print(f"Checking for upcoming games at {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}...")
 
-    games = get_todays_games()
-
+    games = get_upcoming_games()
     if not games:
-        print("No March Madness games today.")
+        print("No games starting in the next hour.")
         return
 
-    round_name = detect_round(len(games))
-    messages = format_daily_message(games, round_name)
+    # Get today's total game count for round detection
+    all_today = get_todays_games()
+    round_name = detect_round(len(all_today))
 
-    print(f"Found {len(games)} games ({round_name})")
-    for msg in messages:
-        send_sms(msg)
-        print(f"---\n{msg}")
+    sent = load_sent_games()
+    new_count = 0
 
-    print(f"\nDone! Sent {len(messages)} message(s).")
+    for game in games:
+        game_id = game["id"]
+        if game_id in sent:
+            print(f"Already sent: {game['away']} vs {game['home']}")
+            continue
+
+        message = format_game_text(game, round_name)
+        send_sms(message)
+        print(f"Sent: {game['away']} vs {game['home']} ({game['time_et']})")
+
+        sent[game_id] = datetime.now(timezone.utc).isoformat()
+        new_count += 1
+
+    save_sent_games(sent)
+    print(f"\nDone! Sent {new_count} new game alert(s).")
 
 
 if __name__ == "__main__":

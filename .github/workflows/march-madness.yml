@@ -2,11 +2,10 @@ name: March Madness Game Alerts
 
 on:
   schedule:
-    # Run at 9 AM ET (2 PM UTC) daily during tournament
-    # March Madness typically runs mid-March through early April
-    - cron: '0 14 * * *'
-    # Also run at 5 PM ET (10 PM UTC) for evening game updates
-    - cron: '0 22 * * *'
+    # Run every hour during March Madness (mid-March to early April)
+    # Games can tip off anytime between noon and midnight ET
+    # Hourly checks ensure we catch every game ~30-60 min before tipoff
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -28,3 +27,12 @@ jobs:
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: python march_madness.py
+
+      # Commit the sent_games.json tracking file so we don't double-text
+      - name: Track sent games
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sent_games.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "Update sent games tracker"
+          git push || true
