@@ -1,0 +1,1892 @@
+[
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Duke",
+      "seed": 1,
+      "region": "East"
+    },
+    "team2": {
+      "name": "Siena",
+      "seed": 16,
+      "region": "East"
+    },
+    "predicted_winner": "Duke",
+    "win_probability": 0.994,
+    "confidence": 0.994,
+    "predicted_spread": -34.4,
+    "model_factors": {
+      "seed": 0.99,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.984,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Ohio State",
+      "seed": 8,
+      "region": "East"
+    },
+    "team2": {
+      "name": "TCU",
+      "seed": 9,
+      "region": "East"
+    },
+    "predicted_winner": "Ohio State",
+    "win_probability": 0.69,
+    "confidence": 0.69,
+    "predicted_spread": -5.3,
+    "model_factors": {
+      "seed": 0.51,
+      "logistic": 0.807,
+      "ml": null,
+      "market": 0.593,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "St. John's",
+      "seed": 5,
+      "region": "East"
+    },
+    "team2": {
+      "name": "Northern Iowa",
+      "seed": 12,
+      "region": "East"
+    },
+    "predicted_winner": "St. John's",
+    "win_probability": 0.873,
+    "confidence": 0.873,
+    "predicted_spread": -12.9,
+    "model_factors": {
+      "seed": 0.65,
+      "logistic": 0.999,
+      "ml": null,
+      "market": 0.806,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Kansas",
+      "seed": 4,
+      "region": "East"
+    },
+    "team2": {
+      "name": "Cal Baptist",
+      "seed": 13,
+      "region": "East"
+    },
+    "predicted_winner": "Kansas",
+    "win_probability": 0.924,
+    "confidence": 0.924,
+    "predicted_spread": -16.7,
+    "model_factors": {
+      "seed": 0.79,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.883,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Louisville",
+      "seed": 6,
+      "region": "East"
+    },
+    "team2": {
+      "name": "South Florida",
+      "seed": 11,
+      "region": "East"
+    },
+    "predicted_winner": "Louisville",
+    "win_probability": 0.847,
+    "confidence": 0.847,
+    "predicted_spread": -11.4,
+    "model_factors": {
+      "seed": 0.63,
+      "logistic": 0.989,
+      "ml": null,
+      "market": 0.726,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Michigan State",
+      "seed": 3,
+      "region": "East"
+    },
+    "team2": {
+      "name": "North Dakota State",
+      "seed": 14,
+      "region": "East"
+    },
+    "predicted_winner": "Michigan State",
+    "win_probability": 0.947,
+    "confidence": 0.947,
+    "predicted_spread": -19.2,
+    "model_factors": {
+      "seed": 0.85,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.922,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "UCLA",
+      "seed": 7,
+      "region": "East"
+    },
+    "team2": {
+      "name": "UCF",
+      "seed": 10,
+      "region": "East"
+    },
+    "predicted_winner": "UCLA",
+    "win_probability": 0.808,
+    "confidence": 0.808,
+    "predicted_spread": -9.6,
+    "model_factors": {
+      "seed": 0.61,
+      "logistic": 0.939,
+      "ml": null,
+      "market": 0.695,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "UConn",
+      "seed": 2,
+      "region": "East"
+    },
+    "team2": {
+      "name": "Furman",
+      "seed": 15,
+      "region": "East"
+    },
+    "predicted_winner": "UConn",
+    "win_probability": 0.976,
+    "confidence": 0.976,
+    "predicted_spread": -24.7,
+    "model_factors": {
+      "seed": 0.94,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.956,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "Duke",
+      "seed": 1,
+      "region": "East"
+    },
+    "team2": {
+      "name": "Ohio State",
+      "seed": 8,
+      "region": "East"
+    },
+    "predicted_winner": "Duke",
+    "win_probability": 0.942,
+    "confidence": 0.942,
+    "predicted_spread": -18.6,
+    "model_factors": {
+      "seed": 0.741,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.984,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "St. John's",
+      "seed": 5,
+      "region": "East"
+    },
+    "team2": {
+      "name": "Kansas",
+      "seed": 4,
+      "region": "East"
+    },
+    "predicted_winner": "St. John's",
+    "win_probability": 0.69,
+    "confidence": 0.69,
+    "predicted_spread": -5.3,
+    "model_factors": {
+      "seed": 0.463,
+      "logistic": 0.731,
+      "ml": null,
+      "market": 0.806,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "Louisville",
+      "seed": 6,
+      "region": "East"
+    },
+    "team2": {
+      "name": "Michigan State",
+      "seed": 3,
+      "region": "East"
+    },
+    "predicted_winner": "Michigan State",
+    "win_probability": 0.373,
+    "confidence": 0.627,
+    "predicted_spread": 3.5,
+    "model_factors": {
+      "seed": 0.389,
+      "logistic": 0.248,
+      "ml": null,
+      "market": 0.726,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "UCLA",
+      "seed": 7,
+      "region": "East"
+    },
+    "team2": {
+      "name": "UConn",
+      "seed": 2,
+      "region": "East"
+    },
+    "predicted_winner": "UConn",
+    "win_probability": 0.269,
+    "confidence": 0.731,
+    "predicted_spread": 6.7,
+    "model_factors": {
+      "seed": 0.321,
+      "logistic": 0.106,
+      "ml": null,
+      "market": 0.695,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Sweet 16",
+    "round_number": 3,
+    "team1": {
+      "name": "Duke",
+      "seed": 1,
+      "region": "East"
+    },
+    "team2": {
+      "name": "St. John's",
+      "seed": 5,
+      "region": "East"
+    },
+    "predicted_winner": "Duke",
+    "win_probability": 0.936,
+    "confidence": 0.936,
+    "predicted_spread": -17.9,
+    "model_factors": {
+      "seed": 0.646,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.984,
+      "weights": {
+        "seed": 0.17,
+        "logistic": 0.63,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Sweet 16",
+    "round_number": 3,
+    "team1": {
+      "name": "Michigan State",
+      "seed": 3,
+      "region": "East"
+    },
+    "team2": {
+      "name": "UConn",
+      "seed": 2,
+      "region": "East"
+    },
+    "predicted_winner": "Michigan State",
+    "win_probability": 0.819,
+    "confidence": 0.819,
+    "predicted_spread": -10.0,
+    "model_factors": {
+      "seed": 0.463,
+      "logistic": 0.882,
+      "ml": null,
+      "market": 0.922,
+      "weights": {
+        "seed": 0.17,
+        "logistic": 0.63,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Elite Eight",
+    "round_number": 4,
+    "team1": {
+      "name": "Duke",
+      "seed": 1,
+      "region": "East"
+    },
+    "team2": {
+      "name": "Michigan State",
+      "seed": 3,
+      "region": "East"
+    },
+    "predicted_winner": "Duke",
+    "win_probability": 0.941,
+    "confidence": 0.941,
+    "predicted_spread": -18.5,
+    "model_factors": {
+      "seed": 0.574,
+      "logistic": 0.999,
+      "ml": null,
+      "market": 0.984,
+      "weights": {
+        "seed": 0.13,
+        "logistic": 0.67,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Arizona",
+      "seed": 1,
+      "region": "West"
+    },
+    "team2": {
+      "name": "LIU",
+      "seed": 16,
+      "region": "West"
+    },
+    "predicted_winner": "Arizona",
+    "win_probability": 0.995,
+    "confidence": 0.995,
+    "predicted_spread": -35.5,
+    "model_factors": {
+      "seed": 0.99,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.988,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Villanova",
+      "seed": 8,
+      "region": "West"
+    },
+    "team2": {
+      "name": "Utah State",
+      "seed": 9,
+      "region": "West"
+    },
+    "predicted_winner": "Villanova",
+    "win_probability": 0.658,
+    "confidence": 0.658,
+    "predicted_spread": -4.4,
+    "model_factors": {
+      "seed": 0.51,
+      "logistic": 0.803,
+      "ml": null,
+      "market": 0.444,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Wisconsin",
+      "seed": 5,
+      "region": "West"
+    },
+    "team2": {
+      "name": "High Point",
+      "seed": 12,
+      "region": "West"
+    },
+    "predicted_winner": "Wisconsin",
+    "win_probability": 0.881,
+    "confidence": 0.881,
+    "predicted_spread": -13.4,
+    "model_factors": {
+      "seed": 0.65,
+      "logistic": 0.998,
+      "ml": null,
+      "market": 0.849,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Arkansas",
+      "seed": 4,
+      "region": "West"
+    },
+    "team2": {
+      "name": "Hawaii",
+      "seed": 13,
+      "region": "West"
+    },
+    "predicted_winner": "Arkansas",
+    "win_probability": 0.93,
+    "confidence": 0.93,
+    "predicted_spread": -17.2,
+    "model_factors": {
+      "seed": 0.79,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.911,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "BYU",
+      "seed": 6,
+      "region": "West"
+    },
+    "team2": {
+      "name": "NC State",
+      "seed": 11,
+      "region": "West"
+    },
+    "predicted_winner": "BYU",
+    "win_probability": 0.845,
+    "confidence": 0.845,
+    "predicted_spread": -11.3,
+    "model_factors": {
+      "seed": 0.63,
+      "logistic": 0.981,
+      "ml": null,
+      "market": 0.741,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Gonzaga",
+      "seed": 3,
+      "region": "West"
+    },
+    "team2": {
+      "name": "Kennesaw State",
+      "seed": 14,
+      "region": "West"
+    },
+    "predicted_winner": "Gonzaga",
+    "win_probability": 0.951,
+    "confidence": 0.951,
+    "predicted_spread": -19.7,
+    "model_factors": {
+      "seed": 0.85,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.941,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Miami FL",
+      "seed": 7,
+      "region": "West"
+    },
+    "team2": {
+      "name": "Missouri",
+      "seed": 10,
+      "region": "West"
+    },
+    "predicted_winner": "Miami FL",
+    "win_probability": 0.719,
+    "confidence": 0.719,
+    "predicted_spread": -6.3,
+    "model_factors": {
+      "seed": 0.61,
+      "logistic": 0.828,
+      "ml": null,
+      "market": 0.556,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Purdue",
+      "seed": 2,
+      "region": "West"
+    },
+    "team2": {
+      "name": "Queens",
+      "seed": 15,
+      "region": "West"
+    },
+    "predicted_winner": "Purdue",
+    "win_probability": 0.979,
+    "confidence": 0.979,
+    "predicted_spread": -25.7,
+    "model_factors": {
+      "seed": 0.94,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.971,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "Arizona",
+      "seed": 1,
+      "region": "West"
+    },
+    "team2": {
+      "name": "Villanova",
+      "seed": 8,
+      "region": "West"
+    },
+    "predicted_winner": "Arizona",
+    "win_probability": 0.943,
+    "confidence": 0.943,
+    "predicted_spread": -18.7,
+    "model_factors": {
+      "seed": 0.741,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.988,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "Wisconsin",
+      "seed": 5,
+      "region": "West"
+    },
+    "team2": {
+      "name": "Arkansas",
+      "seed": 4,
+      "region": "West"
+    },
+    "predicted_winner": "Wisconsin",
+    "win_probability": 0.609,
+    "confidence": 0.609,
+    "predicted_spread": -2.9,
+    "model_factors": {
+      "seed": 0.463,
+      "logistic": 0.579,
+      "ml": null,
+      "market": 0.849,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "BYU",
+      "seed": 6,
+      "region": "West"
+    },
+    "team2": {
+      "name": "Gonzaga",
+      "seed": 3,
+      "region": "West"
+    },
+    "predicted_winner": "BYU",
+    "win_probability": 0.518,
+    "confidence": 0.518,
+    "predicted_spread": -0.5,
+    "model_factors": {
+      "seed": 0.389,
+      "logistic": 0.488,
+      "ml": null,
+      "market": 0.741,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "Miami FL",
+      "seed": 7,
+      "region": "West"
+    },
+    "team2": {
+      "name": "Purdue",
+      "seed": 2,
+      "region": "West"
+    },
+    "predicted_winner": "Purdue",
+    "win_probability": 0.196,
+    "confidence": 0.804,
+    "predicted_spread": 9.4,
+    "model_factors": {
+      "seed": 0.321,
+      "logistic": 0.03,
+      "ml": null,
+      "market": 0.556,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Sweet 16",
+    "round_number": 3,
+    "team1": {
+      "name": "Arizona",
+      "seed": 1,
+      "region": "West"
+    },
+    "team2": {
+      "name": "Wisconsin",
+      "seed": 5,
+      "region": "West"
+    },
+    "predicted_winner": "Arizona",
+    "win_probability": 0.937,
+    "confidence": 0.937,
+    "predicted_spread": -18.0,
+    "model_factors": {
+      "seed": 0.646,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.988,
+      "weights": {
+        "seed": 0.17,
+        "logistic": 0.63,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Sweet 16",
+    "round_number": 3,
+    "team1": {
+      "name": "BYU",
+      "seed": 6,
+      "region": "West"
+    },
+    "team2": {
+      "name": "Purdue",
+      "seed": 2,
+      "region": "West"
+    },
+    "predicted_winner": "Purdue",
+    "win_probability": 0.293,
+    "confidence": 0.707,
+    "predicted_spread": 5.9,
+    "model_factors": {
+      "seed": 0.354,
+      "logistic": 0.134,
+      "ml": null,
+      "market": 0.741,
+      "weights": {
+        "seed": 0.17,
+        "logistic": 0.63,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Elite Eight",
+    "round_number": 4,
+    "team1": {
+      "name": "Arizona",
+      "seed": 1,
+      "region": "West"
+    },
+    "team2": {
+      "name": "Purdue",
+      "seed": 2,
+      "region": "West"
+    },
+    "predicted_winner": "Arizona",
+    "win_probability": 0.935,
+    "confidence": 0.935,
+    "predicted_spread": -17.8,
+    "model_factors": {
+      "seed": 0.537,
+      "logistic": 0.997,
+      "ml": null,
+      "market": 0.988,
+      "weights": {
+        "seed": 0.13,
+        "logistic": 0.67,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Florida",
+      "seed": 1,
+      "region": "South"
+    },
+    "team2": {
+      "name": "Lehigh",
+      "seed": 16,
+      "region": "South"
+    },
+    "predicted_winner": "Florida",
+    "win_probability": 0.99,
+    "confidence": 0.99,
+    "predicted_spread": -30.9,
+    "model_factors": {
+      "seed": 0.99,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.964,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Clemson",
+      "seed": 8,
+      "region": "South"
+    },
+    "team2": {
+      "name": "Iowa",
+      "seed": 9,
+      "region": "South"
+    },
+    "predicted_winner": "Clemson",
+    "win_probability": 0.563,
+    "confidence": 0.563,
+    "predicted_spread": -1.7,
+    "model_factors": {
+      "seed": 0.51,
+      "logistic": 0.644,
+      "ml": null,
+      "market": 0.407,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Vanderbilt",
+      "seed": 5,
+      "region": "South"
+    },
+    "team2": {
+      "name": "McNeese",
+      "seed": 12,
+      "region": "South"
+    },
+    "predicted_winner": "Vanderbilt",
+    "win_probability": 0.876,
+    "confidence": 0.876,
+    "predicted_spread": -13.0,
+    "model_factors": {
+      "seed": 0.65,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.818,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Nebraska",
+      "seed": 4,
+      "region": "South"
+    },
+    "team2": {
+      "name": "Troy",
+      "seed": 13,
+      "region": "South"
+    },
+    "predicted_winner": "Nebraska",
+    "win_probability": 0.926,
+    "confidence": 0.926,
+    "predicted_spread": -16.8,
+    "model_factors": {
+      "seed": 0.79,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.891,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "North Carolina",
+      "seed": 6,
+      "region": "South"
+    },
+    "team2": {
+      "name": "VCU",
+      "seed": 11,
+      "region": "South"
+    },
+    "predicted_winner": "North Carolina",
+    "win_probability": 0.819,
+    "confidence": 0.819,
+    "predicted_spread": -10.1,
+    "model_factors": {
+      "seed": 0.63,
+      "logistic": 0.981,
+      "ml": null,
+      "market": 0.611,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Illinois",
+      "seed": 3,
+      "region": "South"
+    },
+    "team2": {
+      "name": "Penn",
+      "seed": 14,
+      "region": "South"
+    },
+    "predicted_winner": "Illinois",
+    "win_probability": 0.956,
+    "confidence": 0.956,
+    "predicted_spread": -20.5,
+    "model_factors": {
+      "seed": 0.85,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.967,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Saint Mary's",
+      "seed": 7,
+      "region": "South"
+    },
+    "team2": {
+      "name": "Texas A&M",
+      "seed": 10,
+      "region": "South"
+    },
+    "predicted_winner": "Saint Mary's",
+    "win_probability": 0.655,
+    "confidence": 0.655,
+    "predicted_spread": -4.3,
+    "model_factors": {
+      "seed": 0.61,
+      "logistic": 0.698,
+      "ml": null,
+      "market": 0.593,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Houston",
+      "seed": 2,
+      "region": "South"
+    },
+    "team2": {
+      "name": "Idaho",
+      "seed": 15,
+      "region": "South"
+    },
+    "predicted_winner": "Houston",
+    "win_probability": 0.976,
+    "confidence": 0.976,
+    "predicted_spread": -24.6,
+    "model_factors": {
+      "seed": 0.94,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.953,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "Florida",
+      "seed": 1,
+      "region": "South"
+    },
+    "team2": {
+      "name": "Clemson",
+      "seed": 8,
+      "region": "South"
+    },
+    "predicted_winner": "Florida",
+    "win_probability": 0.938,
+    "confidence": 0.938,
+    "predicted_spread": -18.1,
+    "model_factors": {
+      "seed": 0.741,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.964,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "Vanderbilt",
+      "seed": 5,
+      "region": "South"
+    },
+    "team2": {
+      "name": "Nebraska",
+      "seed": 4,
+      "region": "South"
+    },
+    "predicted_winner": "Vanderbilt",
+    "win_probability": 0.732,
+    "confidence": 0.732,
+    "predicted_spread": -6.7,
+    "model_factors": {
+      "seed": 0.463,
+      "logistic": 0.799,
+      "ml": null,
+      "market": 0.818,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "North Carolina",
+      "seed": 6,
+      "region": "South"
+    },
+    "team2": {
+      "name": "Illinois",
+      "seed": 3,
+      "region": "South"
+    },
+    "predicted_winner": "Illinois",
+    "win_probability": 0.339,
+    "confidence": 0.661,
+    "predicted_spread": 4.4,
+    "model_factors": {
+      "seed": 0.389,
+      "logistic": 0.229,
+      "ml": null,
+      "market": 0.611,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "Saint Mary's",
+      "seed": 7,
+      "region": "South"
+    },
+    "team2": {
+      "name": "Houston",
+      "seed": 2,
+      "region": "South"
+    },
+    "predicted_winner": "Houston",
+    "win_probability": 0.194,
+    "confidence": 0.806,
+    "predicted_spread": 9.5,
+    "model_factors": {
+      "seed": 0.321,
+      "logistic": 0.014,
+      "ml": null,
+      "market": 0.593,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Sweet 16",
+    "round_number": 3,
+    "team1": {
+      "name": "Florida",
+      "seed": 1,
+      "region": "South"
+    },
+    "team2": {
+      "name": "Vanderbilt",
+      "seed": 5,
+      "region": "South"
+    },
+    "predicted_winner": "Florida",
+    "win_probability": 0.93,
+    "confidence": 0.93,
+    "predicted_spread": -17.2,
+    "model_factors": {
+      "seed": 0.646,
+      "logistic": 0.996,
+      "ml": null,
+      "market": 0.964,
+      "weights": {
+        "seed": 0.17,
+        "logistic": 0.63,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Sweet 16",
+    "round_number": 3,
+    "team1": {
+      "name": "Illinois",
+      "seed": 3,
+      "region": "South"
+    },
+    "team2": {
+      "name": "Houston",
+      "seed": 2,
+      "region": "South"
+    },
+    "predicted_winner": "Illinois",
+    "win_probability": 0.757,
+    "confidence": 0.757,
+    "predicted_spread": -7.6,
+    "model_factors": {
+      "seed": 0.463,
+      "logistic": 0.77,
+      "ml": null,
+      "market": 0.967,
+      "weights": {
+        "seed": 0.17,
+        "logistic": 0.63,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Elite Eight",
+    "round_number": 4,
+    "team1": {
+      "name": "Florida",
+      "seed": 1,
+      "region": "South"
+    },
+    "team2": {
+      "name": "Illinois",
+      "seed": 3,
+      "region": "South"
+    },
+    "predicted_winner": "Florida",
+    "win_probability": 0.931,
+    "confidence": 0.931,
+    "predicted_spread": -17.3,
+    "model_factors": {
+      "seed": 0.574,
+      "logistic": 0.99,
+      "ml": null,
+      "market": 0.964,
+      "weights": {
+        "seed": 0.13,
+        "logistic": 0.67,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Michigan",
+      "seed": 1,
+      "region": "Midwest"
+    },
+    "team2": {
+      "name": "Howard",
+      "seed": 16,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Michigan",
+    "win_probability": 0.993,
+    "confidence": 0.993,
+    "predicted_spread": -32.9,
+    "model_factors": {
+      "seed": 0.99,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.977,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Georgia",
+      "seed": 8,
+      "region": "Midwest"
+    },
+    "team2": {
+      "name": "Saint Louis",
+      "seed": 9,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Georgia",
+    "win_probability": 0.744,
+    "confidence": 0.744,
+    "predicted_spread": -7.1,
+    "model_factors": {
+      "seed": 0.51,
+      "logistic": 0.92,
+      "ml": null,
+      "market": 0.556,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Texas Tech",
+      "seed": 5,
+      "region": "Midwest"
+    },
+    "team2": {
+      "name": "Akron",
+      "seed": 12,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Texas Tech",
+    "win_probability": 0.868,
+    "confidence": 0.868,
+    "predicted_spread": -12.6,
+    "model_factors": {
+      "seed": 0.65,
+      "logistic": 0.999,
+      "ml": null,
+      "market": 0.782,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Alabama",
+      "seed": 4,
+      "region": "Midwest"
+    },
+    "team2": {
+      "name": "Hofstra",
+      "seed": 13,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Alabama",
+    "win_probability": 0.921,
+    "confidence": 0.921,
+    "predicted_spread": -16.4,
+    "model_factors": {
+      "seed": 0.79,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.867,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Tennessee",
+      "seed": 6,
+      "region": "Midwest"
+    },
+    "team2": {
+      "name": "SMU",
+      "seed": 11,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Tennessee",
+    "win_probability": 0.848,
+    "confidence": 0.848,
+    "predicted_spread": -11.5,
+    "model_factors": {
+      "seed": 0.63,
+      "logistic": 0.976,
+      "ml": null,
+      "market": 0.769,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Virginia",
+      "seed": 3,
+      "region": "Midwest"
+    },
+    "team2": {
+      "name": "Wright State",
+      "seed": 14,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Virginia",
+    "win_probability": 0.949,
+    "confidence": 0.949,
+    "predicted_spread": -19.5,
+    "model_factors": {
+      "seed": 0.85,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.932,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Kentucky",
+      "seed": 7,
+      "region": "Midwest"
+    },
+    "team2": {
+      "name": "Santa Clara",
+      "seed": 10,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Kentucky",
+    "win_probability": 0.82,
+    "confidence": 0.82,
+    "predicted_spread": -10.1,
+    "model_factors": {
+      "seed": 0.61,
+      "logistic": 0.985,
+      "ml": null,
+      "market": 0.628,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 64",
+    "round_number": 1,
+    "team1": {
+      "name": "Iowa State",
+      "seed": 2,
+      "region": "Midwest"
+    },
+    "team2": {
+      "name": "Tennessee State",
+      "seed": 15,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Iowa State",
+    "win_probability": 0.979,
+    "confidence": 0.979,
+    "predicted_spread": -25.7,
+    "model_factors": {
+      "seed": 0.94,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.971,
+      "weights": {
+        "seed": 0.25,
+        "logistic": 0.55,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "Michigan",
+      "seed": 1,
+      "region": "Midwest"
+    },
+    "team2": {
+      "name": "Georgia",
+      "seed": 8,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Michigan",
+    "win_probability": 0.941,
+    "confidence": 0.941,
+    "predicted_spread": -18.5,
+    "model_factors": {
+      "seed": 0.741,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.977,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "Texas Tech",
+      "seed": 5,
+      "region": "Midwest"
+    },
+    "team2": {
+      "name": "Alabama",
+      "seed": 4,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Texas Tech",
+    "win_probability": 0.584,
+    "confidence": 0.584,
+    "predicted_spread": -2.3,
+    "model_factors": {
+      "seed": 0.463,
+      "logistic": 0.56,
+      "ml": null,
+      "market": 0.782,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "Tennessee",
+      "seed": 6,
+      "region": "Midwest"
+    },
+    "team2": {
+      "name": "Virginia",
+      "seed": 3,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Virginia",
+    "win_probability": 0.455,
+    "confidence": 0.545,
+    "predicted_spread": 1.2,
+    "model_factors": {
+      "seed": 0.389,
+      "logistic": 0.372,
+      "ml": null,
+      "market": 0.769,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Round of 32",
+    "round_number": 2,
+    "team1": {
+      "name": "Kentucky",
+      "seed": 7,
+      "region": "Midwest"
+    },
+    "team2": {
+      "name": "Iowa State",
+      "seed": 2,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Iowa State",
+    "win_probability": 0.229,
+    "confidence": 0.771,
+    "predicted_spread": 8.1,
+    "model_factors": {
+      "seed": 0.321,
+      "logistic": 0.061,
+      "ml": null,
+      "market": 0.628,
+      "weights": {
+        "seed": 0.21,
+        "logistic": 0.59,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Sweet 16",
+    "round_number": 3,
+    "team1": {
+      "name": "Michigan",
+      "seed": 1,
+      "region": "Midwest"
+    },
+    "team2": {
+      "name": "Texas Tech",
+      "seed": 5,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Michigan",
+    "win_probability": 0.935,
+    "confidence": 0.935,
+    "predicted_spread": -17.8,
+    "model_factors": {
+      "seed": 0.646,
+      "logistic": 1.0,
+      "ml": null,
+      "market": 0.977,
+      "weights": {
+        "seed": 0.17,
+        "logistic": 0.63,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Sweet 16",
+    "round_number": 3,
+    "team1": {
+      "name": "Virginia",
+      "seed": 3,
+      "region": "Midwest"
+    },
+    "team2": {
+      "name": "Iowa State",
+      "seed": 2,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Virginia",
+    "win_probability": 0.678,
+    "confidence": 0.678,
+    "predicted_spread": -5.0,
+    "model_factors": {
+      "seed": 0.463,
+      "logistic": 0.655,
+      "ml": null,
+      "market": 0.932,
+      "weights": {
+        "seed": 0.17,
+        "logistic": 0.63,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Elite Eight",
+    "round_number": 4,
+    "team1": {
+      "name": "Michigan",
+      "seed": 1,
+      "region": "Midwest"
+    },
+    "team2": {
+      "name": "Virginia",
+      "seed": 3,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Michigan",
+    "win_probability": 0.939,
+    "confidence": 0.939,
+    "predicted_spread": -18.2,
+    "model_factors": {
+      "seed": 0.574,
+      "logistic": 0.998,
+      "ml": null,
+      "market": 0.977,
+      "weights": {
+        "seed": 0.13,
+        "logistic": 0.67,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Final Four",
+    "round_number": 5,
+    "team1": {
+      "name": "Duke",
+      "seed": 1,
+      "region": "East"
+    },
+    "team2": {
+      "name": "Arizona",
+      "seed": 1,
+      "region": "West"
+    },
+    "predicted_winner": "Duke",
+    "win_probability": 0.936,
+    "confidence": 0.936,
+    "predicted_spread": -17.9,
+    "model_factors": {
+      "seed": 0.5,
+      "logistic": 0.978,
+      "ml": null,
+      "market": 0.984,
+      "weights": {
+        "seed": 0.09,
+        "logistic": 0.71,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Final Four",
+    "round_number": 5,
+    "team1": {
+      "name": "Florida",
+      "seed": 1,
+      "region": "South"
+    },
+    "team2": {
+      "name": "Michigan",
+      "seed": 1,
+      "region": "Midwest"
+    },
+    "predicted_winner": "Florida",
+    "win_probability": 0.781,
+    "confidence": 0.781,
+    "predicted_spread": -8.5,
+    "model_factors": {
+      "seed": 0.5,
+      "logistic": 0.765,
+      "ml": null,
+      "market": 0.964,
+      "weights": {
+        "seed": 0.09,
+        "logistic": 0.71,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  },
+  {
+    "round": "Championship",
+    "round_number": 6,
+    "team1": {
+      "name": "Duke",
+      "seed": 1,
+      "region": "East"
+    },
+    "team2": {
+      "name": "Florida",
+      "seed": 1,
+      "region": "South"
+    },
+    "predicted_winner": "Duke",
+    "win_probability": 0.968,
+    "confidence": 0.968,
+    "predicted_spread": -22.8,
+    "model_factors": {
+      "seed": 0.5,
+      "logistic": 0.995,
+      "ml": null,
+      "market": 0.984,
+      "weights": {
+        "seed": 0.05,
+        "logistic": 0.75,
+        "ml": 0.0,
+        "market": 0.2
+      }
+    }
+  }
+]
