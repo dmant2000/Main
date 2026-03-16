@@ -1,0 +1,83 @@
+{
+  "year": 2026,
+  "regions": {
+    "East": {
+      "matchups": [
+        {"seed1": 1, "team1": "Duke", "seed2": 16, "team2": "Siena"},
+        {"seed1": 8, "team1": "Ohio State", "seed2": 9, "team2": "TCU"},
+        {"seed1": 5, "team1": "St. John's", "seed2": 12, "team2": "Northern Iowa"},
+        {"seed1": 4, "team1": "Kansas", "seed2": 13, "team2": "Cal Baptist"},
+        {"seed1": 6, "team1": "Louisville", "seed2": 11, "team2": "South Florida"},
+        {"seed1": 3, "team1": "Michigan State", "seed2": 14, "team2": "North Dakota State"},
+        {"seed1": 7, "team1": "UCLA", "seed2": 10, "team2": "UCF"},
+        {"seed1": 2, "team1": "UConn", "seed2": 15, "team2": "Furman"}
+      ]
+    },
+    "West": {
+      "matchups": [
+        {"seed1": 1, "team1": "Arizona", "seed2": 16, "team2": "LIU"},
+        {"seed1": 8, "team1": "Villanova", "seed2": 9, "team2": "Utah State"},
+        {"seed1": 5, "team1": "Wisconsin", "seed2": 12, "team2": "High Point"},
+        {"seed1": 4, "team1": "Arkansas", "seed2": 13, "team2": "Hawaii"},
+        {"seed1": 6, "team1": "BYU", "seed2": 11, "team2": "NC State"},
+        {"seed1": 3, "team1": "Gonzaga", "seed2": 14, "team2": "Kennesaw State"},
+        {"seed1": 7, "team1": "Miami FL", "seed2": 10, "team2": "Missouri"},
+        {"seed1": 2, "team1": "Purdue", "seed2": 15, "team2": "Queens"}
+      ]
+    },
+    "South": {
+      "matchups": [
+        {"seed1": 1, "team1": "Florida", "seed2": 16, "team2": "Lehigh"},
+        {"seed1": 8, "team1": "Clemson", "seed2": 9, "team2": "Iowa"},
+        {"seed1": 5, "team1": "Vanderbilt", "seed2": 12, "team2": "McNeese"},
+        {"seed1": 4, "team1": "Nebraska", "seed2": 13, "team2": "Troy"},
+        {"seed1": 6, "team1": "North Carolina", "seed2": 11, "team2": "VCU"},
+        {"seed1": 3, "team1": "Illinois", "seed2": 14, "team2": "Penn"},
+        {"seed1": 7, "team1": "Saint Mary's", "seed2": 10, "team2": "Texas A&M"},
+        {"seed1": 2, "team1": "Houston", "seed2": 15, "team2": "Idaho"}
+      ]
+    },
+    "Midwest": {
+      "matchups": [
+        {"seed1": 1, "team1": "Michigan", "seed2": 16, "team2": "Howard"},
+        {"seed1": 8, "team1": "Georgia", "seed2": 9, "team2": "Saint Louis"},
+        {"seed1": 5, "team1": "Texas Tech", "seed2": 12, "team2": "Akron"},
+        {"seed1": 4, "team1": "Alabama", "seed2": 13, "team2": "Hofstra"},
+        {"seed1": 6, "team1": "Tennessee", "seed2": 11, "team2": "SMU"},
+        {"seed1": 3, "team1": "Virginia", "seed2": 14, "team2": "Wright State"},
+        {"seed1": 7, "team1": "Kentucky", "seed2": 10, "team2": "Santa Clara"},
+        {"seed1": 2, "team1": "Iowa State", "seed2": 15, "team2": "Tennessee State"}
+      ]
+    }
+  },
+  "first_four": [
+    {"seed": 16, "team1": "Prairie View A&M", "team2": "Lehigh", "region": "South", "note": "16 seed play-in"},
+    {"seed": 16, "team1": "UMBC", "team2": "Howard", "region": "Midwest", "note": "16 seed play-in"},
+    {"seed": 11, "team1": "Texas", "team2": "NC State", "region": "West", "note": "11 seed play-in"},
+    {"seed": 11, "team1": "Miami OH", "team2": "SMU", "region": "Midwest", "note": "11 seed play-in"}
+  ],
+  "schedule": {
+    "first_four": ["2026-03-17", "2026-03-18"],
+    "round_of_64": ["2026-03-19", "2026-03-20"],
+    "round_of_32": ["2026-03-21", "2026-03-22"],
+    "sweet_16": ["2026-03-26", "2026-03-27"],
+    "elite_eight": ["2026-03-28", "2026-03-29"],
+    "final_four": "2026-04-04",
+    "championship": "2026-04-06"
+  },
+  "notes": {
+    "Duke": "32-2, #1 overall seed, ACC champ, Cameron Boozer ACC POY, injuries to Caleb Foster & Patrick Ngongba",
+    "Arizona": "32-2, Big 12 champ, beat Houston in title game, +425 futures",
+    "Michigan": "31-3, lost Big Ten title game to Purdue, L.J. Cason torn ACL, +325 futures favorite",
+    "Florida": "26-7, defending national champion, weakest 1-seed, +600 futures",
+    "UConn": "29-5, lost Big East title to St. John's, settled for 2 seed",
+    "Houston": "28-6, South 2 seed, Elite Eight in Houston = home court feel",
+    "Purdue": "27-8, Big Ten tourney champ, Braden Smith chasing all-time assist record",
+    "Gonzaga": "30-3, WCC dominant as usual",
+    "St. John's": "28-6, back-to-back Big East tourney champs, beat UConn by 20 in final",
+    "BYU": "AJ Dybantsa potential #1 NBA pick, nation's leading scorer",
+    "North Carolina": "WITHOUT Caleb Wilson (season-ending hand surgery)",
+    "High Point": "14-game win streak, elite turnover margin (Cinderella pick)",
+    "Kansas": "23-10, Darryn Peterson potential #1 pick"
+  }
+}
