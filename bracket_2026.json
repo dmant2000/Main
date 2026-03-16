@@ -13,13 +13,13 @@
       "region": "East"
     },
     "predicted_winner": "Duke",
-    "win_probability": 0.984,
-    "confidence": 0.984,
-    "predicted_spread": -27.5,
+    "win_probability": 0.96,
+    "confidence": 0.96,
+    "predicted_spread": -21.1,
     "model_factors": {
       "seed": 0.99,
       "logistic": 1.0,
-      "ml": 0.968,
+      "ml": 0.898,
       "market": 0.984,
       "three_pt_xfactor": 0.049,
       "weights": {
@@ -44,13 +44,13 @@
       "region": "East"
     },
     "predicted_winner": "Ohio State",
-    "win_probability": 0.759,
-    "confidence": 0.759,
-    "predicted_spread": -7.7,
+    "win_probability": 0.643,
+    "confidence": 0.643,
+    "predicted_spread": -3.9,
     "model_factors": {
       "seed": 0.51,
       "logistic": 0.778,
-      "ml": 0.946,
+      "ml": 0.615,
       "market": 0.593,
       "three_pt_xfactor": 0.206,
       "weights": {
@@ -75,13 +75,13 @@
       "region": "East"
     },
     "predicted_winner": "St. John's",
-    "win_probability": 0.899,
-    "confidence": 0.899,
-    "predicted_spread": -14.5,
+    "win_probability": 0.837,
+    "confidence": 0.837,
+    "predicted_spread": -10.9,
     "model_factors": {
       "seed": 0.65,
       "logistic": 0.998,
-      "ml": 0.973,
+      "ml": 0.796,
       "market": 0.806,
       "three_pt_xfactor": -0.187,
       "weights": {
@@ -106,13 +106,13 @@
       "region": "East"
     },
     "predicted_winner": "Kansas",
-    "win_probability": 0.927,
-    "confidence": 0.927,
-    "predicted_spread": -16.9,
+    "win_probability": 0.921,
+    "confidence": 0.921,
+    "predicted_spread": -16.4,
     "model_factors": {
       "seed": 0.79,
       "logistic": 1.0,
-      "ml": 0.948,
+      "ml": 0.931,
       "market": 0.883,
       "three_pt_xfactor": 0.119,
       "weights": {
@@ -137,13 +137,13 @@
       "region": "East"
     },
     "predicted_winner": "Louisville",
-    "win_probability": 0.866,
-    "confidence": 0.866,
-    "predicted_spread": -12.5,
+    "win_probability": 0.824,
+    "confidence": 0.824,
+    "predicted_spread": -10.3,
     "model_factors": {
       "seed": 0.63,
       "logistic": 0.977,
-      "ml": 0.953,
+      "ml": 0.832,
       "market": 0.726,
       "three_pt_xfactor": 0.037,
       "weights": {
@@ -168,13 +168,13 @@
       "region": "East"
     },
     "predicted_winner": "Michigan State",
-    "win_probability": 0.952,
-    "confidence": 0.952,
-    "predicted_spread": -20.0,
+    "win_probability": 0.923,
+    "confidence": 0.923,
+    "predicted_spread": -16.6,
     "model_factors": {
       "seed": 0.85,
       "logistic": 1.0,
-      "ml": 0.973,
+      "ml": 0.89,
       "market": 0.922,
       "three_pt_xfactor": -0.075,
       "weights": {
@@ -199,13 +199,13 @@
       "region": "East"
     },
     "predicted_winner": "UCLA",
-    "win_probability": 0.706,
-    "confidence": 0.706,
-    "predicted_spread": -5.8,
+    "win_probability": 0.801,
+    "confidence": 0.801,
+    "predicted_spread": -9.3,
     "model_factors": {
       "seed": 0.61,
       "logistic": 0.919,
-      "ml": 0.572,
+      "ml": 0.843,
       "market": 0.695,
       "three_pt_xfactor": 0.351,
       "weights": {
@@ -230,13 +230,13 @@
       "region": "East"
     },
     "predicted_winner": "UConn",
-    "win_probability": 0.974,
-    "confidence": 0.974,
-    "predicted_spread": -24.2,
+    "win_probability": 0.96,
+    "confidence": 0.96,
+    "predicted_spread": -21.2,
     "model_factors": {
       "seed": 0.94,
       "logistic": 1.0,
-      "ml": 0.977,
+      "ml": 0.938,
       "market": 0.956,
       "three_pt_xfactor": -0.038,
       "weights": {
@@ -261,13 +261,13 @@
       "region": "East"
     },
     "predicted_winner": "Duke",
-    "win_probability": 0.958,
-    "confidence": 0.958,
-    "predicted_spread": -20.9,
+    "win_probability": 0.868,
+    "confidence": 0.868,
+    "predicted_spread": -12.5,
     "model_factors": {
       "seed": 0.741,
       "logistic": 1.0,
-      "ml": 0.982,
+      "ml": 0.724,
       "market": 0.984,
       "three_pt_xfactor": -0.23,
       "weights": {
@@ -292,13 +292,13 @@
       "region": "East"
     },
     "predicted_winner": "St. John's",
-    "win_probability": 0.634,
-    "confidence": 0.634,
-    "predicted_spread": -3.7,
+    "win_probability": 0.748,
+    "confidence": 0.748,
+    "predicted_spread": -7.2,
     "model_factors": {
       "seed": 0.463,
       "logistic": 0.699,
-      "ml": 0.537,
+      "ml": 0.861,
       "market": 0.806,
       "three_pt_xfactor": -0.323,
       "weights": {
@@ -322,14 +322,14 @@
       "seed": 3,
       "region": "East"
     },
-    "predicted_winner": "Louisville",
-    "win_probability": 0.594,
-    "confidence": 0.594,
-    "predicted_spread": -2.6,
+    "predicted_winner": "Michigan State",
+    "win_probability": 0.355,
+    "confidence": 0.645,
+    "predicted_spread": 4.0,
     "model_factors": {
       "seed": 0.389,
       "logistic": 0.249,
-      "ml": 0.914,
+      "ml": 0.228,
       "market": 0.726,
       "three_pt_xfactor": 0.075,
       "weights": {
@@ -354,13 +354,13 @@
       "region": "East"
     },
     "predicted_winner": "UConn",
-    "win_probability": 0.266,
-    "confidence": 0.734,
-    "predicted_spread": 6.8,
+    "win_probability": 0.335,
+    "confidence": 0.665,
+    "predicted_spread": 4.6,
     "model_factors": {
       "seed": 0.321,
       "logistic": 0.184,
-      "ml": 0.076,
+      "ml": 0.275,
       "market": 0.695,
       "three_pt_xfactor": 0.355,
       "weights": {
@@ -385,13 +385,13 @@
       "region": "East"
     },
     "predicted_winner": "Duke",
-    "win_probability": 0.903,
-    "confidence": 0.903,
-    "predicted_spread": -14.9,
+    "win_probability": 0.941,
+    "confidence": 0.941,
+    "predicted_spread": -18.4,
     "model_factors": {
       "seed": 0.646,
       "logistic": 1.0,
-      "ml": 0.834,
+      "ml": 0.941,
       "market": 0.984,
       "three_pt_xfactor": 0.223,
       "weights": {
@@ -406,8 +406,8 @@
     "round": "Sweet 16",
     "round_number": 3,
     "team1": {
-      "name": "Louisville",
-      "seed": 6,
+      "name": "Michigan State",
+      "seed": 3,
       "region": "East"
     },
     "team2": {
@@ -415,16 +415,16 @@
       "seed": 2,
       "region": "East"
     },
-    "predicted_winner": "UConn",
-    "win_probability": 0.372,
-    "confidence": 0.628,
-    "predicted_spread": 3.5,
+    "predicted_winner": "Michigan State",
+    "win_probability": 0.868,
+    "confidence": 0.868,
+    "predicted_spread": -12.5,
     "model_factors": {
-      "seed": 0.354,
-      "logistic": 0.288,
-      "ml": 0.258,
-      "market": 0.726,
-      "three_pt_xfactor": -0.002,
+      "seed": 0.463,
+      "logistic": 0.864,
+      "ml": 0.956,
+      "market": 0.922,
+      "three_pt_xfactor": -0.079,
       "weights": {
         "seed": 0.1,
         "logistic": 0.35,
@@ -442,20 +442,20 @@
       "region": "East"
     },
     "team2": {
-      "name": "UConn",
-      "seed": 2,
+      "name": "Michigan State",
+      "seed": 3,
       "region": "East"
     },
     "predicted_winner": "Duke",
-    "win_probability": 0.954,
-    "confidence": 0.954,
-    "predicted_spread": -20.2,
+    "win_probability": 0.946,
+    "confidence": 0.946,
+    "predicted_spread": -19.1,
     "model_factors": {
-      "seed": 0.537,
+      "seed": 0.574,
       "logistic": 0.999,
-      "ml": 0.978,
+      "ml": 0.948,
       "market": 0.984,
-      "three_pt_xfactor": 0.022,
+      "three_pt_xfactor": 0.105,
       "weights": {
         "seed": 0.07,
         "logistic": 0.38,
@@ -478,13 +478,13 @@
       "region": "West"
     },
     "predicted_winner": "Arizona",
-    "win_probability": 0.984,
-    "confidence": 0.984,
-    "predicted_spread": -27.6,
+    "win_probability": 0.953,
+    "confidence": 0.953,
+    "predicted_spread": -20.1,
     "model_factors": {
       "seed": 0.99,
       "logistic": 1.0,
-      "ml": 0.966,
+      "ml": 0.878,
       "market": 0.988,
       "three_pt_xfactor": 0.133,
       "weights": {
@@ -509,13 +509,13 @@
       "region": "West"
     },
     "predicted_winner": "Villanova",
-    "win_probability": 0.705,
-    "confidence": 0.705,
-    "predicted_spread": -5.8,
+    "win_probability": 0.622,
+    "confidence": 0.622,
+    "predicted_spread": -3.3,
     "model_factors": {
       "seed": 0.51,
       "logistic": 0.672,
-      "ml": 0.967,
+      "ml": 0.728,
       "market": 0.444,
       "three_pt_xfactor": 0.0,
       "weights": {
@@ -540,13 +540,13 @@
       "region": "West"
     },
     "predicted_winner": "Wisconsin",
-    "win_probability": 0.888,
-    "confidence": 0.888,
-    "predicted_spread": -13.8,
+    "win_probability": 0.867,
+    "confidence": 0.867,
+    "predicted_spread": -12.5,
     "model_factors": {
       "seed": 0.65,
       "logistic": 0.985,
-      "ml": 0.93,
+      "ml": 0.87,
       "market": 0.849,
       "three_pt_xfactor": 0.038,
       "weights": {
@@ -571,13 +571,13 @@
       "region": "West"
     },
     "predicted_winner": "Arkansas",
-    "win_probability": 0.941,
-    "confidence": 0.941,
-    "predicted_spread": -18.5,
+    "win_probability": 0.931,
+    "confidence": 0.931,
+    "predicted_spread": -17.3,
     "model_factors": {
       "seed": 0.79,
       "logistic": 1.0,
-      "ml": 0.973,
+      "ml": 0.944,
       "market": 0.911,
       "three_pt_xfactor": 0.038,
       "weights": {
@@ -602,13 +602,13 @@
       "region": "West"
     },
     "predicted_winner": "BYU",
-    "win_probability": 0.773,
-    "confidence": 0.773,
-    "predicted_spread": -8.2,
+    "win_probability": 0.846,
+    "confidence": 0.846,
+    "predicted_spread": -11.4,
     "model_factors": {
       "seed": 0.63,
       "logistic": 0.974,
-      "ml": 0.681,
+      "ml": 0.889,
       "market": 0.741,
       "three_pt_xfactor": 0.33,
       "weights": {
@@ -633,13 +633,13 @@
       "region": "West"
     },
     "predicted_winner": "Gonzaga",
-    "win_probability": 0.952,
-    "confidence": 0.952,
-    "predicted_spread": -20.0,
+    "win_probability": 0.928,
+    "confidence": 0.928,
+    "predicted_spread": -17.1,
     "model_factors": {
       "seed": 0.85,
       "logistic": 1.0,
-      "ml": 0.962,
+      "ml": 0.893,
       "market": 0.941,
       "three_pt_xfactor": 0.068,
       "weights": {
@@ -664,13 +664,13 @@
       "region": "West"
     },
     "predicted_winner": "Miami FL",
-    "win_probability": 0.77,
-    "confidence": 0.77,
-    "predicted_spread": -8.0,
+    "win_probability": 0.672,
+    "confidence": 0.672,
+    "predicted_spread": -4.8,
     "model_factors": {
       "seed": 0.61,
       "logistic": 0.77,
-      "ml": 0.961,
+      "ml": 0.682,
       "market": 0.556,
       "three_pt_xfactor": 0.038,
       "weights": {
@@ -695,13 +695,13 @@
       "region": "West"
     },
     "predicted_winner": "Purdue",
-    "win_probability": 0.901,
-    "confidence": 0.901,
-    "predicted_spread": -14.7,
+    "win_probability": 0.953,
+    "confidence": 0.953,
+    "predicted_spread": -20.1,
     "model_factors": {
       "seed": 0.94,
       "logistic": 1.0,
-      "ml": 0.759,
+      "ml": 0.908,
       "market": 0.971,
       "three_pt_xfactor": 0.27,
       "weights": {
@@ -726,13 +726,13 @@
       "region": "West"
     },
     "predicted_winner": "Arizona",
-    "win_probability": 0.951,
-    "confidence": 0.951,
-    "predicted_spread": -19.8,
+    "win_probability": 0.869,
+    "confidence": 0.869,
+    "predicted_spread": -12.6,
     "model_factors": {
       "seed": 0.741,
       "logistic": 1.0,
-      "ml": 0.96,
+      "ml": 0.725,
       "market": 0.988,
       "three_pt_xfactor": 0.055,
       "weights": {
@@ -757,13 +757,13 @@
       "region": "West"
     },
     "predicted_winner": "Wisconsin",
-    "win_probability": 0.689,
-    "confidence": 0.689,
-    "predicted_spread": -5.3,
+    "win_probability": 0.559,
+    "confidence": 0.559,
+    "predicted_spread": -1.6,
     "model_factors": {
       "seed": 0.463,
       "logistic": 0.524,
-      "ml": 0.833,
+      "ml": 0.462,
       "market": 0.849,
       "three_pt_xfactor": 0.076,
       "weights": {
@@ -788,13 +788,13 @@
       "region": "West"
     },
     "predicted_winner": "Gonzaga",
-    "win_probability": 0.358,
-    "confidence": 0.642,
-    "predicted_spread": 3.9,
+    "win_probability": 0.418,
+    "confidence": 0.582,
+    "predicted_spread": 2.2,
     "model_factors": {
       "seed": 0.389,
       "logistic": 0.363,
-      "ml": 0.123,
+      "ml": 0.297,
       "market": 0.741,
       "three_pt_xfactor": 0.338,
       "weights": {
@@ -819,13 +819,13 @@
       "region": "West"
     },
     "predicted_winner": "Purdue",
-    "win_probability": 0.254,
-    "confidence": 0.746,
-    "predicted_spread": 7.2,
+    "win_probability": 0.302,
+    "confidence": 0.698,
+    "predicted_spread": 5.6,
     "model_factors": {
       "seed": 0.321,
       "logistic": 0.024,
-      "ml": 0.27,
+      "ml": 0.408,
       "market": 0.556,
       "three_pt_xfactor": -0.206,
       "weights": {
@@ -850,13 +850,13 @@
       "region": "West"
     },
     "predicted_winner": "Arizona",
-    "win_probability": 0.956,
-    "confidence": 0.956,
-    "predicted_spread": -20.6,
+    "win_probability": 0.945,
+    "confidence": 0.945,
+    "predicted_spread": -18.9,
     "model_factors": {
       "seed": 0.646,
       "logistic": 1.0,
-      "ml": 0.984,
+      "ml": 0.95,
       "market": 0.988,
       "three_pt_xfactor": -0.061,
       "weights": {
@@ -881,13 +881,13 @@
       "region": "West"
     },
     "predicted_winner": "Gonzaga",
-    "win_probability": 0.676,
-    "confidence": 0.676,
-    "predicted_spread": -4.9,
+    "win_probability": 0.789,
+    "confidence": 0.789,
+    "predicted_spread": -8.8,
     "model_factors": {
       "seed": 0.463,
       "logistic": 0.617,
-      "ml": 0.644,
+      "ml": 0.969,
       "market": 0.941,
       "three_pt_xfactor": -0.21,
       "weights": {
@@ -912,13 +912,13 @@
       "region": "West"
     },
     "predicted_winner": "Arizona",
-    "win_probability": 0.958,
-    "confidence": 0.958,
-    "predicted_spread": -20.8,
+    "win_probability": 0.949,
+    "confidence": 0.949,
+    "predicted_spread": -19.5,
     "model_factors": {
       "seed": 0.574,
       "logistic": 0.999,
-      "ml": 0.979,
+      "ml": 0.954,
       "market": 0.988,
       "three_pt_xfactor": 0.061,
       "weights": {
@@ -943,13 +943,13 @@
       "region": "South"
     },
     "predicted_winner": "Florida",
-    "win_probability": 0.983,
-    "confidence": 0.983,
-    "predicted_spread": -27.0,
+    "win_probability": 0.97,
+    "confidence": 0.97,
+    "predicted_spread": -23.1,
     "model_factors": {
       "seed": 0.99,
       "logistic": 1.0,
-      "ml": 0.975,
+      "ml": 0.939,
       "market": 0.964,
       "three_pt_xfactor": -0.113,
       "weights": {
@@ -974,13 +974,13 @@
       "region": "South"
     },
     "predicted_winner": "Clemson",
-    "win_probability": 0.616,
-    "confidence": 0.616,
-    "predicted_spread": -3.1,
+    "win_probability": 0.585,
+    "confidence": 0.585,
+    "predicted_spread": -2.3,
     "model_factors": {
       "seed": 0.51,
       "logistic": 0.513,
-      "ml": 0.868,
+      "ml": 0.782,
       "market": 0.407,
       "three_pt_xfactor": -0.154,
       "weights": {
@@ -1005,13 +1005,13 @@
       "region": "South"
     },
     "predicted_winner": "Vanderbilt",
-    "win_probability": 0.899,
-    "confidence": 0.899,
-    "predicted_spread": -14.6,
+    "win_probability": 0.843,
+    "confidence": 0.843,
+    "predicted_spread": -11.2,
     "model_factors": {
       "seed": 0.65,
       "logistic": 0.999,
-      "ml": 0.966,
+      "ml": 0.808,
       "market": 0.818,
       "three_pt_xfactor": 0.168,
       "weights": {
@@ -1036,13 +1036,13 @@
       "region": "South"
     },
     "predicted_winner": "Nebraska",
-    "win_probability": 0.938,
-    "confidence": 0.938,
-    "predicted_spread": -18.1,
+    "win_probability": 0.932,
+    "confidence": 0.932,
+    "predicted_spread": -17.4,
     "model_factors": {
       "seed": 0.79,
       "logistic": 1.0,
-      "ml": 0.975,
+      "ml": 0.957,
       "market": 0.891,
       "three_pt_xfactor": 0.03,
       "weights": {
@@ -1067,13 +1067,13 @@
       "region": "South"
     },
     "predicted_winner": "North Carolina",
-    "win_probability": 0.837,
-    "confidence": 0.837,
-    "predicted_spread": -10.9,
+    "win_probability": 0.748,
+    "confidence": 0.748,
+    "predicted_spread": -7.2,
     "model_factors": {
       "seed": 0.63,
       "logistic": 0.948,
-      "ml": 0.961,
+      "ml": 0.706,
       "market": 0.611,
       "three_pt_xfactor": 0.038,
       "weights": {
@@ -1098,13 +1098,13 @@
       "region": "South"
     },
     "predicted_winner": "Illinois",
-    "win_probability": 0.962,
-    "confidence": 0.962,
-    "predicted_spread": -21.6,
+    "win_probability": 0.927,
+    "confidence": 0.927,
+    "predicted_spread": -16.9,
     "model_factors": {
       "seed": 0.85,
       "logistic": 1.0,
-      "ml": 0.976,
+      "ml": 0.874,
       "market": 0.967,
       "three_pt_xfactor": -0.115,
       "weights": {
@@ -1129,13 +1129,13 @@
       "region": "South"
     },
     "predicted_winner": "Saint Mary's",
-    "win_probability": 0.766,
-    "confidence": 0.766,
-    "predicted_spread": -7.9,
+    "win_probability": 0.727,
+    "confidence": 0.727,
+    "predicted_spread": -6.5,
     "model_factors": {
       "seed": 0.61,
       "logistic": 0.718,
-      "ml": 0.973,
+      "ml": 0.861,
       "market": 0.593,
       "three_pt_xfactor": 0.114,
       "weights": {
@@ -1162,11 +1162,11 @@
     "predicted_winner": "Houston",
     "win_probability": 0.965,
     "confidence": 0.965,
-    "predicted_spread": -22.1,
+    "predicted_spread": -22.0,
     "model_factors": {
       "seed": 0.94,
       "logistic": 1.0,
-      "ml": 0.953,
+      "ml": 0.951,
       "market": 0.953,
       "three_pt_xfactor": 0.086,
       "weights": {
@@ -1191,13 +1191,13 @@
       "region": "South"
     },
     "predicted_winner": "Florida",
-    "win_probability": 0.954,
-    "confidence": 0.954,
-    "predicted_spread": -20.2,
+    "win_probability": 0.895,
+    "confidence": 0.895,
+    "predicted_spread": -14.3,
     "model_factors": {
       "seed": 0.741,
       "logistic": 0.999,
-      "ml": 0.983,
+      "ml": 0.813,
       "market": 0.964,
       "three_pt_xfactor": -0.076,
       "weights": {
@@ -1222,13 +1222,13 @@
       "region": "South"
     },
     "predicted_winner": "Vanderbilt",
-    "win_probability": 0.677,
-    "confidence": 0.677,
-    "predicted_spread": -4.9,
+    "win_probability": 0.573,
+    "confidence": 0.573,
+    "predicted_spread": -2.0,
     "model_factors": {
       "seed": 0.463,
       "logistic": 0.771,
-      "ml": 0.586,
+      "ml": 0.288,
       "market": 0.818,
       "three_pt_xfactor": 0.218,
       "weights": {
@@ -1253,13 +1253,13 @@
       "region": "South"
     },
     "predicted_winner": "Illinois",
-    "win_probability": 0.347,
-    "confidence": 0.653,
+    "win_probability": 0.346,
+    "confidence": 0.654,
     "predicted_spread": 4.2,
     "model_factors": {
       "seed": 0.389,
       "logistic": 0.198,
-      "ml": 0.319,
+      "ml": 0.317,
       "market": 0.611,
       "three_pt_xfactor": -0.264,
       "weights": {
@@ -1284,13 +1284,13 @@
       "region": "South"
     },
     "predicted_winner": "Houston",
-    "win_probability": 0.271,
-    "confidence": 0.729,
-    "predicted_spread": 6.6,
+    "win_probability": 0.263,
+    "confidence": 0.737,
+    "predicted_spread": 6.9,
     "model_factors": {
       "seed": 0.321,
       "logistic": 0.025,
-      "ml": 0.297,
+      "ml": 0.274,
       "market": 0.593,
       "three_pt_xfactor": -0.028,
       "weights": {
@@ -1315,13 +1315,13 @@
       "region": "South"
     },
     "predicted_winner": "Florida",
-    "win_probability": 0.945,
-    "confidence": 0.945,
-    "predicted_spread": -19.0,
+    "win_probability": 0.933,
+    "confidence": 0.933,
+    "predicted_spread": -17.6,
     "model_factors": {
       "seed": 0.646,
       "logistic": 0.987,
-      "ml": 0.978,
+      "ml": 0.943,
       "market": 0.964,
       "three_pt_xfactor": -0.334,
       "weights": {
@@ -1346,13 +1346,13 @@
       "region": "South"
     },
     "predicted_winner": "Illinois",
-    "win_probability": 0.64,
-    "confidence": 0.64,
-    "predicted_spread": -3.8,
+    "win_probability": 0.697,
+    "confidence": 0.697,
+    "predicted_spread": -5.6,
     "model_factors": {
       "seed": 0.463,
       "logistic": 0.735,
-      "ml": 0.408,
+      "ml": 0.573,
       "market": 0.967,
       "three_pt_xfactor": 0.301,
       "weights": {
@@ -1377,13 +1377,13 @@
       "region": "South"
     },
     "predicted_winner": "Florida",
-    "win_probability": 0.925,
-    "confidence": 0.925,
-    "predicted_spread": -16.7,
+    "win_probability": 0.939,
+    "confidence": 0.939,
+    "predicted_spread": -18.3,
     "model_factors": {
       "seed": 0.574,
       "logistic": 0.971,
-      "ml": 0.928,
+      "ml": 0.97,
       "market": 0.964,
       "three_pt_xfactor": -0.426,
       "weights": {
@@ -1408,13 +1408,13 @@
       "region": "Midwest"
     },
     "predicted_winner": "Michigan",
-    "win_probability": 0.979,
-    "confidence": 0.979,
-    "predicted_spread": -25.5,
+    "win_probability": 0.955,
+    "confidence": 0.955,
+    "predicted_spread": -20.4,
     "model_factors": {
       "seed": 0.99,
       "logistic": 1.0,
-      "ml": 0.956,
+      "ml": 0.889,
       "market": 0.977,
       "three_pt_xfactor": -0.107,
       "weights": {
@@ -1439,13 +1439,13 @@
       "region": "Midwest"
     },
     "predicted_winner": "Georgia",
-    "win_probability": 0.783,
-    "confidence": 0.783,
-    "predicted_spread": -8.6,
+    "win_probability": 0.684,
+    "confidence": 0.684,
+    "predicted_spread": -5.2,
     "model_factors": {
       "seed": 0.51,
       "logistic": 0.855,
-      "ml": 0.969,
+      "ml": 0.686,
       "market": 0.556,
       "three_pt_xfactor": 0.162,
       "weights": {
@@ -1470,13 +1470,13 @@
       "region": "Midwest"
     },
     "predicted_winner": "Texas Tech",
-    "win_probability": 0.756,
-    "confidence": 0.756,
-    "predicted_spread": -7.5,
+    "win_probability": 0.745,
+    "confidence": 0.745,
+    "predicted_spread": -7.2,
     "model_factors": {
       "seed": 0.65,
       "logistic": 0.997,
-      "ml": 0.579,
+      "ml": 0.55,
       "market": 0.782,
       "three_pt_xfactor": 0.346,
       "weights": {
@@ -1501,13 +1501,13 @@
       "region": "Midwest"
     },
     "predicted_winner": "Alabama",
-    "win_probability": 0.831,
-    "confidence": 0.831,
-    "predicted_spread": -10.6,
+    "win_probability": 0.819,
+    "confidence": 0.819,
+    "predicted_spread": -10.1,
     "model_factors": {
       "seed": 0.79,
       "logistic": 1.0,
-      "ml": 0.682,
+      "ml": 0.65,
       "market": 0.867,
       "three_pt_xfactor": 0.37,
       "weights": {
@@ -1532,13 +1532,13 @@
       "region": "Midwest"
     },
     "predicted_winner": "Tennessee",
-    "win_probability": 0.869,
-    "confidence": 0.869,
-    "predicted_spread": -12.6,
+    "win_probability": 0.839,
+    "confidence": 0.839,
+    "predicted_spread": -11.0,
     "model_factors": {
       "seed": 0.63,
       "logistic": 0.947,
-      "ml": 0.961,
+      "ml": 0.877,
       "market": 0.769,
       "three_pt_xfactor": -0.115,
       "weights": {
@@ -1563,13 +1563,13 @@
       "region": "Midwest"
     },
     "predicted_winner": "Virginia",
-    "win_probability": 0.956,
-    "confidence": 0.956,
-    "predicted_spread": -20.6,
+    "win_probability": 0.938,
+    "confidence": 0.938,
+    "predicted_spread": -18.2,
     "model_factors": {
       "seed": 0.85,
       "logistic": 1.0,
-      "ml": 0.978,
+      "ml": 0.927,
       "market": 0.932,
       "three_pt_xfactor": -0.192,
       "weights": {
@@ -1594,13 +1594,13 @@
       "region": "Midwest"
     },
     "predicted_winner": "Kentucky",
-    "win_probability": 0.838,
-    "confidence": 0.838,
-    "predicted_spread": -10.9,
+    "win_probability": 0.798,
+    "confidence": 0.798,
+    "predicted_spread": -9.2,
     "model_factors": {
       "seed": 0.61,
       "logistic": 0.956,
-      "ml": 0.954,
+      "ml": 0.842,
       "market": 0.628,
       "three_pt_xfactor": -0.078,
       "weights": {
@@ -1625,13 +1625,13 @@
       "region": "Midwest"
     },
     "predicted_winner": "Iowa State",
-    "win_probability": 0.977,
-    "confidence": 0.977,
-    "predicted_spread": -25.0,
+    "win_probability": 0.967,
+    "confidence": 0.967,
+    "predicted_spread": -22.5,
     "model_factors": {
       "seed": 0.94,
       "logistic": 1.0,
-      "ml": 0.976,
+      "ml": 0.947,
       "market": 0.971,
       "three_pt_xfactor": -0.222,
       "weights": {
@@ -1656,13 +1656,13 @@
       "region": "Midwest"
     },
     "predicted_winner": "Michigan",
-    "win_probability": 0.958,
-    "confidence": 0.958,
-    "predicted_spread": -20.8,
+    "win_probability": 0.866,
+    "confidence": 0.866,
+    "predicted_spread": -12.5,
     "model_factors": {
       "seed": 0.741,
       "logistic": 1.0,
-      "ml": 0.985,
+      "ml": 0.724,
       "market": 0.977,
       "three_pt_xfactor": -0.322,
       "weights": {
@@ -1687,13 +1687,13 @@
       "region": "Midwest"
     },
     "predicted_winner": "Texas Tech",
-    "win_probability": 0.52,
-    "confidence": 0.52,
-    "predicted_spread": -0.5,
+    "win_probability": 0.692,
+    "confidence": 0.692,
+    "predicted_spread": -5.4,
     "model_factors": {
       "seed": 0.463,
       "logistic": 0.549,
-      "ml": 0.363,
+      "ml": 0.855,
       "market": 0.782,
       "three_pt_xfactor": 0.039,
       "weights": {
@@ -1717,14 +1717,14 @@
       "seed": 3,
       "region": "Midwest"
     },
-    "predicted_winner": "Tennessee",
-    "win_probability": 0.567,
-    "confidence": 0.567,
-    "predicted_spread": -1.8,
+    "predicted_winner": "Virginia",
+    "win_probability": 0.372,
+    "confidence": 0.628,
+    "predicted_spread": 3.5,
     "model_factors": {
       "seed": 0.389,
       "logistic": 0.297,
-      "ml": 0.767,
+      "ml": 0.208,
       "market": 0.769,
       "three_pt_xfactor": 0.112,
       "weights": {
@@ -1749,13 +1749,13 @@
       "region": "Midwest"
     },
     "predicted_winner": "Iowa State",
-    "win_probability": 0.246,
-    "confidence": 0.754,
-    "predicted_spread": 7.4,
+    "win_probability": 0.323,
+    "confidence": 0.677,
+    "predicted_spread": 4.9,
     "model_factors": {
       "seed": 0.321,
       "logistic": 0.089,
-      "ml": 0.148,
+      "ml": 0.365,
       "market": 0.628,
       "three_pt_xfactor": 0.35,
       "weights": {
@@ -1780,13 +1780,13 @@
       "region": "Midwest"
     },
     "predicted_winner": "Michigan",
-    "win_probability": 0.956,
-    "confidence": 0.956,
-    "predicted_spread": -20.6,
+    "win_probability": 0.94,
+    "confidence": 0.94,
+    "predicted_spread": -18.4,
     "model_factors": {
       "seed": 0.646,
       "logistic": 0.998,
-      "ml": 0.992,
+      "ml": 0.946,
       "market": 0.977,
       "three_pt_xfactor": -0.68,
       "weights": {
@@ -1801,8 +1801,8 @@
     "round": "Sweet 16",
     "round_number": 3,
     "team1": {
-      "name": "Tennessee",
-      "seed": 6,
+      "name": "Virginia",
+      "seed": 3,
       "region": "Midwest"
     },
     "team2": {
@@ -1810,16 +1810,16 @@
       "seed": 2,
       "region": "Midwest"
     },
-    "predicted_winner": "Iowa State",
-    "win_probability": 0.306,
-    "confidence": 0.694,
-    "predicted_spread": 5.5,
+    "predicted_winner": "Virginia",
+    "win_probability": 0.742,
+    "confidence": 0.742,
+    "predicted_spread": -7.0,
     "model_factors": {
-      "seed": 0.354,
-      "logistic": 0.13,
-      "ml": 0.205,
-      "market": 0.769,
-      "three_pt_xfactor": 0.181,
+      "seed": 0.463,
+      "logistic": 0.663,
+      "ml": 0.792,
+      "market": 0.932,
+      "three_pt_xfactor": 0.061,
       "weights": {
         "seed": 0.1,
         "logistic": 0.35,
@@ -1837,20 +1837,20 @@
       "region": "Midwest"
     },
     "team2": {
-      "name": "Iowa State",
-      "seed": 2,
+      "name": "Virginia",
+      "seed": 3,
       "region": "Midwest"
     },
     "predicted_winner": "Michigan",
-    "win_probability": 0.95,
-    "confidence": 0.95,
-    "predicted_spread": -19.6,
+    "win_probability": 0.946,
+    "confidence": 0.946,
+    "predicted_spread": -19.0,
     "model_factors": {
-      "seed": 0.537,
-      "logistic": 0.983,
-      "ml": 0.988,
+      "seed": 0.574,
+      "logistic": 0.994,
+      "ml": 0.955,
       "market": 0.977,
-      "three_pt_xfactor": 0.107,
+      "three_pt_xfactor": 0.047,
       "weights": {
         "seed": 0.07,
         "logistic": 0.38,
@@ -1873,13 +1873,13 @@
       "region": "West"
     },
     "predicted_winner": "Duke",
-    "win_probability": 0.95,
-    "confidence": 0.95,
-    "predicted_spread": -19.6,
+    "win_probability": 0.933,
+    "confidence": 0.933,
+    "predicted_spread": -17.5,
     "model_factors": {
       "seed": 0.5,
       "logistic": 0.957,
-      "ml": 0.986,
+      "ml": 0.937,
       "market": 0.984,
       "three_pt_xfactor": -0.071,
       "weights": {
@@ -1904,13 +1904,13 @@
       "region": "Midwest"
     },
     "predicted_winner": "Florida",
-    "win_probability": 0.617,
-    "confidence": 0.617,
-    "predicted_spread": -3.2,
+    "win_probability": 0.769,
+    "confidence": 0.769,
+    "predicted_spread": -8.0,
     "model_factors": {
       "seed": 0.5,
       "logistic": 0.703,
-      "ml": 0.338,
+      "ml": 0.772,
       "market": 0.964,
       "three_pt_xfactor": 0.064,
       "weights": {
@@ -1935,13 +1935,13 @@
       "region": "South"
     },
     "predicted_winner": "Duke",
-    "win_probability": 0.969,
-    "confidence": 0.969,
-    "predicted_spread": -23.0,
+    "win_probability": 0.961,
+    "confidence": 0.961,
+    "predicted_spread": -21.4,
     "model_factors": {
       "seed": 0.5,
       "logistic": 0.995,
-      "ml": 0.97,
+      "ml": 0.947,
       "market": 0.984,
       "three_pt_xfactor": 0.115,
       "weights": {
