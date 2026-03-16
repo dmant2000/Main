@@ -184,6 +184,11 @@ def run():
             team.experience = s.get("experience", team.experience)
             team.key_player_out = s.get("key_player_out", team.key_player_out)
             team.injury_impact = s.get("injury_impact", team.injury_impact)
+            # 3-Point X-Factor
+            team.three_pt_pct = s.get("three_pt_pct", team.three_pt_pct)
+            team.three_pt_rate = s.get("three_pt_rate", team.three_pt_rate)
+            team.opp_three_pt_pct = s.get("opp_three_pt_pct", team.opp_three_pt_pct)
+            team.has_elite_shooter = s.get("has_elite_shooter", team.has_elite_shooter)
 
     # Also try fetching live data if requested
     if "--fetch" in sys.argv:

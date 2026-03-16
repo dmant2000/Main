@@ -130,6 +130,12 @@ class Team:
     # Market data
     spread: Optional[float] = None
     futures_odds: Optional[float] = None  # Implied probability to win it all
+    # 3-Point X-Factor
+    three_pt_pct: float = 0.0       # Team 3PT shooting percentage
+    three_pt_rate: float = 0.0      # % of FGA that are 3-pointers
+    three_pt_made: float = 0.0      # 3-pointers made per game
+    opp_three_pt_pct: float = 0.0   # Opponent 3PT shooting percentage allowed
+    has_elite_shooter: bool = False  # Has a standout 3PT threat (35%+ on volume)
     # Injuries / availability
     key_player_out: bool = False
     injury_impact: float = 0.0  # Estimated point impact of injuries
@@ -337,7 +343,56 @@ FEATURE_NAMES = [
     "is_conf_champ_1",
     "is_conf_champ_2",
     "round_number",
+    # 3-Point X-Factor
+    "three_pt_pct_diff",
+    "three_pt_rate_diff",
+    "opp_three_pt_pct_diff",
+    "three_pt_xfactor",
 ]
+
+
+def compute_three_pt_xfactor(shooter_team, defender_team):
+    """
+    Compute the 3-point X-factor for shooter_team attacking defender_team.
+
+    Factors:
+    1. Shooter's 3PT% vs defender's opp 3PT% (mismatch)
+    2. Shooter's 3PT volume (rate) — teams that live by the 3 get amplified
+    3. Elite shooter bonus — having a go-to guy who can get hot
+
+    Returns a score where positive = 3PT advantage, negative = disadvantage.
+    Typical range: -0.5 to +0.5
+    """
+    if shooter_team.three_pt_pct == 0:
+        return 0.0
+
+    # How much better/worse does the shooter shoot vs what the defender allows?
+    # If team shoots 37% and opponent allows 35%, that's a +2% mismatch
+    mismatch = 0.0
+    if defender_team.opp_three_pt_pct > 0:
+        mismatch = shooter_team.three_pt_pct - defender_team.opp_three_pt_pct
+    else:
+        # No defensive data — just compare to D1 average (~33.5%)
+        mismatch = shooter_team.three_pt_pct - 0.335
+
+    # Volume amplifier: teams that shoot lots of 3s get more leverage from the mismatch
+    # Average 3PT rate is ~35% of FGA. Scale: 0.8x at 25%, 1.0x at 35%, 1.3x at 45%
+    volume_mult = 1.0
+    if shooter_team.three_pt_rate > 0:
+        volume_mult = 0.5 + (shooter_team.three_pt_rate / 0.35)
+
+    # Elite shooter bonus: +0.05 if team has a standout threat
+    elite_bonus = 0.05 if shooter_team.has_elite_shooter else 0.0
+
+    # Defender penalty: if higher seed allows high opp 3PT%, they're vulnerable
+    # This is the "bad at defending the 3" penalty
+    def_vulnerability = 0.0
+    if defender_team.opp_three_pt_pct > 0.345:
+        # Above average 3PT defense allowed = vulnerable
+        def_vulnerability = (defender_team.opp_three_pt_pct - 0.335) * 2.0
+
+    xfactor = (mismatch * 5.0 * volume_mult) + elite_bonus + def_vulnerability
+    return round(xfactor, 4)
 
 
 def build_features(team1, team2, round_number=1):
@@ -355,6 +410,11 @@ def build_features(team1, team2, round_number=1):
     spread_val = team1.spread if team1.spread is not None else 0.0
     futures_1 = team1.futures_odds if team1.futures_odds is not None else 0.0
     futures_2 = team2.futures_odds if team2.futures_odds is not None else 0.0
+
+    # 3-Point X-Factor: measures the mismatch between a team's shooting and
+    # the opponent's ability to defend the 3. A team that shoots 38% from 3
+    # facing a team that allows 36% from 3 = major advantage.
+    three_xfactor = compute_three_pt_xfactor(team1, team2) - compute_three_pt_xfactor(team2, team1)
 
     features = [
         team2.seed - team1.seed,                        # seed_diff (positive = team1 better seed)
@@ -382,6 +442,11 @@ def build_features(team1, team2, round_number=1):
         1.0 if team1.conf_tournament_champ else 0.0,      # is_conf_champ_1
         1.0 if team2.conf_tournament_champ else 0.0,      # is_conf_champ_2
         float(round_number),                              # round_number
+        # 3-Point X-Factor features
+        team1.three_pt_pct - team2.three_pt_pct,          # three_pt_pct_diff
+        team1.three_pt_rate - team2.three_pt_rate,        # three_pt_rate_diff
+        team2.opp_three_pt_pct - team1.opp_three_pt_pct, # opp_three_pt_pct_diff (lower = better D)
+        three_xfactor,                                     # three_pt_xfactor (composite mismatch)
     ]
 
     return features
@@ -409,13 +474,14 @@ def logistic_model(features):
     Simple logistic regression prediction using hand-tuned weights.
     Used as baseline when sklearn is not available or model isn't trained.
     """
-    # Weights learned from historical tournament data analysis
+    # Weights tuned for March Madness upset sensitivity
+    # Key changes from v1: reduced seed weight, boosted streaks, added 3PT X-factor
     weights = {
-        "seed_diff": 0.08,
-        "adj_efficiency_diff": 0.06,
+        "seed_diff": 0.05,              # Reduced from 0.08 — seeds overrated in March
+        "adj_efficiency_diff": 0.05,     # Slightly reduced — let other factors breathe
         "adj_offense_diff": 0.02,
         "adj_defense_diff": 0.02,
-        "barthag_diff": 2.5,
+        "barthag_diff": 2.0,            # Reduced from 2.5
         "raptor_total_diff": 0.05,
         "raptor_offense_diff": 0.02,
         "raptor_defense_diff": 0.02,
@@ -424,18 +490,23 @@ def logistic_model(features):
         "off_reb_diff": 1.5,
         "ft_rate_diff": 1.0,
         "opp_efg_diff": 2.5,
-        "elite_sos_diff": 0.3,
-        "win_pct_diff": 1.0,
-        "streak_diff": 0.05,
-        "experience_diff": 0.15,
-        "conf_strength_diff": 0.1,
-        "spread": -0.08,
-        "futures_diff": 2.0,
-        "seed_hist_prob": 1.5,
-        "injury_impact_diff": 0.1,
-        "is_conf_champ_1": 0.1,
-        "is_conf_champ_2": -0.1,
+        "elite_sos_diff": 0.25,
+        "win_pct_diff": 0.8,
+        "streak_diff": 0.12,            # Doubled from 0.05 — hot teams matter in March
+        "experience_diff": 0.20,         # Boosted — experience wins in tourney pressure
+        "conf_strength_diff": 0.08,
+        "spread": -0.07,
+        "futures_diff": 1.5,
+        "seed_hist_prob": 1.0,           # Reduced from 1.5 — less chalk
+        "injury_impact_diff": 0.15,      # Boosted — injuries are massive in single elim
+        "is_conf_champ_1": 0.15,         # Boosted — conf champs are battle-tested
+        "is_conf_champ_2": -0.15,
         "round_number": 0.0,
+        # 3-Point X-Factor
+        "three_pt_pct_diff": 2.5,        # Good 3PT shooting is a weapon
+        "three_pt_rate_diff": 0.8,        # Teams that shoot more 3s have higher variance (upsets)
+        "opp_three_pt_pct_diff": 2.0,     # Bad 3PT defense = vulnerable to upsets
+        "three_pt_xfactor": 0.6,          # Composite mismatch factor
     }
 
     z = 0
@@ -481,8 +552,9 @@ def ensemble_predict(team1, team2, round_number=1, trained_model=None):
         if total > 0:
             p_market = team1.futures_odds / total
 
-    # Dynamic weights by round
-    seed_weight = max(0.05, 0.25 - (round_number - 1) * 0.04)
+    # Dynamic weights by round — reduced seed weight for more upset potential
+    # Seed history goes from 15% in R64 down to 3% in Championship
+    seed_weight = max(0.03, 0.15 - (round_number - 1) * 0.025)
     market_weight = 0.20
     if p_ml is not None:
         ml_weight = 0.35
@@ -498,11 +570,15 @@ def ensemble_predict(team1, team2, round_number=1, trained_model=None):
         market_weight * p_market
     )
 
+    # Compute 3PT X-factor for reporting
+    three_xf = compute_three_pt_xfactor(team1, team2) - compute_three_pt_xfactor(team2, team1)
+
     return p_team1, {
         "seed": round(p_seed, 3),
         "logistic": round(p_logistic, 3),
         "ml": round(p_ml, 3) if p_ml is not None else None,
         "market": round(p_market, 3),
+        "three_pt_xfactor": round(three_xf, 3),
         "weights": {
             "seed": round(seed_weight, 2),
             "logistic": round(logistic_weight, 2),
@@ -551,6 +627,8 @@ def load_training_data(filepath):
                     off_rebound_pct=float(row.get("orb_pct1", 0)),
                     wins=int(row.get("wins1", 0)),
                     losses=int(row.get("losses1", 0)),
+                    three_pt_pct=float(row.get("three_pct1", 0)),
+                    opp_three_pt_pct=float(row.get("opp_three_pct1", 0)),
                 )
                 t2 = Team(
                     name=row["team2"], seed=int(row["seed2"]), region="",
@@ -563,6 +641,8 @@ def load_training_data(filepath):
                     off_rebound_pct=float(row.get("orb_pct2", 0)),
                     wins=int(row.get("wins2", 0)),
                     losses=int(row.get("losses2", 0)),
+                    three_pt_pct=float(row.get("three_pct2", 0)),
+                    opp_three_pt_pct=float(row.get("opp_three_pct2", 0)),
                 )
                 round_num = int(row.get("round", 1))
                 features = build_features(t1, t2, round_num)
@@ -788,7 +868,7 @@ def print_predictions(games):
         )
 
         # Show model breakdown for close games
-        if conf < 0.65 and game.model_factors:
+        if conf < 0.70 and game.model_factors:
             f = game.model_factors
             parts = []
             if f.get("seed") is not None:
@@ -799,6 +879,9 @@ def print_predictions(games):
                 parts.append(f"ml:{f['ml']:.0%}")
             if f.get("market") is not None and f["market"] != 0.5:
                 parts.append(f"market:{f['market']:.0%}")
+            if f.get("three_pt_xfactor") is not None and abs(f["three_pt_xfactor"]) > 0.01:
+                sign = "+" if f["three_pt_xfactor"] > 0 else ""
+                parts.append(f"3PT:{sign}{f['three_pt_xfactor']:.2f}")
             print(f"      Factors: {' | '.join(parts)}")
 
 
