@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 March Madness Bracket Predictions</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        color: #fff;
+        min-height: 100vh;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+        font-size: 2.2em;
+        margin-bottom: 10px;
+        background: linear-gradient(90deg, #ff6b35, #f7c948, #ff6b35);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+    .subtitle {
+        text-align: center;
+        color: #8892b0;
+        margin-bottom: 30px;
+        font-size: 0.95em;
+    }
+    .champion-banner {
+        text-align: center;
+        background: linear-gradient(135deg, #f7c948 0%, #ff6b35 100%);
+        color: #1a1a2e;
+        padding: 20px 40px;
+        border-radius: 12px;
+        margin: 0 auto 30px;
+        max-width: 500px;
+        box-shadow: 0 8px 32px rgba(247, 201, 72, 0.3);
+    }
+    .champion-banner h2 { font-size: 1.6em; margin-bottom: 5px; }
+    .champion-banner .champ-details { font-size: 1.1em; font-weight: 600; }
+    .region {
+        background: rgba(255,255,255,0.05);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 25px;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    .region h2 {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        color: #f7c948;
+        border-bottom: 2px solid rgba(247,201,72,0.3);
+        padding-bottom: 8px;
+    }
+    .round {
+        margin-bottom: 20px;
+    }
+    .round h3 {
+        color: #8892b0;
+        font-size: 0.95em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+    }
+    .matchup {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 8px;
+        margin-bottom: 8px;
+        overflow: hidden;
+    }
+    .team {
+        padding: 8px 14px;
+        font-size: 0.92em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        color: #8892b0;
+    }
+    .team:last-child { border-bottom: none; }
+    .team.winner {
+        background: rgba(72, 199, 142, 0.15);
+        color: #48c78e;
+        font-weight: 600;
+    }
+    .seed {
+        color: #f7c948;
+        font-weight: 700;
+        font-size: 0.85em;
+        min-width: 30px;
+    }
+    .winner .seed { color: #f7c948; }
+    .prob {
+        margin-left: auto;
+        background: rgba(72,199,142,0.2);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.8em;
+        font-weight: 700;
+    }
+    .spread {
+        font-size: 0.8em;
+        color: #48c78e;
+        opacity: 0.8;
+    }
+    .final-four-section {
+        background: rgba(247,201,72,0.08);
+        border: 2px solid rgba(247,201,72,0.3);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+    .final-four-section h2 {
+        color: #f7c948;
+        text-align: center;
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+    .championship-section {
+        background: rgba(255,107,53,0.08);
+        border: 2px solid rgba(255,107,53,0.3);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+    .championship-section h2 {
+        color: #ff6b35;
+        text-align: center;
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+    .upsets {
+        background: rgba(255,255,255,0.05);
+        border-radius: 12px;
+        padding: 20px;
+        border: 1px solid rgba(255,107,53,0.3);
+    }
+    .upsets h2 {
+        color: #ff6b35;
+        margin-bottom: 15px;
+        font-size: 1.3em;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    table td {
+        padding: 8px 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        font-size: 0.92em;
+    }
+    table tr td:nth-child(2) {
+        color: #8892b0;
+        text-align: center;
+        font-style: italic;
+    }
+    table tr td:last-child {
+        color: #8892b0;
+        text-align: right;
+        font-size: 0.85em;
+    }
+    .footer {
+        text-align: center;
+        color: #4a5568;
+        margin-top: 30px;
+        font-size: 0.8em;
+    }
+</style>
+</head>
+<body>
+    <h1>2026 March Madness</h1>
+    <p class="subtitle">ML-Powered Bracket Predictions &middot; GBM Model &middot; 67.9% CV Accuracy</p>
+
+    <div class="champion-banner">
+        <h2>Predicted Champion</h2>
+        <div class="champ-details">(1) Duke &mdash; 96% Confidence</div>
+    </div>
+
+    
+        <div class="region">
+            <h2>East Region</h2>
+            
+            <div class="round">
+                <h3>Round of 64</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Duke <span class="prob">96%</span> <span class="spread">[-21.1]</span></div>
+        <div class="team"><span class="seed">(16)</span> Siena  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(8)</span> Ohio State <span class="prob">64%</span> <span class="spread">[-3.9]</span></div>
+        <div class="team"><span class="seed">(9)</span> TCU  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(5)</span> St. John's <span class="prob">84%</span> <span class="spread">[-10.9]</span></div>
+        <div class="team"><span class="seed">(12)</span> Northern Iowa  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(4)</span> Kansas <span class="prob">92%</span> <span class="spread">[-16.4]</span></div>
+        <div class="team"><span class="seed">(13)</span> Cal Baptist  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(6)</span> Louisville <span class="prob">82%</span> <span class="spread">[-10.3]</span></div>
+        <div class="team"><span class="seed">(11)</span> South Florida  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(3)</span> Michigan State <span class="prob">92%</span> <span class="spread">[-16.6]</span></div>
+        <div class="team"><span class="seed">(14)</span> North Dakota State  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(7)</span> UCLA <span class="prob">80%</span> <span class="spread">[-9.3]</span></div>
+        <div class="team"><span class="seed">(10)</span> UCF  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(2)</span> UConn <span class="prob">96%</span> <span class="spread">[-21.2]</span></div>
+        <div class="team"><span class="seed">(15)</span> Furman  </div>
+    </div>
+            </div>
+            <div class="round">
+                <h3>Round of 32</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Duke <span class="prob">87%</span> <span class="spread">[-12.5]</span></div>
+        <div class="team"><span class="seed">(8)</span> Ohio State  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(5)</span> St. John's <span class="prob">75%</span> <span class="spread">[-7.2]</span></div>
+        <div class="team"><span class="seed">(4)</span> Kansas  </div>
+    </div><div class="matchup">
+        <div class="team"><span class="seed">(6)</span> Louisville  </div>
+        <div class="team winner"><span class="seed">(3)</span> Michigan State <span class="prob">64%</span> <span class="spread">[-4.0]</span></div>
+    </div><div class="matchup">
+        <div class="team"><span class="seed">(7)</span> UCLA  </div>
+        <div class="team winner"><span class="seed">(2)</span> UConn <span class="prob">66%</span> <span class="spread">[-4.6]</span></div>
+    </div>
+            </div>
+            <div class="round">
+                <h3>Sweet 16</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Duke <span class="prob">94%</span> <span class="spread">[-18.4]</span></div>
+        <div class="team"><span class="seed">(5)</span> St. John's  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(3)</span> Michigan State <span class="prob">87%</span> <span class="spread">[-12.5]</span></div>
+        <div class="team"><span class="seed">(2)</span> UConn  </div>
+    </div>
+            </div>
+            <div class="round">
+                <h3>Elite Eight</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Duke <span class="prob">95%</span> <span class="spread">[-19.1]</span></div>
+        <div class="team"><span class="seed">(3)</span> Michigan State  </div>
+    </div>
+            </div>
+        </div>
+        <div class="region">
+            <h2>West Region</h2>
+            
+            <div class="round">
+                <h3>Round of 64</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Arizona <span class="prob">95%</span> <span class="spread">[-20.1]</span></div>
+        <div class="team"><span class="seed">(16)</span> LIU  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(8)</span> Villanova <span class="prob">62%</span> <span class="spread">[-3.3]</span></div>
+        <div class="team"><span class="seed">(9)</span> Utah State  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(5)</span> Wisconsin <span class="prob">87%</span> <span class="spread">[-12.5]</span></div>
+        <div class="team"><span class="seed">(12)</span> High Point  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(4)</span> Arkansas <span class="prob">93%</span> <span class="spread">[-17.3]</span></div>
+        <div class="team"><span class="seed">(13)</span> Hawaii  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(6)</span> BYU <span class="prob">85%</span> <span class="spread">[-11.4]</span></div>
+        <div class="team"><span class="seed">(11)</span> NC State  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(3)</span> Gonzaga <span class="prob">93%</span> <span class="spread">[-17.1]</span></div>
+        <div class="team"><span class="seed">(14)</span> Kennesaw State  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(7)</span> Miami FL <span class="prob">67%</span> <span class="spread">[-4.8]</span></div>
+        <div class="team"><span class="seed">(10)</span> Missouri  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(2)</span> Purdue <span class="prob">95%</span> <span class="spread">[-20.1]</span></div>
+        <div class="team"><span class="seed">(15)</span> Queens  </div>
+    </div>
+            </div>
+            <div class="round">
+                <h3>Round of 32</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Arizona <span class="prob">87%</span> <span class="spread">[-12.6]</span></div>
+        <div class="team"><span class="seed">(8)</span> Villanova  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(5)</span> Wisconsin <span class="prob">56%</span> <span class="spread">[-1.6]</span></div>
+        <div class="team"><span class="seed">(4)</span> Arkansas  </div>
+    </div><div class="matchup">
+        <div class="team"><span class="seed">(6)</span> BYU  </div>
+        <div class="team winner"><span class="seed">(3)</span> Gonzaga <span class="prob">58%</span> <span class="spread">[-2.2]</span></div>
+    </div><div class="matchup">
+        <div class="team"><span class="seed">(7)</span> Miami FL  </div>
+        <div class="team winner"><span class="seed">(2)</span> Purdue <span class="prob">70%</span> <span class="spread">[-5.6]</span></div>
+    </div>
+            </div>
+            <div class="round">
+                <h3>Sweet 16</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Arizona <span class="prob">94%</span> <span class="spread">[-18.9]</span></div>
+        <div class="team"><span class="seed">(5)</span> Wisconsin  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(3)</span> Gonzaga <span class="prob">79%</span> <span class="spread">[-8.8]</span></div>
+        <div class="team"><span class="seed">(2)</span> Purdue  </div>
+    </div>
+            </div>
+            <div class="round">
+                <h3>Elite Eight</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Arizona <span class="prob">95%</span> <span class="spread">[-19.5]</span></div>
+        <div class="team"><span class="seed">(3)</span> Gonzaga  </div>
+    </div>
+            </div>
+        </div>
+        <div class="region">
+            <h2>South Region</h2>
+            
+            <div class="round">
+                <h3>Round of 64</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Florida <span class="prob">97%</span> <span class="spread">[-23.1]</span></div>
+        <div class="team"><span class="seed">(16)</span> Lehigh  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(8)</span> Clemson <span class="prob">58%</span> <span class="spread">[-2.3]</span></div>
+        <div class="team"><span class="seed">(9)</span> Iowa  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(5)</span> Vanderbilt <span class="prob">84%</span> <span class="spread">[-11.2]</span></div>
+        <div class="team"><span class="seed">(12)</span> McNeese  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(4)</span> Nebraska <span class="prob">93%</span> <span class="spread">[-17.4]</span></div>
+        <div class="team"><span class="seed">(13)</span> Troy  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(6)</span> North Carolina <span class="prob">75%</span> <span class="spread">[-7.2]</span></div>
+        <div class="team"><span class="seed">(11)</span> VCU  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(3)</span> Illinois <span class="prob">93%</span> <span class="spread">[-16.9]</span></div>
+        <div class="team"><span class="seed">(14)</span> Penn  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(7)</span> Saint Mary's <span class="prob">73%</span> <span class="spread">[-6.5]</span></div>
+        <div class="team"><span class="seed">(10)</span> Texas A&M  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(2)</span> Houston <span class="prob">96%</span> <span class="spread">[-22.0]</span></div>
+        <div class="team"><span class="seed">(15)</span> Idaho  </div>
+    </div>
+            </div>
+            <div class="round">
+                <h3>Round of 32</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Florida <span class="prob">90%</span> <span class="spread">[-14.3]</span></div>
+        <div class="team"><span class="seed">(8)</span> Clemson  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(5)</span> Vanderbilt <span class="prob">57%</span> <span class="spread">[-2.0]</span></div>
+        <div class="team"><span class="seed">(4)</span> Nebraska  </div>
+    </div><div class="matchup">
+        <div class="team"><span class="seed">(6)</span> North Carolina  </div>
+        <div class="team winner"><span class="seed">(3)</span> Illinois <span class="prob">65%</span> <span class="spread">[-4.2]</span></div>
+    </div><div class="matchup">
+        <div class="team"><span class="seed">(7)</span> Saint Mary's  </div>
+        <div class="team winner"><span class="seed">(2)</span> Houston <span class="prob">74%</span> <span class="spread">[-6.9]</span></div>
+    </div>
+            </div>
+            <div class="round">
+                <h3>Sweet 16</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Florida <span class="prob">93%</span> <span class="spread">[-17.6]</span></div>
+        <div class="team"><span class="seed">(5)</span> Vanderbilt  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(3)</span> Illinois <span class="prob">70%</span> <span class="spread">[-5.6]</span></div>
+        <div class="team"><span class="seed">(2)</span> Houston  </div>
+    </div>
+            </div>
+            <div class="round">
+                <h3>Elite Eight</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Florida <span class="prob">94%</span> <span class="spread">[-18.3]</span></div>
+        <div class="team"><span class="seed">(3)</span> Illinois  </div>
+    </div>
+            </div>
+        </div>
+        <div class="region">
+            <h2>Midwest Region</h2>
+            
+            <div class="round">
+                <h3>Round of 64</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Michigan <span class="prob">96%</span> <span class="spread">[-20.4]</span></div>
+        <div class="team"><span class="seed">(16)</span> Howard  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(8)</span> Georgia <span class="prob">68%</span> <span class="spread">[-5.2]</span></div>
+        <div class="team"><span class="seed">(9)</span> Saint Louis  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(5)</span> Texas Tech <span class="prob">74%</span> <span class="spread">[-7.2]</span></div>
+        <div class="team"><span class="seed">(12)</span> Akron  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(4)</span> Alabama <span class="prob">82%</span> <span class="spread">[-10.1]</span></div>
+        <div class="team"><span class="seed">(13)</span> Hofstra  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(6)</span> Tennessee <span class="prob">84%</span> <span class="spread">[-11.0]</span></div>
+        <div class="team"><span class="seed">(11)</span> SMU  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(3)</span> Virginia <span class="prob">94%</span> <span class="spread">[-18.2]</span></div>
+        <div class="team"><span class="seed">(14)</span> Wright State  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(7)</span> Kentucky <span class="prob">80%</span> <span class="spread">[-9.2]</span></div>
+        <div class="team"><span class="seed">(10)</span> Santa Clara  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(2)</span> Iowa State <span class="prob">97%</span> <span class="spread">[-22.5]</span></div>
+        <div class="team"><span class="seed">(15)</span> Tennessee State  </div>
+    </div>
+            </div>
+            <div class="round">
+                <h3>Round of 32</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Michigan <span class="prob">87%</span> <span class="spread">[-12.5]</span></div>
+        <div class="team"><span class="seed">(8)</span> Georgia  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(5)</span> Texas Tech <span class="prob">69%</span> <span class="spread">[-5.4]</span></div>
+        <div class="team"><span class="seed">(4)</span> Alabama  </div>
+    </div><div class="matchup">
+        <div class="team"><span class="seed">(6)</span> Tennessee  </div>
+        <div class="team winner"><span class="seed">(3)</span> Virginia <span class="prob">63%</span> <span class="spread">[-3.5]</span></div>
+    </div><div class="matchup">
+        <div class="team"><span class="seed">(7)</span> Kentucky  </div>
+        <div class="team winner"><span class="seed">(2)</span> Iowa State <span class="prob">68%</span> <span class="spread">[-4.9]</span></div>
+    </div>
+            </div>
+            <div class="round">
+                <h3>Sweet 16</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Michigan <span class="prob">94%</span> <span class="spread">[-18.4]</span></div>
+        <div class="team"><span class="seed">(5)</span> Texas Tech  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(3)</span> Virginia <span class="prob">74%</span> <span class="spread">[-7.0]</span></div>
+        <div class="team"><span class="seed">(2)</span> Iowa State  </div>
+    </div>
+            </div>
+            <div class="round">
+                <h3>Elite Eight</h3>
+                <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Michigan <span class="prob">95%</span> <span class="spread">[-19.0]</span></div>
+        <div class="team"><span class="seed">(3)</span> Virginia  </div>
+    </div>
+            </div>
+        </div>
+
+    <div class="final-four-section">
+        <h2>Final Four</h2>
+        <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Duke <span class="prob">93%</span> <span class="spread">[-17.5]</span></div>
+        <div class="team"><span class="seed">(1)</span> Arizona  </div>
+    </div><div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Florida <span class="prob">77%</span> <span class="spread">[-8.0]</span></div>
+        <div class="team"><span class="seed">(1)</span> Michigan  </div>
+    </div>
+    </div>
+
+    <div class="championship-section">
+        <h2>National Championship</h2>
+        <div class="matchup">
+        <div class="team winner"><span class="seed">(1)</span> Duke <span class="prob">96%</span> <span class="spread">[-21.4]</span></div>
+        <div class="team"><span class="seed">(1)</span> Florida  </div>
+    </div>
+    </div>
+
+    <div class="upsets">
+        <h2>Upset Picks</h2>
+        <table>
+            <tr><td>(5) St. John's</td><td>over</td><td>(4) Kansas</td><td>Round of 32</td></tr><tr><td>(3) Michigan State</td><td>over</td><td>(2) UConn</td><td>Sweet 16</td></tr><tr><td>(5) Wisconsin</td><td>over</td><td>(4) Arkansas</td><td>Round of 32</td></tr><tr><td>(3) Gonzaga</td><td>over</td><td>(2) Purdue</td><td>Sweet 16</td></tr><tr><td>(5) Vanderbilt</td><td>over</td><td>(4) Nebraska</td><td>Round of 32</td></tr><tr><td>(3) Illinois</td><td>over</td><td>(2) Houston</td><td>Sweet 16</td></tr><tr><td>(5) Texas Tech</td><td>over</td><td>(4) Alabama</td><td>Round of 32</td></tr><tr><td>(3) Virginia</td><td>over</td><td>(2) Iowa State</td><td>Sweet 16</td></tr>
+        </table>
+    </div>
+
+    <div class="footer">
+        Generated by March Madness Bot &middot; Data: 630 historical games (2015-2025)
+    </div>
+</body>
+</html>
