@@ -281,6 +281,82 @@ h1 {
     vertical-align: middle;
 }
 
+/* History Table */
+.history-intro {
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.history-table-wrap {
+    overflow-x: auto;
+    margin-bottom: 30px;
+}
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+.history-table th, .history-table td {
+    padding: 10px 14px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+.history-table th {
+    background: var(--card-hover);
+    color: var(--gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    position: sticky;
+    top: 0;
+}
+.history-table th:first-child, .history-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    background: var(--card);
+    z-index: 1;
+}
+.history-table th:first-child { background: var(--card-hover); z-index: 2; }
+.history-table tr:hover td { background: var(--card-hover); }
+.history-table tr:hover td:first-child { background: var(--card-hover); }
+.history-table .seed-col { color: var(--gold); }
+.history-table .pct-high { color: var(--green); font-weight: 600; }
+.history-table .pct-mid { color: var(--white); }
+.history-table .pct-low { color: var(--orange); }
+.history-table .pct-rare { color: var(--gray); }
+.history-callouts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+.history-callout {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+}
+.history-callout h4 {
+    color: var(--orange);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+.history-callout p {
+    color: var(--white);
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+.history-callout .stat {
+    color: var(--gold);
+    font-weight: 700;
+}
+
 /* Footer */
 footer {
     text-align: center;
@@ -316,6 +392,7 @@ footer {
         <div class="tab" data-tab="ff">Final Four</div>
         <div class="tab" data-tab="insights">Insights</div>
         <div class="tab" data-tab="upsets">Upsets</div>
+        <div class="tab" data-tab="history">Seed History</div>
     </div>
 
     <!-- Bracket Tab -->
@@ -1120,6 +1197,194 @@ footer {
 <div class="upset-row"><span class="upset-winner">(5) Texas Tech</span> over <span class="upset-loser">(4) Alabama</span><span class="upset-round">Round of 32</span></div>
 <div class="upset-row"><span class="upset-winner">(3) Virginia</span> over <span class="upset-loser">(2) Iowa State</span><span class="upset-round">Sweet 16</span></div>
 
+        </div>
+    </div>
+
+    <!-- Seed History Tab -->
+    <div class="section" id="history">
+        <div class="insight-card">
+            <h3>Historical Seed Performance (1985-2025)</h3>
+            <p class="history-intro">How often does each seed advance to each round? Based on 40 years of NCAA Tournament data.</p>
+            <div class="history-table-wrap">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Seed</th>
+                            <th>Win R64</th>
+                            <th>Make S16</th>
+                            <th>Make E8</th>
+                            <th>Make F4</th>
+                            <th>Make Final</th>
+                            <th>Win Title</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="seed-col">1</td>
+                            <td class="pct-high">99%</td>
+                            <td class="pct-high">68%</td>
+                            <td class="pct-high">51%</td>
+                            <td class="pct-high">35%</td>
+                            <td class="pct-mid">22%</td>
+                            <td class="pct-mid">14%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">2</td>
+                            <td class="pct-high">94%</td>
+                            <td class="pct-high">50%</td>
+                            <td class="pct-mid">33%</td>
+                            <td class="pct-mid">19%</td>
+                            <td class="pct-low">11%</td>
+                            <td class="pct-low">6%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">3</td>
+                            <td class="pct-high">85%</td>
+                            <td class="pct-mid">36%</td>
+                            <td class="pct-mid">20%</td>
+                            <td class="pct-low">10%</td>
+                            <td class="pct-low">5%</td>
+                            <td class="pct-rare">3%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">4</td>
+                            <td class="pct-high">79%</td>
+                            <td class="pct-mid">31%</td>
+                            <td class="pct-mid">16%</td>
+                            <td class="pct-low">8%</td>
+                            <td class="pct-rare">4%</td>
+                            <td class="pct-rare">2%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">5</td>
+                            <td class="pct-high">65%</td>
+                            <td class="pct-mid">19%</td>
+                            <td class="pct-low">9%</td>
+                            <td class="pct-rare">4%</td>
+                            <td class="pct-rare">2%</td>
+                            <td class="pct-rare">1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">6</td>
+                            <td class="pct-high">63%</td>
+                            <td class="pct-mid">17%</td>
+                            <td class="pct-low">8%</td>
+                            <td class="pct-rare">3%</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">7</td>
+                            <td class="pct-high">61%</td>
+                            <td class="pct-mid">14%</td>
+                            <td class="pct-low">6%</td>
+                            <td class="pct-rare">2%</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">8</td>
+                            <td class="pct-mid">51%</td>
+                            <td class="pct-low">10%</td>
+                            <td class="pct-rare">4%</td>
+                            <td class="pct-rare">2%</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">9</td>
+                            <td class="pct-mid">49%</td>
+                            <td class="pct-low">7%</td>
+                            <td class="pct-rare">3%</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">10</td>
+                            <td class="pct-mid">39%</td>
+                            <td class="pct-low">6%</td>
+                            <td class="pct-rare">2%</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">11</td>
+                            <td class="pct-mid">37%</td>
+                            <td class="pct-low">7%</td>
+                            <td class="pct-rare">3%</td>
+                            <td class="pct-rare">2%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">12</td>
+                            <td class="pct-mid">35%</td>
+                            <td class="pct-rare">4%</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">13</td>
+                            <td class="pct-mid">21%</td>
+                            <td class="pct-rare">2%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">0%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">14</td>
+                            <td class="pct-mid">15%</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">0%</td>
+                            <td class="pct-rare">0%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">15</td>
+                            <td class="pct-low">6%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">0%</td>
+                            <td class="pct-rare">0%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">16</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">0%</td>
+                            <td class="pct-rare">0%</td>
+                            <td class="pct-rare">0%</td>
+                            <td class="pct-rare">0%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="history-callouts">
+            <div class="history-callout">
+                <h4>Cinderella Seeds</h4>
+                <p><span class="stat">11 seeds</span> are the most dangerous mid-majors &mdash; they make the Sweet 16 <span class="stat">7%</span> of the time and the Final Four <span class="stat">2%</span>. Loyola-Chicago (2018) and VCU (2011) both made the F4 as 11 seeds.</p>
+            </div>
+            <div class="history-callout">
+                <h4>The 8/9 Coin Flip</h4>
+                <p>The 8 vs 9 matchup is nearly a <span class="stat">51/49</span> toss-up. But an 8 seed making the Final Four? Only <span class="stat">2%</span> of the time. They almost always run into the 1 seed in Round 2.</p>
+            </div>
+            <div class="history-callout">
+                <h4>12 Over 5 Magic</h4>
+                <p>The famous <span class="stat">12-over-5</span> upset hits <span class="stat">35%</span> of the time &mdash; roughly once per year. It's the most popular upset pick in bracket pools for good reason.</p>
+            </div>
+            <div class="history-callout">
+                <h4>1 Seeds Aren't Safe</h4>
+                <p>A 1 seed wins it all only <span class="stat">14%</span> of the time (about 1 in 7). They lose before the Elite Eight <span class="stat">32%</span> of the time. Even top seeds face March chaos.</p>
+            </div>
         </div>
     </div>
 </div>
