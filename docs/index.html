@@ -281,6 +281,78 @@ h1 {
     vertical-align: middle;
 }
 
+/* Ratings Table */
+.ratings-table-wrap {
+    overflow-y: auto;
+    max-height: 600px;
+}
+.ratings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+.ratings-table th, .ratings-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--border);
+}
+.ratings-table th {
+    background: var(--card-hover);
+    color: var(--gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+.ratings-table th:hover { color: var(--white); }
+.ratings-table th.sort-asc::after { content: ' \u25B2'; font-size: 0.6rem; }
+.ratings-table th.sort-desc::after { content: ' \u25BC'; font-size: 0.6rem; }
+.ratings-table td:first-child { text-align: center; }
+.ratings-table td:nth-child(n+3) { text-align: center; }
+.ratings-table tr:hover td { background: var(--card-hover); }
+.ratings-table .rank-col { color: var(--gray); font-size: 0.75rem; }
+.ratings-table .team-col { font-weight: 600; }
+.ratings-table .seed-badge {
+    display: inline-block;
+    background: rgba(247,201,72,0.15);
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 0.7rem;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 5px;
+    margin-right: 6px;
+}
+.off-val { color: var(--green); font-weight: 600; }
+.def-val { color: #5ba3f5; font-weight: 600; }
+.eff-val { color: var(--gold); font-weight: 700; }
+.ratings-filter {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+.ratings-filter button {
+    padding: 5px 12px;
+    border-radius: 6px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--gray);
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+.ratings-filter button:hover, .ratings-filter button.active {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
 /* History Table */
 .history-intro {
     color: var(--gray);
@@ -1182,6 +1254,94 @@ footer {
 
             </div>
         </div>
+        <div class="insight-card" style="margin-top:20px">
+            <h3>Team Ratings — All 64 Teams</h3>
+            <div class="ratings-filter">
+                <button class="active" data-filter="all">All Teams</button>
+                <button data-filter="top">Top Seeds (1-4)</button>
+                <button data-filter="mid">Mid Seeds (5-8)</button>
+                <button data-filter="low">Low Seeds (9-16)</button>
+            </div>
+            <div class="ratings-table-wrap">
+                <table class="ratings-table" id="ratingsTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="rank" class="sort-asc">#</th>
+                            <th data-sort="team" style="text-align:left">Team</th>
+                            <th data-sort="off">Off Rtg</th>
+                            <th data-sort="def">Def Rtg</th>
+                            <th data-sort="eff">Net Rtg</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-seed="1"><td class="rank-col">1</td><td class="team-col"><span class="seed-badge">1</span>Duke</td><td class="off-val">126.0</td><td class="def-val">85.5</td><td class="eff-val">+40.5</td></tr>
+                        <tr data-seed="1"><td class="rank-col">2</td><td class="team-col"><span class="seed-badge">1</span>Michigan</td><td class="off-val">124.5</td><td class="def-val">85.5</td><td class="eff-val">+39.0</td></tr>
+                        <tr data-seed="1"><td class="rank-col">3</td><td class="team-col"><span class="seed-badge">1</span>Arizona</td><td class="off-val">125.0</td><td class="def-val">88.0</td><td class="eff-val">+37.0</td></tr>
+                        <tr data-seed="1"><td class="rank-col">4</td><td class="team-col"><span class="seed-badge">1</span>Florida</td><td class="off-val">124.0</td><td class="def-val">88.5</td><td class="eff-val">+35.5</td></tr>
+                        <tr data-seed="2"><td class="rank-col">5</td><td class="team-col"><span class="seed-badge">2</span>Iowa State</td><td class="off-val">117.5</td><td class="def-val">86.5</td><td class="eff-val">+31.0</td></tr>
+                        <tr data-seed="2"><td class="rank-col">6</td><td class="team-col"><span class="seed-badge">2</span>Houston</td><td class="off-val">119.0</td><td class="def-val">89.0</td><td class="eff-val">+30.0</td></tr>
+                        <tr data-seed="2"><td class="rank-col">7</td><td class="team-col"><span class="seed-badge">2</span>UConn</td><td class="off-val">122.0</td><td class="def-val">93.5</td><td class="eff-val">+28.5</td></tr>
+                        <tr data-seed="2"><td class="rank-col">8</td><td class="team-col"><span class="seed-badge">2</span>Purdue</td><td class="off-val">123.5</td><td class="def-val">96.0</td><td class="eff-val">+27.5</td></tr>
+                        <tr data-seed="3"><td class="rank-col">9</td><td class="team-col"><span class="seed-badge">3</span>Michigan State</td><td class="off-val">115.0</td><td class="def-val">89.0</td><td class="eff-val">+26.0</td></tr>
+                        <tr data-seed="3"><td class="rank-col">10</td><td class="team-col"><span class="seed-badge">3</span>Illinois</td><td class="off-val">125.0</td><td class="def-val">99.5</td><td class="eff-val">+25.5</td></tr>
+                        <tr data-seed="3"><td class="rank-col">11</td><td class="team-col"><span class="seed-badge">3</span>Gonzaga</td><td class="off-val">118.0</td><td class="def-val">93.0</td><td class="eff-val">+25.0</td></tr>
+                        <tr data-seed="3"><td class="rank-col">12</td><td class="team-col"><span class="seed-badge">3</span>Virginia</td><td class="off-val">116.0</td><td class="def-val">92.0</td><td class="eff-val">+24.0</td></tr>
+                        <tr data-seed="4"><td class="rank-col">13</td><td class="team-col"><span class="seed-badge">4</span>Nebraska</td><td class="off-val">117.0</td><td class="def-val">95.0</td><td class="eff-val">+22.0</td></tr>
+                        <tr data-seed="4"><td class="rank-col">14</td><td class="team-col"><span class="seed-badge">4</span>Alabama</td><td class="off-val">124.0</td><td class="def-val">102.5</td><td class="eff-val">+21.5</td></tr>
+                        <tr data-seed="4"><td class="rank-col">15</td><td class="team-col"><span class="seed-badge">4</span>Kansas</td><td class="off-val">118.5</td><td class="def-val">97.5</td><td class="eff-val">+21.0</td></tr>
+                        <tr data-seed="4"><td class="rank-col">16</td><td class="team-col"><span class="seed-badge">4</span>Arkansas</td><td class="off-val">118.0</td><td class="def-val">97.5</td><td class="eff-val">+20.5</td></tr>
+                        <tr data-seed="5"><td class="rank-col">17</td><td class="team-col"><span class="seed-badge">5</span>Vanderbilt</td><td class="off-val">121.0</td><td class="def-val">101.0</td><td class="eff-val">+20.0</td></tr>
+                        <tr data-seed="5"><td class="rank-col">18</td><td class="team-col"><span class="seed-badge">5</span>St. John's</td><td class="off-val">114.0</td><td class="def-val">94.5</td><td class="eff-val">+19.5</td></tr>
+                        <tr data-seed="5"><td class="rank-col">19</td><td class="team-col"><span class="seed-badge">5</span>Texas Tech</td><td class="off-val">119.0</td><td class="def-val">100.5</td><td class="eff-val">+18.5</td></tr>
+                        <tr data-seed="6"><td class="rank-col">20</td><td class="team-col"><span class="seed-badge">6</span>Louisville</td><td class="off-val">116.5</td><td class="def-val">98.5</td><td class="eff-val">+18.0</td></tr>
+                        <tr data-seed="5"><td class="rank-col">22</td><td class="team-col"><span class="seed-badge">5</span>Wisconsin</td><td class="off-val">118.5</td><td class="def-val">101.5</td><td class="eff-val">+17.0</td></tr>
+                        <tr data-seed="6"><td class="rank-col">23</td><td class="team-col"><span class="seed-badge">6</span>BYU</td><td class="off-val">117.0</td><td class="def-val">100.5</td><td class="eff-val">+16.5</td></tr>
+                        <tr data-seed="6"><td class="rank-col">24</td><td class="team-col"><span class="seed-badge">6</span>Tennessee</td><td class="off-val">116.0</td><td class="def-val">100.0</td><td class="eff-val">+16.0</td></tr>
+                        <tr data-seed="6"><td class="rank-col">25</td><td class="team-col"><span class="seed-badge">6</span>North Carolina</td><td class="off-val">117.5</td><td class="def-val">102.0</td><td class="eff-val">+15.5</td></tr>
+                        <tr data-seed="7"><td class="rank-col">26</td><td class="team-col"><span class="seed-badge">7</span>Kentucky</td><td class="off-val">116.5</td><td class="def-val">101.5</td><td class="eff-val">+15.0</td></tr>
+                        <tr data-seed="7"><td class="rank-col">27</td><td class="team-col"><span class="seed-badge">7</span>UCLA</td><td class="off-val">115.5</td><td class="def-val">101.0</td><td class="eff-val">+14.5</td></tr>
+                        <tr data-seed="7"><td class="rank-col">28</td><td class="team-col"><span class="seed-badge">7</span>Saint Mary's</td><td class="off-val">114.0</td><td class="def-val">100.0</td><td class="eff-val">+14.0</td></tr>
+                        <tr data-seed="7"><td class="rank-col">30</td><td class="team-col"><span class="seed-badge">7</span>Miami FL</td><td class="off-val">114.5</td><td class="def-val">101.5</td><td class="eff-val">+13.0</td></tr>
+                        <tr data-seed="8"><td class="rank-col">32</td><td class="team-col"><span class="seed-badge">8</span>Clemson</td><td class="off-val">113.0</td><td class="def-val">100.5</td><td class="eff-val">+12.5</td></tr>
+                        <tr data-seed="8"><td class="rank-col">33</td><td class="team-col"><span class="seed-badge">8</span>Ohio State</td><td class="off-val">113.5</td><td class="def-val">101.5</td><td class="eff-val">+12.0</td></tr>
+                        <tr data-seed="8"><td class="rank-col">35</td><td class="team-col"><span class="seed-badge">8</span>Villanova</td><td class="off-val">113.0</td><td class="def-val">101.5</td><td class="eff-val">+11.5</td></tr>
+                        <tr data-seed="9"><td class="rank-col">34</td><td class="team-col"><span class="seed-badge">9</span>Iowa</td><td class="off-val">115.0</td><td class="def-val">103.5</td><td class="eff-val">+11.5</td></tr>
+                        <tr data-seed="8"><td class="rank-col">36</td><td class="team-col"><span class="seed-badge">8</span>Georgia</td><td class="off-val">114.0</td><td class="def-val">103.0</td><td class="eff-val">+11.0</td></tr>
+                        <tr data-seed="10"><td class="rank-col">38</td><td class="team-col"><span class="seed-badge">10</span>Texas A&amp;M</td><td class="off-val">112.5</td><td class="def-val">102.0</td><td class="eff-val">+10.5</td></tr>
+                        <tr data-seed="9"><td class="rank-col">37</td><td class="team-col"><span class="seed-badge">9</span>TCU</td><td class="off-val">113.0</td><td class="def-val">102.5</td><td class="eff-val">+10.5</td></tr>
+                        <tr data-seed="10"><td class="rank-col">40</td><td class="team-col"><span class="seed-badge">10</span>Missouri</td><td class="off-val">112.0</td><td class="def-val">102.0</td><td class="eff-val">+10.0</td></tr>
+                        <tr data-seed="9"><td class="rank-col">39</td><td class="team-col"><span class="seed-badge">9</span>Utah State</td><td class="off-val">112.5</td><td class="def-val">102.5</td><td class="eff-val">+10.0</td></tr>
+                        <tr data-seed="10"><td class="rank-col">42</td><td class="team-col"><span class="seed-badge">10</span>UCF</td><td class="off-val">112.0</td><td class="def-val">102.5</td><td class="eff-val">+9.5</td></tr>
+                        <tr data-seed="11"><td class="rank-col">43</td><td class="team-col"><span class="seed-badge">11</span>SMU</td><td class="off-val">113.0</td><td class="def-val">103.5</td><td class="eff-val">+9.5</td></tr>
+                        <tr data-seed="11"><td class="rank-col">45</td><td class="team-col"><span class="seed-badge">11</span>VCU</td><td class="off-val">111.5</td><td class="def-val">102.5</td><td class="eff-val">+9.0</td></tr>
+                        <tr data-seed="10"><td class="rank-col">44</td><td class="team-col"><span class="seed-badge">10</span>Santa Clara</td><td class="off-val">112.0</td><td class="def-val">103.0</td><td class="eff-val">+9.0</td></tr>
+                        <tr data-seed="11"><td class="rank-col">48</td><td class="team-col"><span class="seed-badge">11</span>South Florida</td><td class="off-val">110.5</td><td class="def-val">102.0</td><td class="eff-val">+8.5</td></tr>
+                        <tr data-seed="9"><td class="rank-col">46</td><td class="team-col"><span class="seed-badge">9</span>Saint Louis</td><td class="off-val">111.0</td><td class="def-val">102.5</td><td class="eff-val">+8.5</td></tr>
+                        <tr data-seed="11"><td class="rank-col">47</td><td class="team-col"><span class="seed-badge">11</span>NC State</td><td class="off-val">112.0</td><td class="def-val">103.5</td><td class="eff-val">+8.5</td></tr>
+                        <tr data-seed="12"><td class="rank-col">65</td><td class="team-col"><span class="seed-badge">12</span>Akron</td><td class="off-val">108.0</td><td class="def-val">103.0</td><td class="eff-val">+5.0</td></tr>
+                        <tr data-seed="12"><td class="rank-col">70</td><td class="team-col"><span class="seed-badge">12</span>McNeese</td><td class="off-val">107.5</td><td class="def-val">103.0</td><td class="eff-val">+4.5</td></tr>
+                        <tr data-seed="12"><td class="rank-col">68</td><td class="team-col"><span class="seed-badge">12</span>Northern Iowa</td><td class="off-val">107.0</td><td class="def-val">102.5</td><td class="eff-val">+4.5</td></tr>
+                        <tr data-seed="12"><td class="rank-col">75</td><td class="team-col"><span class="seed-badge">12</span>High Point</td><td class="off-val">108.0</td><td class="def-val">104.0</td><td class="eff-val">+4.0</td></tr>
+                        <tr data-seed="13"><td class="rank-col">80</td><td class="team-col"><span class="seed-badge">13</span>Hofstra</td><td class="off-val">107.0</td><td class="def-val">103.5</td><td class="eff-val">+3.5</td></tr>
+                        <tr data-seed="15"><td class="rank-col">85</td><td class="team-col"><span class="seed-badge">15</span>Furman</td><td class="off-val">106.5</td><td class="def-val">103.5</td><td class="eff-val">+3.0</td></tr>
+                        <tr data-seed="13"><td class="rank-col">90</td><td class="team-col"><span class="seed-badge">13</span>Troy</td><td class="off-val">106.0</td><td class="def-val">103.5</td><td class="eff-val">+2.5</td></tr>
+                        <tr data-seed="13"><td class="rank-col">95</td><td class="team-col"><span class="seed-badge">13</span>Hawaii</td><td class="off-val">105.5</td><td class="def-val">103.5</td><td class="eff-val">+2.0</td></tr>
+                        <tr data-seed="14"><td class="rank-col">100</td><td class="team-col"><span class="seed-badge">14</span>Penn</td><td class="off-val">105.0</td><td class="def-val">103.5</td><td class="eff-val">+1.5</td></tr>
+                        <tr data-seed="14"><td class="rank-col">110</td><td class="team-col"><span class="seed-badge">14</span>Wright State</td><td class="off-val">104.5</td><td class="def-val">103.5</td><td class="eff-val">+1.0</td></tr>
+                        <tr data-seed="14"><td class="rank-col">115</td><td class="team-col"><span class="seed-badge">14</span>Kennesaw State</td><td class="off-val">104.0</td><td class="def-val">103.5</td><td class="eff-val">+0.5</td></tr>
+                        <tr data-seed="13"><td class="rank-col">120</td><td class="team-col"><span class="seed-badge">13</span>Cal Baptist</td><td class="off-val">103.5</td><td class="def-val">103.5</td><td class="eff-val">+0.0</td></tr>
+                        <tr data-seed="14"><td class="rank-col">125</td><td class="team-col"><span class="seed-badge">14</span>North Dakota St</td><td class="off-val">103.0</td><td class="def-val">103.5</td><td class="eff-val">-0.5</td></tr>
+                        <tr data-seed="16"><td class="rank-col">130</td><td class="team-col"><span class="seed-badge">16</span>Lehigh</td><td class="off-val">103.0</td><td class="def-val">104.0</td><td class="eff-val">-1.0</td></tr>
+                        <tr data-seed="15"><td class="rank-col">135</td><td class="team-col"><span class="seed-badge">15</span>Idaho</td><td class="off-val">102.5</td><td class="def-val">104.0</td><td class="eff-val">-1.5</td></tr>
+                        <tr data-seed="15"><td class="rank-col">140</td><td class="team-col"><span class="seed-badge">15</span>Queens</td><td class="off-val">102.0</td><td class="def-val">104.0</td><td class="eff-val">-2.0</td></tr>
+                        <tr data-seed="15"><td class="rank-col">150</td><td class="team-col"><span class="seed-badge">15</span>Tennessee State</td><td class="off-val">101.5</td><td class="def-val">104.5</td><td class="eff-val">-3.0</td></tr>
+                        <tr data-seed="16"><td class="rank-col">160</td><td class="team-col"><span class="seed-badge">16</span>Siena</td><td class="off-val">101.0</td><td class="def-val">105.0</td><td class="eff-val">-4.0</td></tr>
+                        <tr data-seed="16"><td class="rank-col">170</td><td class="team-col"><span class="seed-badge">16</span>Howard</td><td class="off-val">100.5</td><td class="def-val">105.5</td><td class="eff-val">-5.0</td></tr>
+                        <tr data-seed="16"><td class="rank-col">175</td><td class="team-col"><span class="seed-badge">16</span>LIU</td><td class="off-val">100.0</td><td class="def-val">105.5</td><td class="eff-val">-5.5</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <!-- Upsets Tab -->
@@ -1400,6 +1560,48 @@ document.querySelectorAll('.tab').forEach(tab => {
         document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
         tab.classList.add('active');
         document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+});
+
+// Ratings filter
+document.querySelectorAll('.ratings-filter button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.ratings-filter button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('#ratingsTable tbody tr').forEach(row => {
+            const seed = parseInt(row.dataset.seed);
+            if (filter === 'all') row.style.display = '';
+            else if (filter === 'top') row.style.display = seed <= 4 ? '' : 'none';
+            else if (filter === 'mid') row.style.display = (seed >= 5 && seed <= 8) ? '' : 'none';
+            else if (filter === 'low') row.style.display = seed >= 9 ? '' : 'none';
+        });
+    });
+});
+
+// Ratings sort
+document.querySelectorAll('#ratingsTable th[data-sort]').forEach(th => {
+    th.addEventListener('click', () => {
+        const key = th.dataset.sort;
+        const tbody = document.querySelector('#ratingsTable tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const isAsc = th.classList.contains('sort-asc');
+        document.querySelectorAll('#ratingsTable th').forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
+        th.classList.add(isAsc ? 'sort-desc' : 'sort-asc');
+        rows.sort((a, b) => {
+            let va, vb;
+            if (key === 'team') {
+                va = a.cells[1].textContent.trim();
+                vb = b.cells[1].textContent.trim();
+                return isAsc ? vb.localeCompare(va) : va.localeCompare(vb);
+            }
+            const ci = key === 'rank' ? 0 : key === 'off' ? 2 : key === 'def' ? 3 : 4;
+            va = parseFloat(a.cells[ci].textContent);
+            vb = parseFloat(b.cells[ci].textContent);
+            if (key === 'def') return isAsc ? vb - va : va - vb;
+            return isAsc ? va - vb : vb - va;
+        });
+        rows.forEach(r => tbody.appendChild(r));
     });
 });
 </script>
