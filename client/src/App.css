@@ -1,0 +1,356 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f0f2f5;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.app-header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: white;
+  padding: 24px 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-icon {
+  font-size: 40px;
+}
+
+.app-header h1 {
+  font-size: 24px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.tagline {
+  font-size: 13px;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-top: 2px;
+}
+
+/* Main */
+.app-main {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 16px;
+  flex: 1;
+}
+
+/* League Input */
+.league-input-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+
+.league-input-section label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.input-row input:focus {
+  outline: none;
+  border-color: #0f3460;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #0f3460, #16213e);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 52, 96, 0.4);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, #e94560, #ff6b6b);
+  color: white;
+}
+
+.btn-accent:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(233, 69, 96, 0.4);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #2d6a4f, #40916c);
+  color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.4);
+}
+
+.help-text {
+  font-size: 12px;
+  color: #999;
+  margin-top: 8px;
+}
+
+/* Status Bar */
+.status-bar {
+  padding: 14px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.status-bar.loading {
+  background: #e8f4fd;
+  color: #0f3460;
+  border: 1px solid #b3d7f0;
+}
+
+.status-bar.error {
+  background: #fde8ec;
+  color: #c0392b;
+  border: 1px solid #f0b3b3;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(15, 52, 96, 0.2);
+  border-top-color: #0f3460;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* League Info */
+.league-info {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+
+.league-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.league-name {
+  font-size: 22px;
+  font-weight: 900;
+  color: #1a1a2e;
+}
+
+.league-meta {
+  font-size: 13px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.league-badge {
+  padding: 6px 14px;
+  background: #e8f4fd;
+  color: #0f3460;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Matchup Cards */
+.matchups-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.matchup-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 14px;
+  border-left: 4px solid #0f3460;
+}
+
+.matchup-team {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.matchup-team.winner {
+  font-weight: 700;
+}
+
+.matchup-team.winner .matchup-score {
+  color: #e94560;
+  font-weight: 800;
+}
+
+.matchup-team-name {
+  font-size: 13px;
+}
+
+.matchup-score {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.matchup-vs {
+  text-align: center;
+  font-size: 10px;
+  color: #999;
+  font-weight: 800;
+  padding: 2px 0;
+}
+
+.generate-section {
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Recap Preview */
+.recap-preview {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.recap-header {
+  background: linear-gradient(135deg, #1a1a2e, #0f3460);
+  color: white;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recap-header h2 {
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.recap-body {
+  padding: 24px;
+}
+
+.recap-section {
+  margin-bottom: 24px;
+}
+
+.recap-section-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1a1a2e;
+  border-bottom: 3px solid #e94560;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.recap-section-body {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #444;
+  white-space: pre-wrap;
+}
+
+/* Footer */
+.app-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: #999;
+}
+
+@media (max-width: 640px) {
+  .matchups-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .league-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .input-row {
+    flex-direction: column;
+  }
+}
