@@ -1,11 +1,8 @@
 name: March Madness Game Alerts
 
 on:
-  schedule:
-    # Run every hour during March Madness (mid-March to early April)
-    # Games can tip off anytime between noon and midnight ET
-    # Hourly checks ensure we catch every game ~30-60 min before tipoff
-    - cron: '0 * * * *'
+  # schedule:
+  #   - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
