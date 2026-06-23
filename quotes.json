@@ -369,7 +369,7 @@
         "quote": "The name's Bond. James Bond.",
         "character": "James Bond",
         "source": "Casino Royale",
-        "used": false
+        "used": true
     },
     {
         "quote": "There are three ways to make a living in this business: be first, be smarter, or cheat.",
