@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kindred — relationship trends</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="viz-root">
+  <header class="app-header">
+    <div>
+      <h1>Kindred</h1>
+      <p class="subtitle">Are your relationships trending up or down? Import your call and text history to find out.</p>
+    </div>
+    <p class="privacy-note">🔒 Everything runs in your browser. Nothing is uploaded anywhere.</p>
+  </header>
+
+  <section id="empty-state" class="empty-state">
+    <h2>Get started</h2>
+    <p>
+      Export your history with the free Android app
+      <strong>SMS Backup &amp; Restore</strong> (it produces <code>sms.xml</code> and
+      <code>calls.xml</code>), or bring a CSV — then import the files here.
+      Or just poke around with demo data first.
+    </p>
+    <div class="cta-row">
+      <button type="button" class="btn btn-primary" data-demo>Load demo data</button>
+      <label class="btn">
+        Import files
+        <input type="file" data-import multiple accept=".xml,.csv,text/xml,text/csv" hidden />
+      </label>
+    </div>
+    <p id="import-status" class="import-status" role="status"></p>
+  </section>
+
+  <main id="dashboard" hidden>
+    <div class="filter-row" id="range-row">
+      <span class="filter-label">Range</span>
+      <button type="button" data-weeks="13" aria-pressed="false">3 months</button>
+      <button type="button" data-weeks="26" class="active" aria-pressed="true">6 months</button>
+      <button type="button" data-weeks="52" aria-pressed="false">12 months</button>
+      <button type="button" data-weeks="9999" aria-pressed="false">All</button>
+      <span class="filter-spacer"></span>
+      <span id="source-label" class="source-label"></span>
+      <label class="btn btn-small">
+        Import files
+        <input type="file" data-import multiple accept=".xml,.csv,text/xml,text/csv" hidden />
+      </label>
+      <button type="button" class="btn btn-small" data-demo>Demo data</button>
+    </div>
+
+    <div class="tile-row">
+      <div class="tile"><div class="tile-label">People tracked</div><div class="tile-value" id="tile-contacts"></div></div>
+      <div class="tile"><div class="tile-label">Interactions in range</div><div class="tile-value" id="tile-interactions"></div></div>
+      <div class="tile"><div class="tile-label">Trending up</div><div class="tile-value" id="tile-rising"></div></div>
+      <div class="tile"><div class="tile-label">Trending down</div><div class="tile-value" id="tile-fading"></div></div>
+    </div>
+
+    <div class="section-head">
+      <h2>People</h2>
+      <button type="button" class="btn btn-small" id="list-view-toggle">View as table</button>
+    </div>
+
+    <div id="contact-grid" class="contact-grid"></div>
+
+    <div id="contact-table-wrap" class="table-wrap" hidden>
+      <table id="contact-table">
+        <thead>
+          <tr>
+            <th>Name</th><th>Trend</th><th class="num">Δ vs prior 8 wks</th>
+            <th class="num">Texts</th><th class="num">Calls</th>
+            <th class="num">Call min</th><th class="num">Last contact</th>
+            <th class="num">Started by you</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <section id="detail" class="detail" hidden>
+      <div class="section-head">
+        <div class="detail-title">
+          <h2 id="detail-name"></h2>
+          <span id="detail-badge"></span>
+          <span id="detail-number" class="detail-number"></span>
+        </div>
+        <div class="detail-actions">
+          <button type="button" class="btn btn-small" id="detail-view-toggle">View as table</button>
+          <button type="button" class="btn btn-small" id="detail-close">Close</button>
+        </div>
+      </div>
+
+      <div id="detail-facts" class="fact-row"></div>
+
+      <div id="detail-charts" class="chart-pair">
+        <figure class="chart-card">
+          <figcaption>Texts per week</figcaption>
+          <div id="chart-texts" class="chart-body"></div>
+        </figure>
+        <figure class="chart-card">
+          <figcaption>Call minutes per week</figcaption>
+          <div id="chart-calls" class="chart-body"></div>
+        </figure>
+      </div>
+
+      <div id="detail-table-wrap" class="table-wrap" hidden>
+        <table id="detail-table">
+          <thead>
+            <tr>
+              <th>Week of</th><th class="num">Texts</th><th class="num">Calls</th>
+              <th class="num">Missed</th><th class="num">Call min</th><th class="num">Score</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>
+      Weekly connection score = texts + 6×calls + 0.4×call-minutes + missed-call attempts.
+      A relationship is <strong>rising</strong> or <strong>fading</strong> when the last 4 complete weeks
+      differ from the prior 8 by 25% or more (the week in progress is ignored);
+      <strong>dormant</strong> after 8 silent weeks.
+    </p>
+  </footer>
+</div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
