@@ -32,7 +32,37 @@ final class AnalysisTests: XCTestCase {
         w.calls = 2
         w.callMinutes = 10
         w.missed = 1
-        XCTAssertEqual(w.score, 3 * 1 + 2 * 6 + 10 * 0.4 + 1 * 1, accuracy: 1e-9)
+        w.meets = 1
+        XCTAssertEqual(w.score, 3 * 1 + 2 * 6 + 10 * 0.4 + 1 * 1 + 1 * 15, accuracy: 1e-9)
+    }
+
+    func testMeetsCountInBucketsAndTotals() {
+        let monday = utcMs(2026, 1, 5)
+        let now = monday + 2 * weekMs
+        let events = [
+            CommEvent(contactName: "Maya", number: "5551112222", kind: .text, direction: .outgoing, timestampMs: monday),
+            CommEvent(contactName: "Maya", number: "5551112222", kind: .meet, direction: .met, timestampMs: monday + dayMs),
+            CommEvent(contactName: "Maya", number: "5551112222", kind: .meet, direction: .met, timestampMs: monday + weekMs + dayMs),
+        ]
+        let (contacts, _) = analyzeAll(events, nowMs: now)
+        let maya = contacts[0]
+        XCTAssertEqual(maya.series[0].meets, 1)
+        XCTAssertEqual(maya.series[1].meets, 1)
+        XCTAssertEqual(maya.series[0].score, 1 + 15, accuracy: 1e-9)
+        XCTAssertEqual(maya.totals.meets, 2)
+        XCTAssertEqual(maya.daysSinceLastMeet, 6)
+        // Meets are directionless: they never skew initiation balance.
+        XCTAssertEqual(maya.outboundShare!, 1, accuracy: 1e-9)
+    }
+
+    func testDaysSinceLastMeetIsNilWithoutMeets() {
+        let monday = utcMs(2026, 1, 5)
+        let events = [
+            CommEvent(contactName: "A", number: "5553334444", kind: .text, direction: .outgoing, timestampMs: monday),
+            CommEvent(contactName: "A", number: "5553334444", kind: .text, direction: .incoming, timestampMs: monday + dayMs),
+        ]
+        let (contacts, _) = analyzeAll(events, nowMs: monday + weekMs)
+        XCTAssertNil(contacts[0].daysSinceLastMeet)
     }
 
     func testWeeklySeriesIsContiguous() {
@@ -129,5 +159,10 @@ final class AnalysisTests: XCTestCase {
         XCTAssertEqual(byName["Jordan Reyes"], .fading)
         XCTAssertEqual(byName["Alex Chen"], .rising)
         XCTAssertEqual(byName["Casey Nguyen"], .rising)
+        // Meets are deterministic (outside the LCG stream); values cross-checked
+        // against the JS engine at this pinned date.
+        let mom = contacts.first { $0.name == "Mom" }!
+        XCTAssertEqual(mom.totals.meets, 13)
+        XCTAssertEqual(mom.daysSinceLastMeet, 9)
     }
 }

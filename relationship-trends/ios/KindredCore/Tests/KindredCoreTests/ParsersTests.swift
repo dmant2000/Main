@@ -58,6 +58,17 @@ final class ParsersTests: XCTestCase {
         XCTAssertEqual(events[1].durationSec, 300)
     }
 
+    func testParseCsvAcceptsMeetWithBlankDirection() throws {
+        let csv = """
+        date,kind,direction,contact,number,duration_seconds
+        2026-05-30T19:00:00Z,meet,,Maya,+15557001001,
+        2026-05-31T19:00:00Z,meet,met,Maya,+15557001001,
+        """
+        let events = try Parsers.parseCsv(csv)
+        XCTAssertEqual(events.count, 2)
+        XCTAssertTrue(events.allSatisfy { $0.kind == .meet && $0.direction == .met })
+    }
+
     func testParseCsvThrowsOnMissingColumns() {
         XCTAssertThrowsError(try Parsers.parseCsv("a,b\n1,2"))
     }

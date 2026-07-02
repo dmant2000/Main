@@ -4,6 +4,19 @@ Native SwiftUI version of the relationship trend analyzer. Everything stays
 on-device: import your history, see who's rising and who's fading, and let the
 Contacts framework turn phone numbers into real names.
 
+## "Was I in person with this person?"
+
+iOS has no presence API, so each contact's detail screen answers this two ways:
+
+- **Check Calendar** — scans your calendar (read-only, on-device, with
+  permission) for events in the last 6 months whose title or attendees mention
+  the contact, and lets you confirm which ones were real in-person hangouts.
+- **Log a hangout…** — records a meet manually with a date picker.
+
+Confirmed meets are the highest-weighted signal in the connection score (15
+points each — more than a call), the detail screen shows "you last saw them in
+person N days ago", and re-confirming the same day twice is deduplicated.
+
 ## The iOS data problem, and the workaround
 
 iOS sandboxes every third-party app away from the Messages database and the

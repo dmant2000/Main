@@ -87,8 +87,9 @@ export function parseSmsXml(xml) {
 }
 
 // Generic CSV with a header row. Recognized columns (case-insensitive):
-//   date (ISO 8601 or epoch ms), kind (text|call), direction (in|out|missed),
-//   contact, number, duration_seconds
+//   date (ISO 8601 or epoch ms), kind (text|call|meet),
+//   direction (in|out|missed; blank for meet), contact, number,
+//   duration_seconds
 export function parseCsv(text) {
   const rows = splitCsv(text);
   if (rows.length < 2) return [];
@@ -110,10 +111,11 @@ export function parseCsv(text) {
     const rawDate = (row[iDate] || '').trim();
     const ts = /^\d+$/.test(rawDate) ? Number(rawDate) : Date.parse(rawDate);
     const kind = (row[iKind] || '').trim().toLowerCase();
-    const direction = (row[iDir] || '').trim().toLowerCase();
+    let direction = (row[iDir] || '').trim().toLowerCase();
     if (!Number.isFinite(ts)) continue;
-    if (kind !== 'text' && kind !== 'call') continue;
-    if (!['in', 'out', 'missed'].includes(direction)) continue;
+    if (kind === 'meet') direction = 'met'; // an in-person meet has no direction
+    else if (kind !== 'text' && kind !== 'call') continue;
+    else if (!['in', 'out', 'missed'].includes(direction)) continue;
     events.push({
       contactName: iContact === -1 ? '' : cleanName(row[iContact]),
       number: iNumber === -1 ? '' : (row[iNumber] || '').trim(),

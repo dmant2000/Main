@@ -69,6 +69,9 @@ struct ContactCardView: View {
         var parts = [contact.daysSinceLast == 0
             ? "Last contact today"
             : "Last contact \(contact.daysSinceLast)d ago"]
+        if let seen = contact.daysSinceLastMeet {
+            parts.append(seen == 0 ? "Seen today" : "Seen \(seen)d ago")
+        }
         if let share = contact.outboundShare, contact.totals.events >= 10 {
             let pct = Int((share * 100).rounded())
             if pct >= 75 { parts.append("You reach out \(pct)% of the time") }

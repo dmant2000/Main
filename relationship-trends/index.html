@@ -71,7 +71,7 @@
             <th>Name</th><th>Trend</th><th class="num">Δ vs prior 8 wks</th>
             <th class="num">Texts</th><th class="num">Calls</th>
             <th class="num">Call min</th><th class="num">Last contact</th>
-            <th class="num">Started by you</th>
+            <th class="num">Seen in person</th><th class="num">Started by you</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -109,7 +109,8 @@
           <thead>
             <tr>
               <th>Week of</th><th class="num">Texts</th><th class="num">Calls</th>
-              <th class="num">Missed</th><th class="num">Call min</th><th class="num">Score</th>
+              <th class="num">Missed</th><th class="num">Met up</th>
+              <th class="num">Call min</th><th class="num">Score</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -120,7 +121,8 @@
 
   <footer class="app-footer">
     <p>
-      Weekly connection score = texts + 6×calls + 0.4×call-minutes + missed-call attempts.
+      Weekly connection score = texts + 6×calls + 0.4×call-minutes + missed-call attempts
+      + 15×in-person meets.
       A relationship is <strong>rising</strong> or <strong>fading</strong> when the last 4 complete weeks
       differ from the prior 8 by 25% or more (the week in progress is ignored);
       <strong>dormant</strong> after 8 silent weeks.

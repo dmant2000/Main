@@ -3,12 +3,14 @@ import Foundation
 public enum EventKind: String, Codable, Sendable {
     case text
     case call
+    case meet // in-person hangout — logged manually or confirmed from Calendar
 }
 
 public enum Direction: String, Codable, Sendable {
     case incoming = "in"
     case outgoing = "out"
     case missed
+    case met // meets have no direction
 }
 
 /// One text message or phone call. Timestamps are epoch milliseconds so the

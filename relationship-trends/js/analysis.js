@@ -6,10 +6,10 @@
 
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
-// Score weights: a completed call is worth more than a text, and longer calls
-// count for more. A missed call still shows intent to connect, so it counts a
-// little.
-export const WEIGHTS = { text: 1, call: 6, callMinute: 0.4, missed: 1 };
+// Score weights: a completed call is worth more than a text, longer calls
+// count for more, and an in-person meet is the richest contact of all. A
+// missed call still shows intent to connect, so it counts a little.
+export const WEIGHTS = { text: 1, call: 6, callMinute: 0.4, missed: 1, meet: 15 };
 
 export const RECENT_WEEKS = 4;    // window treated as "now"
 export const BASELINE_WEEKS = 8;  // window treated as "how things were"
@@ -66,7 +66,8 @@ export function weekScore(w) {
     w.texts * WEIGHTS.text +
     w.calls * WEIGHTS.call +
     w.callMinutes * WEIGHTS.callMinute +
-    w.missed * WEIGHTS.missed
+    w.missed * WEIGHTS.missed +
+    w.meets * WEIGHTS.meet
   );
 }
 
@@ -79,10 +80,12 @@ export function weeklySeries(events, now) {
     const ws = weekStart(e.ts);
     first = Math.min(first, ws);
     if (!byWeek.has(ws)) {
-      byWeek.set(ws, { weekStart: ws, texts: 0, calls: 0, missed: 0, callMinutes: 0, out: 0, in: 0 });
+      byWeek.set(ws, { weekStart: ws, texts: 0, calls: 0, missed: 0, meets: 0, callMinutes: 0, out: 0, in: 0 });
     }
     const w = byWeek.get(ws);
-    if (e.kind === 'text') {
+    if (e.kind === 'meet') {
+      w.meets++;
+    } else if (e.kind === 'text') {
       w.texts++;
       w[e.direction === 'out' ? 'out' : 'in']++;
     } else if (e.direction === 'missed') {
@@ -96,7 +99,7 @@ export function weeklySeries(events, now) {
   const last = weekStart(now);
   const series = [];
   for (let ws = first; ws <= last; ws += WEEK_MS) {
-    const w = byWeek.get(ws) || { weekStart: ws, texts: 0, calls: 0, missed: 0, callMinutes: 0, out: 0, in: 0 };
+    const w = byWeek.get(ws) || { weekStart: ws, texts: 0, calls: 0, missed: 0, meets: 0, callMinutes: 0, out: 0, in: 0 };
     w.callMinutes = Math.round(w.callMinutes * 10) / 10;
     w.score = Math.round(weekScore(w) * 10) / 10;
     series.push(w);
@@ -148,7 +151,10 @@ export function analyzeContact(events, now) {
   let texts = 0;
   let calls = 0;
   let callMinutes = 0;
+  let meets = 0;
+  let lastMeetTs = null;
   for (const e of sorted) {
+    if (e.kind === 'meet') { meets++; lastMeetTs = e.ts; continue; }
     if (e.kind === 'text') texts++;
     else if (e.direction !== 'missed') { calls++; callMinutes += e.durationSec / 60; }
     if (e.direction === 'in' || e.direction === 'out') {
@@ -166,7 +172,10 @@ export function analyzeContact(events, now) {
     ...trend,
     outboundShare: directed === 0 ? null : out / directed,
     daysSinceLast: Math.max(0, Math.floor((now - lastTs) / (24 * 60 * 60 * 1000))),
-    totals: { texts, calls, callMinutes: Math.round(callMinutes), events: sorted.length },
+    daysSinceLastMeet: lastMeetTs === null
+      ? null
+      : Math.max(0, Math.floor((now - lastMeetTs) / (24 * 60 * 60 * 1000))),
+    totals: { texts, calls, callMinutes: Math.round(callMinutes), meets, events: sorted.length },
   };
 }
 

@@ -47,7 +47,7 @@ function render() {
 function renderSummary() {
   const { contacts } = state.analysis;
   const interactions = contacts.reduce(
-    (s, c) => s + slicedSeries(c).reduce((t, w) => t + w.texts + w.calls + w.missed, 0),
+    (s, c) => s + slicedSeries(c).reduce((t, w) => t + w.texts + w.calls + w.missed + w.meets, 0),
     0,
   );
   const rising = contacts.filter((c) => c.status === 'rising').length;
@@ -160,6 +160,7 @@ function renderListTable() {
       c.totals.calls.toLocaleString(),
       c.totals.callMinutes.toLocaleString(),
       c.daysSinceLast === 0 ? 'today' : `${c.daysSinceLast}d`,
+      c.daysSinceLastMeet === null ? 'never' : c.daysSinceLastMeet === 0 ? 'today' : `${c.daysSinceLastMeet}d`,
       c.outboundShare === null ? '—' : `${Math.round(c.outboundShare * 100)}%`,
     ];
     cells.forEach((text, idx) => {
@@ -194,6 +195,12 @@ function renderDetail() {
     [c.totals.calls.toLocaleString(), 'calls'],
     [c.totals.callMinutes.toLocaleString(), 'call minutes'],
     [c.daysSinceLast === 0 ? 'today' : `${c.daysSinceLast}d ago`, 'last contact'],
+    [
+      c.daysSinceLastMeet === null
+        ? 'never'
+        : c.daysSinceLastMeet === 0 ? 'today' : `${c.daysSinceLastMeet}d ago`,
+      'seen in person',
+    ],
   ];
   if (c.outboundShare !== null) {
     factList.push([`${Math.round(c.outboundShare * 100)}%`, 'started by you']);
@@ -233,7 +240,7 @@ function renderDetail() {
       const d = new Date(w.weekStart);
       const cells = [
         d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
-        w.texts, w.calls, w.missed, w.callMinutes, w.score,
+        w.texts, w.calls, w.missed, w.meets, w.callMinutes, w.score,
       ];
       cells.forEach((text, idx) => {
         const td = document.createElement('td');

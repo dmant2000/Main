@@ -39,10 +39,12 @@ exports:
   date,kind,direction,contact,number,duration_seconds
   2026-05-04T18:30:00Z,text,out,Maya,+15557001001,
   2026-05-06T20:10:00Z,call,in,Maya,+15557001001,840
+  2026-05-09T19:00:00Z,meet,,Maya,+15557001001,
   ```
 
-  `date` is ISO 8601 or epoch milliseconds; `kind` is `text` or `call`;
-  `direction` is `in`, `out`, or `missed`; `duration_seconds` applies to calls.
+  `date` is ISO 8601 or epoch milliseconds; `kind` is `text`, `call`, or
+  `meet` (an in-person hangout); `direction` is `in`, `out`, or `missed`
+  (blank for meets); `duration_seconds` applies to calls.
 
 MMS/group threads and iMessage exports aren't parsed yet (see Roadmap).
 
@@ -50,9 +52,11 @@ MMS/group threads and iMessage exports aren't parsed yet (see Roadmap).
 
 1. Events are grouped per contact by normalized phone number.
 2. Activity is bucketed into calendar weeks and each week gets a
-   **connection score**: `texts + 6 × calls + 0.4 × call-minutes + missed-call attempts`
-   (a call counts for more than a text; longer calls count for more; even a
-   missed call shows intent to connect).
+   **connection score**:
+   `texts + 6 × calls + 0.4 × call-minutes + missed-call attempts + 15 × in-person meets`
+   (a call counts for more than a text; longer calls count for more; seeing
+   someone in person counts most of all; even a missed call shows intent to
+   connect).
 3. The average score of the **last 4 complete weeks** is compared to the
    **prior 8 weeks** (the in-progress week is ignored so a fresh Monday doesn't
    read as everyone abandoning you):
@@ -61,7 +65,9 @@ MMS/group threads and iMessage exports aren't parsed yet (see Roadmap).
    - **Steady** — inside that band
    - **Dormant** — zero contact for 8 straight weeks
 4. It also surfaces **initiation balance** ("you reach out 88% of the time"),
-   days since last contact, and lifetime totals.
+   days since last contact, **days since you last saw them in person**, and
+   lifetime totals. Meets come from `kind=meet` rows in a CSV — or, in the iOS
+   app, from the **Log a hangout** and **Check Calendar** buttons.
 
 Numbers seen only once are skipped — verification codes and spam aren't
 relationships.

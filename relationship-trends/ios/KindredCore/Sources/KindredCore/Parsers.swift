@@ -26,8 +26,8 @@ public enum Parsers {
     // MARK: - CSV
 
     /// Columns (case-insensitive): date (ISO 8601 or epoch ms), kind
-    /// (text|call), direction (in|out|missed), contact, number,
-    /// duration_seconds. Extra columns are ignored.
+    /// (text|call|meet), direction (in|out|missed; blank for meet), contact,
+    /// number, duration_seconds. Extra columns are ignored.
     public static func parseCsv(_ text: String) throws -> [CommEvent] {
         let rows = splitCsv(text)
         guard rows.count >= 2 else { return [] }
@@ -50,7 +50,13 @@ public enum Parsers {
             }
             guard let ts = parseDateMs(field(iDate)) else { continue }
             guard let kind = EventKind(rawValue: field(iKind).lowercased()) else { continue }
-            guard let direction = Direction(rawValue: field(iDir).lowercased()) else { continue }
+            let direction: Direction
+            if kind == .meet {
+                direction = .met // an in-person meet has no direction
+            } else {
+                guard let d = Direction(rawValue: field(iDir).lowercased()), d != .met else { continue }
+                direction = d
+            }
             events.append(CommEvent(
                 contactName: cleanName(field(iContact)),
                 number: field(iNumber),

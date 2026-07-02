@@ -91,9 +91,7 @@ struct DashboardView: View {
             .padding()
         }
         .navigationDestination(for: String.self) { contactID in
-            if let contact = store.contacts.first(where: { $0.id == contactID }) {
-                ContactDetailView(contact: contact, rangeWeeks: store.rangeWeeks)
-            }
+            ContactDetailView(contactID: contactID, rangeWeeks: store.rangeWeeks)
         }
     }
 

@@ -3,10 +3,31 @@ import Charts
 import KindredCore
 
 struct ContactDetailView: View {
+    let contactID: String
+    let rangeWeeks: Int
+
+    @EnvironmentObject private var store: DataStore
+
+    var body: some View {
+        if let contact = store.contacts.first(where: { $0.id == contactID }) {
+            DetailContent(contact: contact, rangeWeeks: rangeWeeks)
+        } else {
+            ContentUnavailableView("No data for this contact", systemImage: "person.slash")
+        }
+    }
+}
+
+private struct DetailContent: View {
     let contact: ContactAnalysis
     let rangeWeeks: Int
 
+    @EnvironmentObject private var store: DataStore
     @State private var showTable = false
+    @State private var showLogSheet = false
+    @State private var showCalendarSheet = false
+    @State private var candidates: [CalendarCandidate] = []
+    @State private var scanning = false
+    @State private var scanMessage: String?
 
     private var series: [WeekStats] {
         Array(contact.series.suffix(rangeWeeks))
@@ -17,6 +38,7 @@ struct ContactDetailView: View {
             VStack(alignment: .leading, spacing: 20) {
                 header
                 facts
+                inPersonSection
                 if showTable {
                     weeklyTable
                 } else {
@@ -45,6 +67,12 @@ struct ContactDetailView: View {
                 Button(showTable ? "Charts" : "Table") { showTable.toggle() }
             }
         }
+        .sheet(isPresented: $showLogSheet) {
+            LogMeetSheet(contact: contact)
+        }
+        .sheet(isPresented: $showCalendarSheet) {
+            CalendarCandidatesSheet(contact: contact, candidates: candidates)
+        }
     }
 
     private var header: some View {
@@ -69,6 +97,7 @@ struct ContactDetailView: View {
             Fact(value: "\(contact.totals.texts)", label: "texts")
             Fact(value: "\(contact.totals.calls)", label: "calls")
             Fact(value: "\(Int(contact.totals.callMinutes.rounded()))", label: "call minutes")
+            Fact(value: "\(contact.totals.meets)", label: "hangouts")
             Fact(
                 value: contact.daysSinceLast == 0 ? "today" : "\(contact.daysSinceLast)d ago",
                 label: "last contact"
@@ -79,6 +108,69 @@ struct ContactDetailView: View {
         }
     }
 
+    // MARK: - In person
+
+    private var lastSeenText: String {
+        switch contact.daysSinceLastMeet {
+        case nil: return "You have no in-person hangouts logged with \(contact.name)."
+        case .some(0): return "You saw \(contact.name) in person today."
+        case .some(let days): return "You last saw \(contact.name) in person \(days) day\(days == 1 ? "" : "s") ago."
+        }
+    }
+
+    private var inPersonSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("In person")
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(.secondary)
+            Text(lastSeenText)
+                .font(.callout)
+            HStack(spacing: 10) {
+                Button {
+                    Task { await scanCalendar() }
+                } label: {
+                    if scanning {
+                        ProgressView()
+                    } else {
+                        Label("Check Calendar", systemImage: "calendar.badge.checkmark")
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(scanning)
+
+                Button("Log a hangout…", systemImage: "figure.2") {
+                    showLogSheet = true
+                }
+                .buttonStyle(.bordered)
+            }
+            if let scanMessage {
+                Text(scanMessage)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(.background.secondary, in: RoundedRectangle(cornerRadius: 12))
+    }
+
+    private func scanCalendar() async {
+        scanning = true
+        scanMessage = nil
+        defer { scanning = false }
+        do {
+            let found = try await CalendarScanner.findCandidates(matching: contact.name)
+            if found.isEmpty {
+                scanMessage = "No calendar events mentioning “\(contact.name)” in the last 6 months."
+            } else {
+                candidates = found
+                showCalendarSheet = true
+            }
+        } catch {
+            scanMessage = error.localizedDescription
+        }
+    }
+
     private var weeklyTable: some View {
         VStack(alignment: .leading, spacing: 0) {
             Grid(alignment: .trailing, horizontalSpacing: 12, verticalSpacing: 6) {
@@ -86,6 +178,7 @@ struct ContactDetailView: View {
                     Text("Week of").gridColumnAlignment(.leading)
                     Text("Texts")
                     Text("Calls")
+                    Text("Met")
                     Text("Min")
                     Text("Score")
                 }
@@ -98,6 +191,7 @@ struct ContactDetailView: View {
                             .gridColumnAlignment(.leading)
                         Text("\(week.texts)")
                         Text("\(week.calls)")
+                        Text("\(week.meets)")
                         Text("\(Int(week.callMinutes.rounded()))")
                         Text(String(format: "%.1f", week.score))
                     }
@@ -127,58 +221,80 @@ private struct Fact: View {
     }
 }
 
-struct WeeklyColumnChart: View {
-    let title: String
-    let series: [WeekStats]
-    let value: (WeekStats) -> Double
-    let unit: String
-    let color: Color
+// MARK: - Sheets
 
-    @State private var selectedWeek: Date?
+private struct LogMeetSheet: View {
+    let contact: ContactAnalysis
 
-    private var selected: WeekStats? {
-        guard let selectedWeek else { return nil }
-        let ms = weekStartMs(selectedWeek.timeIntervalSince1970 * 1000)
-        return series.first { $0.weekStartMs == ms }
-    }
+    @EnvironmentObject private var store: DataStore
+    @Environment(\.dismiss) private var dismiss
+    @State private var date = Date()
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(title)
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(.secondary)
-
-            if let selected {
-                Text("Week of \(Formatters.weekLabel.string(from: selected.weekStart)): ")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                + Text("\(Int(value(selected).rounded())) \(unit)")
-                    .font(.caption.weight(.bold))
-            } else {
-                Text("Touch the chart for weekly values")
-                    .font(.caption)
-                    .foregroundStyle(.tertiary)
-            }
-
-            Chart(series, id: \.weekStartMs) { week in
-                BarMark(
-                    x: .value("Week", week.weekStart, unit: .weekOfYear),
-                    y: .value(unit, value(week))
+        NavigationStack {
+            Form {
+                DatePicker(
+                    "When did you meet?",
+                    selection: $date,
+                    in: ...Date(),
+                    displayedComponents: .date
                 )
-                .foregroundStyle(color)
-                .cornerRadius(3)
-                .opacity(selected == nil || selected?.weekStartMs == week.weekStartMs ? 1 : 0.55)
             }
-            .chartXSelection(value: $selectedWeek)
-            .chartXAxis {
-                AxisMarks(values: .automatic(desiredCount: 5)) {
-                    AxisGridLine()
-                    AxisValueLabel(format: .dateTime.month(.abbreviated).day())
+            .navigationTitle("Log a hangout")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") { dismiss() }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Add") {
+                        store.logMeets(with: contact, on: [date])
+                        dismiss()
+                    }
                 }
             }
-            .frame(height: 180)
         }
-        .padding(14)
-        .background(.background.secondary, in: RoundedRectangle(cornerRadius: 12))
+        .presentationDetents([.medium])
+    }
+}
+
+private struct CalendarCandidatesSheet: View {
+    let contact: ContactAnalysis
+    let candidates: [CalendarCandidate]
+
+    @EnvironmentObject private var store: DataStore
+    @Environment(\.dismiss) private var dismiss
+    @State private var selected: Set<String> = []
+
+    var body: some View {
+        NavigationStack {
+            List(candidates, selection: $selected) { candidate in
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(candidate.title)
+                        .font(.subheadline)
+                    Text(candidate.date.formatted(date: .abbreviated, time: .shortened))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .environment(\.editMode, .constant(.active))
+            .navigationTitle("Found \(candidates.count) event\(candidates.count == 1 ? "" : "s")")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") { dismiss() }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Add \(selected.count)") {
+                        let dates = candidates
+                            .filter { selected.contains($0.id) }
+                            .map(\.date)
+                        store.logMeets(with: contact, on: dates)
+                        dismiss()
+                    }
+                    .disabled(selected.isEmpty)
+                }
+            }
+        }
     }
 }

@@ -5,12 +5,14 @@ import Foundation
 /// connection score; the last complete weeks are compared to the weeks before
 /// them to classify the relationship as rising / steady / fading / dormant.
 public enum Analysis {
-    // Score weights: a completed call is worth more than a text, and longer
-    // calls count for more. A missed call still shows intent to connect.
+    // Score weights: a completed call is worth more than a text, longer calls
+    // count for more, and an in-person meet is the richest contact of all. A
+    // missed call still shows intent to connect.
     public static let textWeight = 1.0
     public static let callWeight = 6.0
     public static let callMinuteWeight = 0.4
     public static let missedWeight = 1.0
+    public static let meetWeight = 15.0
 
     public static let recentWeeks = 4     // window treated as "now"
     public static let baselineWeeks = 8   // window treated as "how things were"
@@ -26,6 +28,7 @@ public struct WeekStats: Equatable, Sendable {
     public var texts = 0
     public var calls = 0
     public var missed = 0
+    public var meets = 0
     public var callMinutes = 0.0
     public var outgoing = 0
     public var incoming = 0
@@ -39,6 +42,7 @@ public struct WeekStats: Equatable, Sendable {
             + Double(calls) * Analysis.callWeight
             + callMinutes * Analysis.callMinuteWeight
             + Double(missed) * Analysis.missedWeight
+            + Double(meets) * Analysis.meetWeight
     }
 
     public var weekStart: Date { Date(timeIntervalSince1970: weekStartMs / 1000) }
@@ -61,6 +65,7 @@ public struct ContactTotals: Equatable, Sendable {
     public var texts = 0
     public var calls = 0
     public var callMinutes = 0.0
+    public var meets = 0
     public var events = 0
 }
 
@@ -73,6 +78,8 @@ public struct ContactAnalysis: Identifiable, Sendable {
     /// Share of directed events the user initiated; nil with no directed events.
     public var outboundShare: Double?
     public var daysSinceLast: Int
+    /// Days since the last in-person meet; nil if never logged.
+    public var daysSinceLastMeet: Int?
     public var totals: ContactTotals
 }
 
@@ -119,6 +126,8 @@ public func weeklySeries(_ events: [CommEvent], nowMs: Double) -> [WeekStats] {
         first = min(first, ws)
         var w = byWeek[ws] ?? WeekStats(weekStartMs: ws)
         switch (e.kind, e.direction) {
+        case (.meet, _):
+            w.meets += 1
         case (.text, _):
             w.texts += 1
             if e.direction == .outgoing { w.outgoing += 1 } else { w.incoming += 1 }
@@ -195,9 +204,13 @@ public func analyzeContact(_ events: [CommEvent], key: String, nowMs: Double) ->
     var totals = ContactTotals()
     var out = 0
     var directed = 0
+    var lastMeetMs: Double?
     for e in sorted {
         totals.events += 1
         switch (e.kind, e.direction) {
+        case (.meet, _):
+            totals.meets += 1
+            lastMeetMs = e.timestampMs
         case (.text, _): totals.texts += 1
         case (.call, .missed): break
         case (.call, _):
@@ -219,17 +232,23 @@ public func analyzeContact(_ events: [CommEvent], key: String, nowMs: Double) ->
         trend: trend,
         outboundShare: directed == 0 ? nil : Double(out) / Double(directed),
         daysSinceLast: max(0, Int((nowMs - lastMs) / Analysis.dayMs)),
+        daysSinceLastMeet: lastMeetMs.map { max(0, Int((nowMs - $0) / Analysis.dayMs)) },
         totals: totals
     )
+}
+
+/// Grouping key for a contact — also `ContactAnalysis.id`.
+public func contactKey(for event: CommEvent) -> String {
+    var key = normalizeNumber(event.number)
+    if key.isEmpty { key = event.contactName.lowercased() }
+    if key.isEmpty { key = "unknown" }
+    return key
 }
 
 public func groupByContact(_ events: [CommEvent]) -> [String: [CommEvent]] {
     var groups: [String: [CommEvent]] = [:]
     for e in events {
-        var key = normalizeNumber(e.number)
-        if key.isEmpty { key = e.contactName.lowercased() }
-        if key.isEmpty { key = "unknown" }
-        groups[key, default: []].append(e)
+        groups[contactKey(for: e), default: []].append(e)
     }
     return groups
 }

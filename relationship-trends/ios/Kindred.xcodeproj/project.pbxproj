@@ -193,6 +193,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Kindred scans your calendar, on this device only, to find events that look like in-person hangouts with a contact.";
 				INFOPLIST_KEY_NSContactsUsageDescription = "Kindred uses your contacts, on this device only, to show names instead of phone numbers.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -221,6 +222,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Kindred scans your calendar, on this device only, to find events that look like in-person hangouts with a contact.";
 				INFOPLIST_KEY_NSContactsUsageDescription = "Kindred uses your contacts, on this device only, to show names instead of phone numbers.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

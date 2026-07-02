@@ -55,6 +55,17 @@ test('parseCsv reads ISO dates, epoch dates and quoted fields', () => {
   assert.equal(events[1].durationSec, 300);
 });
 
+test('parseCsv accepts kind=meet with a blank direction', () => {
+  const csv = [
+    'date,kind,direction,contact,number,duration_seconds',
+    '2026-05-30T19:00:00Z,meet,,Maya,+15557001001,',
+    '2026-05-31T19:00:00Z,meet,met,Maya,+15557001001,',
+  ].join('\n');
+  const events = parseCsv(csv);
+  assert.equal(events.length, 2);
+  assert.ok(events.every((e) => e.kind === 'meet' && e.direction === 'met'));
+});
+
 test('parseCsv throws on missing required columns', () => {
   assert.throws(() => parseCsv('a,b\n1,2'), /must have/);
 });

@@ -64,6 +64,40 @@ final class DataStore: ObservableObject {
         reanalyze()
     }
 
+    // MARK: - In-person meets
+
+    /// Log in-person hangouts with a contact. Days that already have a meet
+    /// logged for this contact are skipped, so confirming the same calendar
+    /// event twice is harmless. Returns how many were actually added.
+    @discardableResult
+    func logMeets(with contact: ContactAnalysis, on dates: [Date]) -> Int {
+        var cal = Calendar(identifier: .gregorian)
+        cal.timeZone = TimeZone(identifier: "UTC") ?? .current
+        var existingDays = Set(
+            events
+                .filter { $0.kind == .meet && contactKey(for: $0) == contact.id }
+                .map { cal.startOfDay(for: $0.date) }
+        )
+        var added = 0
+        for date in dates {
+            let day = cal.startOfDay(for: date)
+            guard !existingDays.contains(day) else { continue }
+            existingDays.insert(day)
+            events.append(CommEvent(
+                contactName: contact.name,
+                number: contact.number,
+                kind: .meet,
+                direction: .met,
+                timestampMs: date.timeIntervalSince1970 * 1000
+            ))
+            added += 1
+        }
+        guard added > 0 else { return 0 }
+        events.sort { $0.timestampMs < $1.timestampMs }
+        persistAndReanalyze()
+        return added
+    }
+
     // MARK: - Contact name resolution (the iOS-native advantage)
 
     /// Exports carry numbers, not names. With permission, map numbers to the

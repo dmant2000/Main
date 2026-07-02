@@ -23,10 +23,11 @@ test('weekStart returns the Monday of the containing week (UTC)', () => {
 });
 
 test('weekScore applies the documented weights', () => {
-  const w = { texts: 3, calls: 2, callMinutes: 10, missed: 1 };
+  const w = { texts: 3, calls: 2, callMinutes: 10, missed: 1, meets: 1 };
   assert.equal(
     weekScore(w),
-    3 * WEIGHTS.text + 2 * WEIGHTS.call + 10 * WEIGHTS.callMinute + 1 * WEIGHTS.missed,
+    3 * WEIGHTS.text + 2 * WEIGHTS.call + 10 * WEIGHTS.callMinute
+      + 1 * WEIGHTS.missed + 1 * WEIGHTS.meet,
   );
 });
 
@@ -46,6 +47,35 @@ test('weeklySeries builds contiguous weeks including empty ones', () => {
   assert.equal(series[3].callMinutes, 10);
   assert.equal(series[0].out, 1);
   assert.equal(series[3].in, 1);
+});
+
+test('in-person meets count in weekly buckets and totals', () => {
+  const monday = Date.UTC(2026, 0, 5);
+  const now = monday + 2 * WEEK;
+  const events = [
+    { contactName: 'Maya', number: '5551112222', kind: 'text', direction: 'out', ts: monday, durationSec: 0 },
+    { contactName: 'Maya', number: '5551112222', kind: 'meet', direction: 'met', ts: monday + DAY, durationSec: 0 },
+    { contactName: 'Maya', number: '5551112222', kind: 'meet', direction: 'met', ts: monday + WEEK + DAY, durationSec: 0 },
+  ];
+  const { contacts } = analyzeAll(events, now);
+  const maya = contacts[0];
+  assert.equal(maya.series[0].meets, 1);
+  assert.equal(maya.series[1].meets, 1);
+  assert.equal(maya.series[0].score, 1 * WEIGHTS.text + 1 * WEIGHTS.meet);
+  assert.equal(maya.totals.meets, 2);
+  assert.equal(maya.daysSinceLastMeet, 6);
+  // Meets are directionless: they never skew initiation balance.
+  assert.equal(maya.outboundShare, 1);
+});
+
+test('daysSinceLastMeet is null when there are no meets', () => {
+  const monday = Date.UTC(2026, 0, 5);
+  const events = [
+    { contactName: 'A', number: '5553334444', kind: 'text', direction: 'out', ts: monday, durationSec: 0 },
+    { contactName: 'A', number: '5553334444', kind: 'text', direction: 'in', ts: monday + DAY, durationSec: 0 },
+  ];
+  const { contacts } = analyzeAll(events, monday + WEEK);
+  assert.equal(contacts[0].daysSinceLastMeet, null);
 });
 
 function seriesOf(scores) {
