@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 models/
 sent_games.json
+last_rain_alert.json
