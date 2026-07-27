@@ -30,12 +30,6 @@
         "used": false
     },
     {
-        "quote": "The first guy through the wall always gets bloody.",
-        "character": "Billy Beane",
-        "source": "Moneyball",
-        "used": false
-    },
-    {
         "quote": "Adapt or die.",
         "character": "Billy Beane",
         "source": "Moneyball",
@@ -55,7 +49,7 @@
     },
     {
         "quote": "He gets on base.",
-        "character": "Peter Brand",
+        "character": "Billy Beane",
         "source": "Moneyball",
         "used": true
     },
@@ -79,7 +73,7 @@
     },
     {
         "quote": "You're not solving the problem. You're not even looking at the problem.",
-        "character": "Peter Brand",
+        "character": "Billy Beane",
         "source": "Moneyball",
         "used": true
     },
@@ -88,12 +82,6 @@
         "character": "Billy Beane",
         "source": "Moneyball",
         "used": false
-    },
-    {
-        "quote": "This is the kind of thing that makes people want to kill economists.",
-        "character": "Art Howe",
-        "source": "Moneyball",
-        "used": true
     },
     {
         "quote": "It's about getting things down to one number. Using stats the way we read them, we'll find value in players that nobody else can see.",
@@ -198,12 +186,6 @@
         "used": false
     },
     {
-        "quote": "I didn't get into this business to be popular. I got into this business to be right.",
-        "character": "Michael Burry",
-        "source": "The Big Short",
-        "used": false
-    },
-    {
         "quote": "Fraud has never, ever worked. Eventually things go south. When the hell did we forget all that?",
         "character": "Mark Baum",
         "source": "The Big Short",
@@ -229,7 +211,7 @@
     },
     {
         "quote": "If we're right, people lose homes. People lose jobs. People lose retirement savings, people lose pensions.",
-        "character": "Charlie Geller",
+        "character": "Ben Rickert",
         "source": "The Big Short",
         "used": true
     },
@@ -277,7 +259,7 @@
     },
     {
         "quote": "I owe you from the thing with the guy in the place.",
-        "character": "Rusty Ryan",
+        "character": "Reuben Tishkoff",
         "source": "Ocean's Eleven",
         "used": true
     },
@@ -295,21 +277,9 @@
     },
     {
         "quote": "I want the last check I write to bounce.",
-        "character": "Reuben Tishkoff",
+        "character": "Saul Bloom",
         "source": "Ocean's Twelve",
         "used": false
-    },
-    {
-        "quote": "That woman could start a war.",
-        "character": "Rusty Ryan",
-        "source": "Ocean's Twelve",
-        "used": true
-    },
-    {
-        "quote": "What am I, a farmer?",
-        "character": "Turk Malloy",
-        "source": "Ocean's Twelve",
-        "used": true
     },
     {
         "quote": "You shook Sinatra's hand. You should know better.",
@@ -318,15 +288,9 @@
         "used": false
     },
     {
-        "quote": "You don't run out on your friends.",
-        "character": "Danny Ocean",
-        "source": "Ocean's Thirteen",
-        "used": true
-    },
-    {
         "quote": "This sort of thing used to be civilized.",
         "character": "Reuben Tishkoff",
-        "source": "Ocean's Thirteen",
+        "source": "Ocean's Eleven",
         "used": false
     },
     {
@@ -352,12 +316,6 @@
         "character": "James Bond",
         "source": "Skyfall",
         "used": false
-    },
-    {
-        "quote": "The whole point of being alive is to evolve into the complete person you were intended to be.",
-        "character": "M",
-        "source": "Skyfall",
-        "used": true
     },
     {
         "quote": "You're a kite dancing in a hurricane, Mr. Bond.",
@@ -440,7 +398,7 @@
     {
         "quote": "Winners use words that say must and will.",
         "character": "Jordan Belfort",
-        "source": "The Wolf of Wall Street",
+        "source": "Jordan Belfort (IRL)",
         "used": false
     },
     {
@@ -450,7 +408,7 @@
         "used": true
     },
     {
-        "quote": "The purpose of food is to increase the metabolic rate.",
+        "quote": "Keeping the metabolic rate up is the main thing.",
         "character": "Ray Peat",
         "source": "Ray Peat",
         "used": false
@@ -487,7 +445,7 @@
     },
     {
         "quote": "Trust the process.",
-        "character": "Sam Hinkie",
+        "character": "76ers mantra (Hinkie era)",
         "source": "Sam Hinkie",
         "used": false
     },
@@ -499,7 +457,7 @@
     },
     {
         "quote": "You have to be non-consensus and right to beat the market.",
-        "character": "Sam Hinkie",
+        "character": "Howard Marks (via Hinkie's letter)",
         "source": "Sam Hinkie",
         "used": true
     },
@@ -511,7 +469,7 @@
     },
     {
         "quote": "A strong opinion, loosely held, is the ideal.",
-        "character": "Sam Hinkie",
+        "character": "Paul Saffo",
         "source": "Sam Hinkie",
         "used": false
     },
@@ -540,32 +498,14 @@
         "used": false
     },
     {
-        "quote": "You have to be willing to look stupid in the short run to be smart in the long run.",
-        "character": "Daryl Morey",
-        "source": "Daryl Morey",
-        "used": true
-    },
-    {
         "quote": "Every team should be trying to find market inefficiencies.",
         "character": "Daryl Morey",
         "source": "Daryl Morey",
         "used": false
     },
     {
-        "quote": "If you're going through hell, keep going.",
-        "character": "Winston Churchill",
-        "source": "Historical",
-        "used": false
-    },
-    {
         "quote": "The only thing we have to fear is fear itself.",
         "character": "Franklin D. Roosevelt",
-        "source": "Historical",
-        "used": true
-    },
-    {
-        "quote": "In the middle of difficulty lies opportunity.",
-        "character": "Albert Einstein",
         "source": "Historical",
         "used": true
     },
@@ -598,5 +538,557 @@
         "character": "Leon Megginson (commonly misattributed to Darwin)",
         "source": "Historical",
         "used": true
+    },
+    {
+        "quote": "Oh farmers, pray that your summers be wet and your winters clear.",
+        "character": "Virgil",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Blessed shall be the fruit of thy cattle, the increase of thy kine, and the flocks of thy sheep.",
+        "character": "The Bible, Deuteronomy 28:4",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Do not throw the arrow which will return against you.",
+        "character": "Kurdish Proverb",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "It is entirely seemly for a young man killed in battle to lie mangled by the bronze spear.",
+        "character": "Homer",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Give a man a fish and you feed him for a day. Teach a man to fish and you feed him for a lifetime.",
+        "character": "Lao Tzu",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "If you speak the truth, have a foot in the stirrup.",
+        "character": "Turkish Proverb",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "If you chase two rabbits, you will lose them both.",
+        "character": "Native American Saying",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "It is from their foes, not their friends, that cities learn the lesson of building high walls.",
+        "character": "Aristophanes",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Meditation brings wisdom; lack of meditation leaves ignorance. Know well what leads you forward and what holds you back.",
+        "character": "The Buddha",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "The man who moves a mountain begins by carrying away small stones.",
+        "character": "Confucius",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "I am the Lord thy God. Thou shalt have no other gods before Me.",
+        "character": "The Bible, Exodus",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Nature herself has imprinted on the minds of all the idea of God.",
+        "character": "Cicero",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Not at all similar are the race of the immortal gods and the race of men.",
+        "character": "Homer",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Hath not the potter power over the clay, to make one vessel unto honor, another unto dishonor?",
+        "character": "The Bible, Romans",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "The Lord bless you and keep you; the Lord make His face to shine upon you.",
+        "character": "The Bible, Numbers",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "You can't direct the wind, but you can adjust your sails.",
+        "character": "Unknown",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Put your shoulder to the wheel.",
+        "character": "Aesop",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "True glory consists in doing what deserves to be written; in writing what deserves to be read.",
+        "character": "Pliny the Elder",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Art for art's sake is an empty phrase. Art for the sake of truth, art for the sake of the good and the beautiful, that is the faith I am searching for.",
+        "character": "George Sand",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Words have the power to both destroy and heal. When words are both true and kind, they can change our world.",
+        "character": "The Buddha",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "For everything there is a season and a time for every purpose under heaven.",
+        "character": "The Bible, Ecclesiastes",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "To bring about the rule of righteousness in the land, so that the strong should not harm the weak.",
+        "character": "Hammurabi's Code",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "The wisest men follow their own direction.",
+        "character": "Euripides",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "My name is Ozymandias, king of kings: Look on my works, ye Mighty, and despair!",
+        "character": "Percy Bysshe Shelley",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Everything is worth what its purchaser will pay for it.",
+        "character": "Publius Syrus",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "All the world's a stage, And all the men and women merely players. They have their exits and their entrances; And one man in his time plays many parts.",
+        "character": "William Shakespeare",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "You should hammer your iron when it is glowing hot.",
+        "character": "Publius Syrus",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Some books are to be tasted, others to be swallowed, and some few to be chewed and digested.",
+        "character": "Sir Francis Bacon",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "If in other sciences we should arrive at certainty without doubt and truth without error, it behooves us to place the foundations of knowledge in mathematics.",
+        "character": "Roger Bacon",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "And them that take the sword shall perish by the sword.",
+        "character": "The Bible, Matthew",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "A multitude of rulers is not a good thing. Let there be one ruler, one king.",
+        "character": "Herodotus",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Banking establishments are more dangerous than standing armies.",
+        "character": "Thomas Jefferson",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "The bureaucracy is expanding to meet the needs of the expanding bureaucracy.",
+        "character": "Unknown",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "I am the state.",
+        "character": "Louis XIV",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away.",
+        "character": "Antoine de Saint-Exupery",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "I will to my lord be true and faithful, and love all which he loves and shun all which he shuns.",
+        "character": "Anglo-Saxon Oath of Fealty",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "People of the same trade seldom meet together, even for merriment and diversion, but the conversation ends in a conspiracy against the public.",
+        "character": "Adam Smith",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "A god from the machine.",
+        "character": "Menander",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "If music be the food of love, play on.",
+        "character": "William Shakespeare",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "One doesn't discover new lands without losing sight of the shore.",
+        "character": "Andre Gide",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "I cannot live without books.",
+        "character": "Thomas Jefferson",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "I have gained this by philosophy: that I do without being commanded what others do only from fear of the law.",
+        "character": "Aristotle",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Two cities have been formed by two loves: the earthly by the love of self; the heavenly by the love of God.",
+        "character": "St. Augustine",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Astronomy compels the soul to look upwards and leads us from this world to another.",
+        "character": "Plato",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Chemistry means the difference between poverty and starvation and the abundant life.",
+        "character": "Robert Brent",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "No freeman shall be taken, imprisoned, or in any other way destroyed, except by the lawful judgment of his peers.",
+        "character": "The Magna Carta",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Corporation, n. An ingenious device for obtaining individual profit without individual responsibility.",
+        "character": "Ambrose Bierce",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "It has been said that democracy is the worst form of government except all the others that have been tried.",
+        "character": "Winston Churchill",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Compound interest is the most powerful force in the universe.",
+        "character": "Albert Einstein (as quoted in Civ IV)",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "There is no wealth like knowledge, no poverty like ignorance.",
+        "character": "Ali ibn Abi-Talib",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "You can get more of what you want with a kind word and a gun than you can with just a kind word.",
+        "character": "Al Capone",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Any society that would give up a little liberty to gain a little security will deserve neither and lose both.",
+        "character": "Benjamin Franklin",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "I must study politics and war that my sons may have liberty to study mathematics and philosophy.",
+        "character": "John Adams",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Victorious warriors win first and then go to war, while defeated warriors go to war first and then seek to win.",
+        "character": "Sun Tzu",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "A man does not have himself killed for a half-pence a day or for a petty distinction. You must speak to the soul to electrify him.",
+        "character": "Napoleon Bonaparte",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "What gunpowder did for war, the printing press has done for the mind.",
+        "character": "Wendell Phillips",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "The whole is more than the sum of its parts.",
+        "character": "Aristotle",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Political power grows out of the barrel of a gun.",
+        "character": "Mao Zedong",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Artillery adds dignity to what would otherwise be a vulgar brawl.",
+        "character": "Frederick the Great",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "People can have the Model T in any color - so long as it's black.",
+        "character": "Henry Ford",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Everything in life is somewhere else, and you get there in a car.",
+        "character": "E. B. White",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "When I give food to the poor, they call me a saint. When I ask why the poor have no food, they call me a communist.",
+        "character": "Dom Helder Camara",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "We will make electricity so cheap that only the rich will burn candles.",
+        "character": "Thomas Edison",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "If the radiance of a thousand suns were to burst at once into the sky, that would be like the splendor of the Mighty One... I am become Death, the Shatterer of Worlds.",
+        "character": "J. Robert Oppenheimer, quoting the Bhagavad Gita",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "There is one rule for the industrialist and that is: Make the best quality of goods possible at the lowest cost possible, paying the highest wages possible.",
+        "character": "Henry Ford",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "As to diseases make a habit of two things - to help, or at least, to do no harm.",
+        "character": "Hippocrates",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "To every action there is always opposed an equal reaction.",
+        "character": "Isaac Newton",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "I do not feel obliged to believe that the same God who has endowed us with sense, reason, and intellect has intended us to forgo their use.",
+        "character": "Galileo Galilei",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "You would make a ship sail against the winds and currents by lighting a bon-fire under her deck? I have no time for such nonsense.",
+        "character": "Napoleon, on Fulton's Steamship",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Oh! I have slipped the surly bonds of Earth - Put out my hand and touched the Face of God.",
+        "character": "John Gillespie Magee Jr.",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Never trust a computer you can't throw out a window.",
+        "character": "Steve Wozniak",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "We do not inherit the earth from our ancestors, we borrow it from our children.",
+        "character": "Native American Song",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "There is a single light of science, and to brighten it anywhere is to brighten it everywhere.",
+        "character": "Isaac Asimov",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "For once you have tasted flight you will walk the earth with your eyes turned skywards.",
+        "character": "Leonardo da Vinci",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Any sufficiently advanced technology is indistinguishable from magic.",
+        "character": "Arthur C. Clarke",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "The future will be better tomorrow.",
+        "character": "Dan Quayle",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Soon it will be a sin for parents to have a child which carries the heavy burden of genetic disease.",
+        "character": "Bob Edwards",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Nothing travels faster than the speed of light with the possible exception of bad news, which obeys its own special laws.",
+        "character": "Douglas Adams",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "The only thing worse than being talked about is not being talked about.",
+        "character": "Oscar Wilde",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "I just want to say one word to you. Just one word: plastics.",
+        "character": "The Graduate",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Tell me what you eat, and I will tell you what you are.",
+        "character": "Anthelme Brillat-Savarin",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "The real problem is not whether machines think, but whether men do.",
+        "character": "B. F. Skinner",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "The Earth is the cradle of the mind, but one cannot eternally live in a cradle.",
+        "character": "Konstantin E. Tsiolkovsky",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Beep... beep... beep... beep...",
+        "character": "Sputnik I",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "Behind a veil, unseen yet present, I was the forceful soul that moved this mighty body.",
+        "character": "Jean Racine",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "What is happiness? The feeling that power is growing, that resistance is overcome.",
+        "character": "Friedrich Nietzsche",
+        "source": "Civ IV",
+        "used": false
+    },
+    {
+        "quote": "The credit belongs to the man who is actually in the arena, whose face is marred by dust and sweat and blood.",
+        "character": "Theodore Roosevelt",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "The supreme art of war is to subdue the enemy without fighting.",
+        "character": "Sun Tzu",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "Well done is better than well said.",
+        "character": "Benjamin Franklin",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "We suffer more often in imagination than in reality.",
+        "character": "Seneca",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "Genius is one percent inspiration, ninety-nine percent perspiration.",
+        "character": "Thomas Edison",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "You have power over your mind - not outside events. Realize this, and you will find strength.",
+        "character": "Marcus Aurelius",
+        "source": "Historical",
+        "used": false
     }
 ]
