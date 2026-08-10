@@ -308,11 +308,137 @@ def build_digest():
     return "\n".join(lines)
 
 
-def run():
+def fetch_earnings_results():
+    """Fetch actual earnings results for major companies that reported today."""
+    if not FINNHUB_KEY:
+        print("No Finnhub API key — skipping earnings results")
+        return []
+
+    today = datetime.now(ET_TZ).strftime("%Y-%m-%d")
+    url = (
+        f"https://finnhub.io/api/v1/calendar/earnings?"
+        f"from={today}&to={today}&token={FINNHUB_KEY}"
+    )
+    data = api_get(url)
+    if not data:
+        return []
+
+    results = []
+    for entry in data.get("earningsCalendar", []):
+        symbol = entry.get("symbol", "")
+        if symbol not in CAPEX_TICKERS:
+            continue
+
+        name = CAPEX_TICKERS[symbol]
+        actual_eps = entry.get("epsActual")
+        est_eps = entry.get("epsEstimate")
+        actual_rev = entry.get("revenueActual")
+        est_rev = entry.get("revenueEstimate")
+
+        # Only include if we have actual results (they've reported)
+        if actual_eps is None and actual_rev is None:
+            continue
+
+        line = f"{name} ({symbol})"
+
+        # EPS beat/miss
+        if actual_eps is not None and est_eps is not None:
+            diff = actual_eps - est_eps
+            if diff > 0:
+                line += f" BEAT EPS ${actual_eps:.2f} vs ${est_eps:.2f} est"
+            elif diff < 0:
+                line += f" MISSED EPS ${actual_eps:.2f} vs ${est_eps:.2f} est"
+            else:
+                line += f" MET EPS ${actual_eps:.2f}"
+        elif actual_eps is not None:
+            line += f" EPS ${actual_eps:.2f}"
+
+        # Revenue
+        if actual_rev is not None:
+            rev_b = actual_rev / 1_000_000_000
+            if est_rev is not None:
+                est_b = est_rev / 1_000_000_000
+                if actual_rev > est_rev:
+                    line += f" | Rev ${rev_b:.1f}B (beat ${est_b:.1f}B)"
+                else:
+                    line += f" | Rev ${rev_b:.1f}B (miss ${est_b:.1f}B)"
+            else:
+                line += f" | Rev ${rev_b:.1f}B"
+
+        results.append(line)
+
+    return results
+
+
+def fetch_after_hours_headlines():
+    """Fetch earnings-related headlines for after-hours context."""
+    headlines = fetch_category_news("earnings results quarterly report", 5)
+    # Filter to only headlines mentioning companies we track
+    relevant = []
+    for h in headlines:
+        lower = h.lower()
+        for ticker, name in CAPEX_TICKERS.items():
+            if name.lower() in lower or ticker.lower() in lower.split():
+                relevant.append(h)
+                break
+    return relevant[:3]
+
+
+def build_evening_earnings():
+    """Build the evening earnings results text."""
+    now = datetime.now(ET_TZ)
+    date_str = now.strftime("%a %b %d")
+
+    print("Fetching earnings results...")
+    results = fetch_earnings_results()
+
+    print("Fetching earnings headlines...")
+    headlines = fetch_after_hours_headlines()
+
+    if not results and not headlines:
+        print("No major earnings today — skipping text")
+        return None
+
+    lines = [f"Earnings Wrap - {date_str}"]
+    lines.append("")
+
+    if results:
+        for r in results:
+            lines.append(f"- {r}")
+    elif headlines:
+        lines.append("Major earnings reported:")
+
+    if headlines:
+        lines.append("")
+        for h in headlines:
+            title = h if len(h) <= 100 else h[:97] + "..."
+            lines.append(f"- {title}")
+
+    return "\n".join(lines)
+
+
+def run_morning():
     digest = build_digest()
     print(f"\n{digest}\n")
     send_sms(digest)
 
 
+def run_evening():
+    text = build_evening_earnings()
+    if text:
+        print(f"\n{text}\n")
+        send_sms(text)
+    else:
+        print("No major earnings to report tonight")
+
+
 if __name__ == "__main__":
-    run()
+    mode = sys.argv[1] if len(sys.argv) > 1 else "morning"
+
+    if mode == "morning":
+        run_morning()
+    elif mode == "evening":
+        run_evening()
+    else:
+        print("Usage: python news_bot.py [morning|evening]")
+        sys.exit(1)

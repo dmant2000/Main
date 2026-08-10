@@ -1,10 +1,17 @@
-name: Morning News Digest
+name: News Digest
 
 on:
   schedule:
-    # 7:30 AM ET (11:30 UTC)
-    - cron: '30 11 * * *'
+    # Morning brief: 7:30 AM ET (11:30 UTC)
+    - cron: '30 11 * * 1-5'
+    # Evening earnings wrap: 5:30 PM ET (21:30 UTC) — after market close
+    - cron: '30 21 * * 1-5'
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run mode: morning or evening'
+        required: false
+        default: 'morning'
 
 jobs:
   news-digest:
@@ -19,9 +26,23 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Send news digest
+      - name: Determine mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "mode=${{ github.event.inputs.mode }}" >> $GITHUB_OUTPUT
+          else
+            HOUR=$(TZ=America/New_York date +%H)
+            if [ "$HOUR" -lt 12 ]; then
+              echo "mode=morning" >> $GITHUB_OUTPUT
+            else
+              echo "mode=evening" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      - name: Run news bot
         env:
           EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
-        run: python news/news_bot.py
+        run: python news/news_bot.py ${{ steps.mode.outputs.mode }}
