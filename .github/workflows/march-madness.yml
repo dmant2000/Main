@@ -23,13 +23,13 @@ jobs:
           EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-        run: python march_madness.py
+        run: python march-madness/march_madness.py
 
       # Commit the sent_games.json tracking file so we don't double-text
       - name: Track sent games
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add sent_games.json 2>/dev/null || true
+          git add march-madness/sent_games.json 2>/dev/null || true
           git diff --cached --quiet || git commit -m "Update sent games tracker"
           git push || true

@@ -47,12 +47,12 @@ jobs:
           WEATHER_LAT: ${{ vars.WEATHER_LAT || '38.9072' }}
           WEATHER_LON: ${{ vars.WEATHER_LON || '-77.0369' }}
           WEATHER_LOCATION: ${{ vars.WEATHER_LOCATION || 'DC' }}
-        run: python weather_bot.py ${{ steps.mode.outputs.mode }}
+        run: python weather/weather_bot.py ${{ steps.mode.outputs.mode }}
 
       - name: Track rain alerts
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add last_rain_alert.json 2>/dev/null || true
+          git add weather/last_rain_alert.json 2>/dev/null || true
           git diff --cached --quiet || git commit -m "Update rain alert tracker"
           git push || true
