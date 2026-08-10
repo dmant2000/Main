@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="2026 March Madness Bracket Predictions">
+<meta property="og:description" content="ML-powered bracket picks. Predicted champion: (1) Duke">
+<meta property="og:type" content="website">
+<title>2026 March Madness Bracket Predictions</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+    --bg: #0f1123;
+    --card: #1a1f3a;
+    --card-hover: #222850;
+    --gold: #f7c948;
+    --green: #48c78e;
+    --orange: #ff6b35;
+    --white: #e8ecf5;
+    --gray: #6b7394;
+    --border: #2a3158;
+    --winner-bg: #1a3a2a;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+.container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+
+/* Header */
+header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    background: linear-gradient(180deg, #161938 0%, var(--bg) 100%);
+}
+h1 {
+    font-size: clamp(1.6rem, 5vw, 2.8rem);
+    background: linear-gradient(90deg, var(--gold), var(--orange), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+.subtitle { color: var(--gray); font-size: 0.95rem; }
+
+/* Champion Banner */
+.champion {
+    text-align: center;
+    margin: 30px auto;
+    max-width: 520px;
+    background: linear-gradient(135deg, rgba(247,201,72,0.15), rgba(255,107,53,0.15));
+    border: 2px solid var(--gold);
+    border-radius: 16px;
+    padding: 24px;
+    animation: glow 3s ease-in-out infinite alternate;
+}
+@keyframes glow {
+    from { box-shadow: 0 0 20px rgba(247,201,72,0.1); }
+    to { box-shadow: 0 0 40px rgba(247,201,72,0.25); }
+}
+.champion h2 { color: var(--gold); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+.champion .champ-name { font-size: 1.8rem; font-weight: 800; color: var(--white); }
+.champion .champ-conf { color: var(--gold); font-size: 1rem; margin-top: 4px; }
+
+/* Navigation Tabs */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 30px 0 20px;
+    flex-wrap: wrap;
+    padding: 0 10px;
+}
+.tab {
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--gray);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+.tab:hover, .tab.active {
+    background: var(--card-hover);
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+/* Sections */
+.section { display: none; }
+.section.active { display: block; }
+
+/* Regions */
+.region {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+.region-header {
+    background: linear-gradient(90deg, rgba(247,201,72,0.1), transparent);
+    padding: 14px 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--gold);
+    border-bottom: 1px solid var(--border);
+}
+.region-rounds {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+}
+.round {
+    background: var(--bg);
+    padding: 12px;
+}
+.round-label {
+    color: var(--gray);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Matchups */
+.matchup {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: transform 0.15s;
+}
+.matchup:hover { transform: translateY(-1px); border-color: rgba(247,201,72,0.3); }
+.team {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 8px;
+    font-size: 0.88rem;
+}
+.team + .team { border-top: 1px solid var(--border); }
+.team.winner {
+    background: var(--winner-bg);
+    font-weight: 600;
+}
+.team.winner .name { color: var(--green); }
+.team.loser .name { color: var(--gray); }
+.seed {
+    background: rgba(247,201,72,0.15);
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 0.75rem;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+.name { flex: 1; }
+.prob {
+    background: rgba(72,199,142,0.2);
+    color: var(--green);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.spread {
+    color: var(--gray);
+    font-size: 0.75rem;
+}
+
+/* Final Four */
+.ff-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+}
+.ff-label, .champ-label {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--orange);
+    margin: 30px 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.champ-matchup {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Insights Cards */
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+.insight-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+}
+.insight-card h3 {
+    color: var(--orange);
+    font-size: 1rem;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Upsets */
+.upset-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+.upset-winner { color: var(--green); font-weight: 600; }
+.upset-loser { color: var(--gray); }
+.upset-round { margin-left: auto; color: var(--gray); font-size: 0.8rem; }
+
+/* Injuries */
+.injury-card {
+    background: rgba(255,107,53,0.05);
+    border: 1px solid rgba(255,107,53,0.2);
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 10px;
+}
+.injury-team { font-weight: 700; color: var(--white); }
+.injury-impact { color: var(--orange); font-weight: 700; font-size: 1.1rem; }
+.injury-notes { color: var(--gray); font-size: 0.85rem; margin-top: 4px; }
+
+/* Shooters */
+.shooter-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    font-size: 0.88rem;
+}
+.shooter-name { width: 140px; flex-shrink: 0; }
+.bar-bg {
+    flex: 1;
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green), var(--gold));
+    border-radius: 4px;
+}
+.shooter-pct { width: 50px; text-align: right; color: var(--gold); font-weight: 600; }
+.elite-tag {
+    background: var(--gold);
+    color: var(--bg);
+    font-size: 0.6rem;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+/* Ratings Table */
+.ratings-table-wrap {
+    overflow-y: auto;
+    max-height: 600px;
+}
+.ratings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+.ratings-table th, .ratings-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--border);
+}
+.ratings-table th {
+    background: var(--card-hover);
+    color: var(--gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+.ratings-table th:hover { color: var(--white); }
+.ratings-table th.sort-asc::after { content: ' \u25B2'; font-size: 0.6rem; }
+.ratings-table th.sort-desc::after { content: ' \u25BC'; font-size: 0.6rem; }
+.ratings-table td:first-child { text-align: center; }
+.ratings-table td:nth-child(n+3) { text-align: center; }
+.ratings-table tr:hover td { background: var(--card-hover); }
+.ratings-table .rank-col { color: var(--gray); font-size: 0.75rem; }
+.ratings-table .team-col { font-weight: 600; }
+.ratings-table .seed-badge {
+    display: inline-block;
+    background: rgba(247,201,72,0.15);
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 0.7rem;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 5px;
+    margin-right: 6px;
+}
+.off-val { color: var(--green); font-weight: 600; }
+.def-val { color: #5ba3f5; font-weight: 600; }
+.eff-val { color: var(--gold); font-weight: 700; }
+.ratings-filter {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+.ratings-filter button {
+    padding: 5px 12px;
+    border-radius: 6px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--gray);
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+.ratings-filter button:hover, .ratings-filter button.active {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+/* History Table */
+.history-intro {
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.history-table-wrap {
+    overflow-x: auto;
+    margin-bottom: 30px;
+}
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+.history-table th, .history-table td {
+    padding: 10px 14px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+.history-table th {
+    background: var(--card-hover);
+    color: var(--gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    position: sticky;
+    top: 0;
+}
+.history-table th:first-child, .history-table td:first-child {
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    left: 0;
+    background: var(--card);
+    z-index: 1;
+}
+.history-table th:first-child { background: var(--card-hover); z-index: 2; }
+.history-table tr:hover td { background: var(--card-hover); }
+.history-table tr:hover td:first-child { background: var(--card-hover); }
+.history-table .seed-col { color: var(--gold); }
+.history-table .pct-high { color: var(--green); font-weight: 600; }
+.history-table .pct-mid { color: var(--white); }
+.history-table .pct-low { color: var(--orange); }
+.history-table .pct-rare { color: var(--gray); }
+.history-callouts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+.history-callout {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+}
+.history-callout h4 {
+    color: var(--orange);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+.history-callout p {
+    color: var(--white);
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+.history-callout .stat {
+    color: var(--gold);
+    font-weight: 700;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    color: var(--gray);
+    padding: 40px 20px;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 600px) {
+    .region-rounds { grid-template-columns: 1fr; }
+    .tabs { gap: 4px; }
+    .tab { padding: 8px 14px; font-size: 0.8rem; }
+    .champion .champ-name { font-size: 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>March Madness 2026</h1>
+    <p class="subtitle">ML-Powered Bracket Predictions &bull; GBM Model &bull; 67.9% CV Accuracy</p>
+</header>
+
+<div class="container">
+    <div class="champion">
+        <h2>Predicted Champion</h2>
+        <div class="champ-name">(1) Duke</div>
+        <div class="champ-conf">96% Championship Probability</div>
+    </div>
+
+    <div class="tabs">
+        <div class="tab active" data-tab="bracket">Full Bracket</div>
+        <div class="tab" data-tab="ff">Final Four</div>
+        <div class="tab" data-tab="insights">Insights</div>
+        <div class="tab" data-tab="upsets">Upsets</div>
+        <div class="tab" data-tab="history">Seed History</div>
+    </div>
+
+    <!-- Bracket Tab -->
+    <div class="section active" id="bracket">
+        
+        <div class="region" id="east">
+            <div class="region-header">East</div>
+            <div class="region-rounds"><div class="round"><div class="round-label">R64</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Duke</span>
+            <span class="prob">96%</span><span class="spread">-21.1</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">16</span>
+            <span class="name">Siena</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">8</span>
+            <span class="name">Ohio State</span>
+            <span class="prob">64%</span><span class="spread">-3.9</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">9</span>
+            <span class="name">TCU</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">5</span>
+            <span class="name">St. John's</span>
+            <span class="prob">84%</span><span class="spread">-10.9</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">12</span>
+            <span class="name">Northern Iowa</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">4</span>
+            <span class="name">Kansas</span>
+            <span class="prob">92%</span><span class="spread">-16.4</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">13</span>
+            <span class="name">Cal Baptist</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">6</span>
+            <span class="name">Louisville</span>
+            <span class="prob">82%</span><span class="spread">-10.3</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">11</span>
+            <span class="name">South Florida</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">3</span>
+            <span class="name">Michigan State</span>
+            <span class="prob">92%</span><span class="spread">-16.6</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">14</span>
+            <span class="name">North Dakota State</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">7</span>
+            <span class="name">UCLA</span>
+            <span class="prob">80%</span><span class="spread">-9.3</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">10</span>
+            <span class="name">UCF</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">2</span>
+            <span class="name">UConn</span>
+            <span class="prob">96%</span><span class="spread">-21.2</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">15</span>
+            <span class="name">Furman</span>
+            
+        </div>
+    </div></div></div><div class="round"><div class="round-label">R32</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Duke</span>
+            <span class="prob">87%</span><span class="spread">-12.5</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">8</span>
+            <span class="name">Ohio State</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">5</span>
+            <span class="name">St. John's</span>
+            <span class="prob">75%</span><span class="spread">-7.2</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">4</span>
+            <span class="name">Kansas</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team loser">
+            <span class="seed">6</span>
+            <span class="name">Louisville</span>
+            
+        </div>
+        <div class="team winner">
+            <span class="seed">3</span>
+            <span class="name">Michigan State</span>
+            <span class="prob">64%</span><span class="spread">-4.0</span>
+        </div>
+    </div><div class="matchup">
+        <div class="team loser">
+            <span class="seed">7</span>
+            <span class="name">UCLA</span>
+            
+        </div>
+        <div class="team winner">
+            <span class="seed">2</span>
+            <span class="name">UConn</span>
+            <span class="prob">66%</span><span class="spread">-4.6</span>
+        </div>
+    </div></div></div><div class="round"><div class="round-label">Sweet 16</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Duke</span>
+            <span class="prob">94%</span><span class="spread">-18.4</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">5</span>
+            <span class="name">St. John's</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">3</span>
+            <span class="name">Michigan State</span>
+            <span class="prob">87%</span><span class="spread">-12.5</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">2</span>
+            <span class="name">UConn</span>
+            
+        </div>
+    </div></div></div><div class="round"><div class="round-label">Elite Eight</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Duke</span>
+            <span class="prob">95%</span><span class="spread">-19.1</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">3</span>
+            <span class="name">Michigan State</span>
+            
+        </div>
+    </div></div></div></div>
+        </div>
+        <div class="region" id="west">
+            <div class="region-header">West</div>
+            <div class="region-rounds"><div class="round"><div class="round-label">R64</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Arizona</span>
+            <span class="prob">95%</span><span class="spread">-20.1</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">16</span>
+            <span class="name">LIU</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">8</span>
+            <span class="name">Villanova</span>
+            <span class="prob">62%</span><span class="spread">-3.3</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">9</span>
+            <span class="name">Utah State</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">5</span>
+            <span class="name">Wisconsin</span>
+            <span class="prob">87%</span><span class="spread">-12.5</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">12</span>
+            <span class="name">High Point</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">4</span>
+            <span class="name">Arkansas</span>
+            <span class="prob">93%</span><span class="spread">-17.3</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">13</span>
+            <span class="name">Hawaii</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">6</span>
+            <span class="name">BYU</span>
+            <span class="prob">85%</span><span class="spread">-11.4</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">11</span>
+            <span class="name">NC State</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">3</span>
+            <span class="name">Gonzaga</span>
+            <span class="prob">93%</span><span class="spread">-17.1</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">14</span>
+            <span class="name">Kennesaw State</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">7</span>
+            <span class="name">Miami FL</span>
+            <span class="prob">67%</span><span class="spread">-4.8</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">10</span>
+            <span class="name">Missouri</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">2</span>
+            <span class="name">Purdue</span>
+            <span class="prob">95%</span><span class="spread">-20.1</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">15</span>
+            <span class="name">Queens</span>
+            
+        </div>
+    </div></div></div><div class="round"><div class="round-label">R32</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Arizona</span>
+            <span class="prob">87%</span><span class="spread">-12.6</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">8</span>
+            <span class="name">Villanova</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">5</span>
+            <span class="name">Wisconsin</span>
+            <span class="prob">56%</span><span class="spread">-1.6</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">4</span>
+            <span class="name">Arkansas</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team loser">
+            <span class="seed">6</span>
+            <span class="name">BYU</span>
+            
+        </div>
+        <div class="team winner">
+            <span class="seed">3</span>
+            <span class="name">Gonzaga</span>
+            <span class="prob">58%</span><span class="spread">-2.2</span>
+        </div>
+    </div><div class="matchup">
+        <div class="team loser">
+            <span class="seed">7</span>
+            <span class="name">Miami FL</span>
+            
+        </div>
+        <div class="team winner">
+            <span class="seed">2</span>
+            <span class="name">Purdue</span>
+            <span class="prob">70%</span><span class="spread">-5.6</span>
+        </div>
+    </div></div></div><div class="round"><div class="round-label">Sweet 16</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Arizona</span>
+            <span class="prob">94%</span><span class="spread">-18.9</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">5</span>
+            <span class="name">Wisconsin</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">3</span>
+            <span class="name">Gonzaga</span>
+            <span class="prob">79%</span><span class="spread">-8.8</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">2</span>
+            <span class="name">Purdue</span>
+            
+        </div>
+    </div></div></div><div class="round"><div class="round-label">Elite Eight</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Arizona</span>
+            <span class="prob">95%</span><span class="spread">-19.5</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">3</span>
+            <span class="name">Gonzaga</span>
+            
+        </div>
+    </div></div></div></div>
+        </div>
+        <div class="region" id="south">
+            <div class="region-header">South</div>
+            <div class="region-rounds"><div class="round"><div class="round-label">R64</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Florida</span>
+            <span class="prob">97%</span><span class="spread">-23.1</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">16</span>
+            <span class="name">Lehigh</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">8</span>
+            <span class="name">Clemson</span>
+            <span class="prob">58%</span><span class="spread">-2.3</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">9</span>
+            <span class="name">Iowa</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">5</span>
+            <span class="name">Vanderbilt</span>
+            <span class="prob">84%</span><span class="spread">-11.2</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">12</span>
+            <span class="name">McNeese</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">4</span>
+            <span class="name">Nebraska</span>
+            <span class="prob">93%</span><span class="spread">-17.4</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">13</span>
+            <span class="name">Troy</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">6</span>
+            <span class="name">North Carolina</span>
+            <span class="prob">75%</span><span class="spread">-7.2</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">11</span>
+            <span class="name">VCU</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">3</span>
+            <span class="name">Illinois</span>
+            <span class="prob">93%</span><span class="spread">-16.9</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">14</span>
+            <span class="name">Penn</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">7</span>
+            <span class="name">Saint Mary's</span>
+            <span class="prob">73%</span><span class="spread">-6.5</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">10</span>
+            <span class="name">Texas A&M</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">2</span>
+            <span class="name">Houston</span>
+            <span class="prob">96%</span><span class="spread">-22.0</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">15</span>
+            <span class="name">Idaho</span>
+            
+        </div>
+    </div></div></div><div class="round"><div class="round-label">R32</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Florida</span>
+            <span class="prob">90%</span><span class="spread">-14.3</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">8</span>
+            <span class="name">Clemson</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">5</span>
+            <span class="name">Vanderbilt</span>
+            <span class="prob">57%</span><span class="spread">-2.0</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">4</span>
+            <span class="name">Nebraska</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team loser">
+            <span class="seed">6</span>
+            <span class="name">North Carolina</span>
+            
+        </div>
+        <div class="team winner">
+            <span class="seed">3</span>
+            <span class="name">Illinois</span>
+            <span class="prob">65%</span><span class="spread">-4.2</span>
+        </div>
+    </div><div class="matchup">
+        <div class="team loser">
+            <span class="seed">7</span>
+            <span class="name">Saint Mary's</span>
+            
+        </div>
+        <div class="team winner">
+            <span class="seed">2</span>
+            <span class="name">Houston</span>
+            <span class="prob">74%</span><span class="spread">-6.9</span>
+        </div>
+    </div></div></div><div class="round"><div class="round-label">Sweet 16</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Florida</span>
+            <span class="prob">93%</span><span class="spread">-17.6</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">5</span>
+            <span class="name">Vanderbilt</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">3</span>
+            <span class="name">Illinois</span>
+            <span class="prob">70%</span><span class="spread">-5.6</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">2</span>
+            <span class="name">Houston</span>
+            
+        </div>
+    </div></div></div><div class="round"><div class="round-label">Elite Eight</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Florida</span>
+            <span class="prob">94%</span><span class="spread">-18.3</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">3</span>
+            <span class="name">Illinois</span>
+            
+        </div>
+    </div></div></div></div>
+        </div>
+        <div class="region" id="midwest">
+            <div class="region-header">Midwest</div>
+            <div class="region-rounds"><div class="round"><div class="round-label">R64</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Michigan</span>
+            <span class="prob">96%</span><span class="spread">-20.4</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">16</span>
+            <span class="name">Howard</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">8</span>
+            <span class="name">Georgia</span>
+            <span class="prob">68%</span><span class="spread">-5.2</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">9</span>
+            <span class="name">Saint Louis</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">5</span>
+            <span class="name">Texas Tech</span>
+            <span class="prob">74%</span><span class="spread">-7.2</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">12</span>
+            <span class="name">Akron</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">4</span>
+            <span class="name">Alabama</span>
+            <span class="prob">82%</span><span class="spread">-10.1</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">13</span>
+            <span class="name">Hofstra</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">6</span>
+            <span class="name">Tennessee</span>
+            <span class="prob">84%</span><span class="spread">-11.0</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">11</span>
+            <span class="name">SMU</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">3</span>
+            <span class="name">Virginia</span>
+            <span class="prob">94%</span><span class="spread">-18.2</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">14</span>
+            <span class="name">Wright State</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">7</span>
+            <span class="name">Kentucky</span>
+            <span class="prob">80%</span><span class="spread">-9.2</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">10</span>
+            <span class="name">Santa Clara</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">2</span>
+            <span class="name">Iowa State</span>
+            <span class="prob">97%</span><span class="spread">-22.5</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">15</span>
+            <span class="name">Tennessee State</span>
+            
+        </div>
+    </div></div></div><div class="round"><div class="round-label">R32</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Michigan</span>
+            <span class="prob">87%</span><span class="spread">-12.5</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">8</span>
+            <span class="name">Georgia</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">5</span>
+            <span class="name">Texas Tech</span>
+            <span class="prob">69%</span><span class="spread">-5.4</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">4</span>
+            <span class="name">Alabama</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team loser">
+            <span class="seed">6</span>
+            <span class="name">Tennessee</span>
+            
+        </div>
+        <div class="team winner">
+            <span class="seed">3</span>
+            <span class="name">Virginia</span>
+            <span class="prob">63%</span><span class="spread">-3.5</span>
+        </div>
+    </div><div class="matchup">
+        <div class="team loser">
+            <span class="seed">7</span>
+            <span class="name">Kentucky</span>
+            
+        </div>
+        <div class="team winner">
+            <span class="seed">2</span>
+            <span class="name">Iowa State</span>
+            <span class="prob">68%</span><span class="spread">-4.9</span>
+        </div>
+    </div></div></div><div class="round"><div class="round-label">Sweet 16</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Michigan</span>
+            <span class="prob">94%</span><span class="spread">-18.4</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">5</span>
+            <span class="name">Texas Tech</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">3</span>
+            <span class="name">Virginia</span>
+            <span class="prob">74%</span><span class="spread">-7.0</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">2</span>
+            <span class="name">Iowa State</span>
+            
+        </div>
+    </div></div></div><div class="round"><div class="round-label">Elite Eight</div><div class="round-games"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Michigan</span>
+            <span class="prob">95%</span><span class="spread">-19.0</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">3</span>
+            <span class="name">Virginia</span>
+            
+        </div>
+    </div></div></div></div>
+        </div>
+    </div>
+
+    <!-- Final Four Tab -->
+    <div class="section" id="ff">
+        <div class="ff-label">Final Four</div>
+        <div class="ff-section"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Duke</span>
+            <span class="prob">93%</span><span class="spread">-17.5</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">1</span>
+            <span class="name">Arizona</span>
+            
+        </div>
+    </div><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Florida</span>
+            <span class="prob">77%</span><span class="spread">-8.0</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">1</span>
+            <span class="name">Michigan</span>
+            
+        </div>
+    </div></div>
+        <div class="champ-label">Championship</div>
+        <div class="champ-matchup"><div class="matchup">
+        <div class="team winner">
+            <span class="seed">1</span>
+            <span class="name">Duke</span>
+            <span class="prob">96%</span><span class="spread">-21.4</span>
+        </div>
+        <div class="team loser">
+            <span class="seed">1</span>
+            <span class="name">Florida</span>
+            
+        </div>
+    </div></div>
+    </div>
+
+    <!-- Insights Tab -->
+    <div class="section" id="insights">
+        <div class="insights-grid">
+            <div class="insight-card">
+                <h3>Injury Report</h3>
+                <div class="injury-card"><div class="injury-team">North Carolina</div><div class="injury-impact">-5.0 pts</div><div class="injury-notes">WITHOUT Caleb Wilson (season-ending hand surgery). Huge loss.</div></div>
+<div class="injury-card"><div class="injury-team">Michigan</div><div class="injury-impact">-3.5 pts</div><div class="injury-notes">Betting favorite +325. L.J. Cason torn ACL. Lost Big Ten title to Purdue.</div></div>
+<div class="injury-card"><div class="injury-team">Duke</div><div class="injury-impact">-2.0 pts</div><div class="injury-notes">ACC POY Cameron Boozer. Injuries to Caleb Foster & Patrick Ngongba but still dominant.</div></div>
+
+            </div>
+            <div class="insight-card">
+                <h3>Top 3-Point Shooting</h3>
+                <div class="shooter-row">
+            <span class="shooter-name">Texas Tech <span class="elite-tag">ELITE</span></span>
+            <div class="bar-bg"><div class="bar-fill" style="width:83%"></div></div>
+            <span class="shooter-pct">40.0%</span>
+        </div>
+<div class="shooter-row">
+            <span class="shooter-name">Penn <span class="elite-tag">ELITE</span></span>
+            <div class="bar-bg"><div class="bar-fill" style="width:72%"></div></div>
+            <span class="shooter-pct">38.6%</span>
+        </div>
+<div class="shooter-row">
+            <span class="shooter-name">UCLA <span class="elite-tag">ELITE</span></span>
+            <div class="bar-bg"><div class="bar-fill" style="width:68%"></div></div>
+            <span class="shooter-pct">38.2%</span>
+        </div>
+<div class="shooter-row">
+            <span class="shooter-name">Alabama <span class="elite-tag">ELITE</span></span>
+            <div class="bar-bg"><div class="bar-fill" style="width:63%"></div></div>
+            <span class="shooter-pct">37.5%</span>
+        </div>
+<div class="shooter-row">
+            <span class="shooter-name">BYU <span class="elite-tag">ELITE</span></span>
+            <div class="bar-bg"><div class="bar-fill" style="width:63%"></div></div>
+            <span class="shooter-pct">37.5%</span>
+        </div>
+<div class="shooter-row">
+            <span class="shooter-name">Arizona <span class="elite-tag">ELITE</span></span>
+            <div class="bar-bg"><div class="bar-fill" style="width:58%"></div></div>
+            <span class="shooter-pct">37.0%</span>
+        </div>
+<div class="shooter-row">
+            <span class="shooter-name">Illinois <span class="elite-tag">ELITE</span></span>
+            <div class="bar-bg"><div class="bar-fill" style="width:58%"></div></div>
+            <span class="shooter-pct">37.0%</span>
+        </div>
+<div class="shooter-row">
+            <span class="shooter-name">Duke <span class="elite-tag">ELITE</span></span>
+            <div class="bar-bg"><div class="bar-fill" style="width:54%"></div></div>
+            <span class="shooter-pct">36.5%</span>
+        </div>
+<div class="shooter-row">
+            <span class="shooter-name">Purdue <span class="elite-tag">ELITE</span></span>
+            <div class="bar-bg"><div class="bar-fill" style="width:54%"></div></div>
+            <span class="shooter-pct">36.5%</span>
+        </div>
+<div class="shooter-row">
+            <span class="shooter-name">Ohio State <span class="elite-tag">ELITE</span></span>
+            <div class="bar-bg"><div class="bar-fill" style="width:54%"></div></div>
+            <span class="shooter-pct">36.5%</span>
+        </div>
+
+            </div>
+        </div>
+        <div class="insight-card" style="margin-top:20px">
+            <h3>Team Ratings — All 64 Teams</h3>
+            <div class="ratings-filter">
+                <button class="active" data-filter="all">All Teams</button>
+                <button data-filter="top">Top Seeds (1-4)</button>
+                <button data-filter="mid">Mid Seeds (5-8)</button>
+                <button data-filter="low">Low Seeds (9-16)</button>
+            </div>
+            <div class="ratings-table-wrap">
+                <table class="ratings-table" id="ratingsTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="rank" class="sort-asc">#</th>
+                            <th data-sort="team" style="text-align:left">Team</th>
+                            <th data-sort="off">Off Rtg</th>
+                            <th data-sort="def">Def Rtg</th>
+                            <th data-sort="eff">Net Rtg</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-seed="1"><td class="rank-col">1</td><td class="team-col"><span class="seed-badge">1</span>Duke</td><td class="off-val">126.0</td><td class="def-val">85.5</td><td class="eff-val">+40.5</td></tr>
+                        <tr data-seed="1"><td class="rank-col">2</td><td class="team-col"><span class="seed-badge">1</span>Michigan</td><td class="off-val">124.5</td><td class="def-val">85.5</td><td class="eff-val">+39.0</td></tr>
+                        <tr data-seed="1"><td class="rank-col">3</td><td class="team-col"><span class="seed-badge">1</span>Arizona</td><td class="off-val">125.0</td><td class="def-val">88.0</td><td class="eff-val">+37.0</td></tr>
+                        <tr data-seed="1"><td class="rank-col">4</td><td class="team-col"><span class="seed-badge">1</span>Florida</td><td class="off-val">124.0</td><td class="def-val">88.5</td><td class="eff-val">+35.5</td></tr>
+                        <tr data-seed="2"><td class="rank-col">5</td><td class="team-col"><span class="seed-badge">2</span>Iowa State</td><td class="off-val">117.5</td><td class="def-val">86.5</td><td class="eff-val">+31.0</td></tr>
+                        <tr data-seed="2"><td class="rank-col">6</td><td class="team-col"><span class="seed-badge">2</span>Houston</td><td class="off-val">119.0</td><td class="def-val">89.0</td><td class="eff-val">+30.0</td></tr>
+                        <tr data-seed="2"><td class="rank-col">7</td><td class="team-col"><span class="seed-badge">2</span>UConn</td><td class="off-val">122.0</td><td class="def-val">93.5</td><td class="eff-val">+28.5</td></tr>
+                        <tr data-seed="2"><td class="rank-col">8</td><td class="team-col"><span class="seed-badge">2</span>Purdue</td><td class="off-val">123.5</td><td class="def-val">96.0</td><td class="eff-val">+27.5</td></tr>
+                        <tr data-seed="3"><td class="rank-col">9</td><td class="team-col"><span class="seed-badge">3</span>Michigan State</td><td class="off-val">115.0</td><td class="def-val">89.0</td><td class="eff-val">+26.0</td></tr>
+                        <tr data-seed="3"><td class="rank-col">10</td><td class="team-col"><span class="seed-badge">3</span>Illinois</td><td class="off-val">125.0</td><td class="def-val">99.5</td><td class="eff-val">+25.5</td></tr>
+                        <tr data-seed="3"><td class="rank-col">11</td><td class="team-col"><span class="seed-badge">3</span>Gonzaga</td><td class="off-val">118.0</td><td class="def-val">93.0</td><td class="eff-val">+25.0</td></tr>
+                        <tr data-seed="3"><td class="rank-col">12</td><td class="team-col"><span class="seed-badge">3</span>Virginia</td><td class="off-val">116.0</td><td class="def-val">92.0</td><td class="eff-val">+24.0</td></tr>
+                        <tr data-seed="4"><td class="rank-col">13</td><td class="team-col"><span class="seed-badge">4</span>Nebraska</td><td class="off-val">117.0</td><td class="def-val">95.0</td><td class="eff-val">+22.0</td></tr>
+                        <tr data-seed="4"><td class="rank-col">14</td><td class="team-col"><span class="seed-badge">4</span>Alabama</td><td class="off-val">124.0</td><td class="def-val">102.5</td><td class="eff-val">+21.5</td></tr>
+                        <tr data-seed="4"><td class="rank-col">15</td><td class="team-col"><span class="seed-badge">4</span>Kansas</td><td class="off-val">118.5</td><td class="def-val">97.5</td><td class="eff-val">+21.0</td></tr>
+                        <tr data-seed="4"><td class="rank-col">16</td><td class="team-col"><span class="seed-badge">4</span>Arkansas</td><td class="off-val">118.0</td><td class="def-val">97.5</td><td class="eff-val">+20.5</td></tr>
+                        <tr data-seed="5"><td class="rank-col">17</td><td class="team-col"><span class="seed-badge">5</span>Vanderbilt</td><td class="off-val">121.0</td><td class="def-val">101.0</td><td class="eff-val">+20.0</td></tr>
+                        <tr data-seed="5"><td class="rank-col">18</td><td class="team-col"><span class="seed-badge">5</span>St. John's</td><td class="off-val">114.0</td><td class="def-val">94.5</td><td class="eff-val">+19.5</td></tr>
+                        <tr data-seed="5"><td class="rank-col">19</td><td class="team-col"><span class="seed-badge">5</span>Texas Tech</td><td class="off-val">119.0</td><td class="def-val">100.5</td><td class="eff-val">+18.5</td></tr>
+                        <tr data-seed="6"><td class="rank-col">20</td><td class="team-col"><span class="seed-badge">6</span>Louisville</td><td class="off-val">116.5</td><td class="def-val">98.5</td><td class="eff-val">+18.0</td></tr>
+                        <tr data-seed="5"><td class="rank-col">22</td><td class="team-col"><span class="seed-badge">5</span>Wisconsin</td><td class="off-val">118.5</td><td class="def-val">101.5</td><td class="eff-val">+17.0</td></tr>
+                        <tr data-seed="6"><td class="rank-col">23</td><td class="team-col"><span class="seed-badge">6</span>BYU</td><td class="off-val">117.0</td><td class="def-val">100.5</td><td class="eff-val">+16.5</td></tr>
+                        <tr data-seed="6"><td class="rank-col">24</td><td class="team-col"><span class="seed-badge">6</span>Tennessee</td><td class="off-val">116.0</td><td class="def-val">100.0</td><td class="eff-val">+16.0</td></tr>
+                        <tr data-seed="6"><td class="rank-col">25</td><td class="team-col"><span class="seed-badge">6</span>North Carolina</td><td class="off-val">117.5</td><td class="def-val">102.0</td><td class="eff-val">+15.5</td></tr>
+                        <tr data-seed="7"><td class="rank-col">26</td><td class="team-col"><span class="seed-badge">7</span>Kentucky</td><td class="off-val">116.5</td><td class="def-val">101.5</td><td class="eff-val">+15.0</td></tr>
+                        <tr data-seed="7"><td class="rank-col">27</td><td class="team-col"><span class="seed-badge">7</span>UCLA</td><td class="off-val">115.5</td><td class="def-val">101.0</td><td class="eff-val">+14.5</td></tr>
+                        <tr data-seed="7"><td class="rank-col">28</td><td class="team-col"><span class="seed-badge">7</span>Saint Mary's</td><td class="off-val">114.0</td><td class="def-val">100.0</td><td class="eff-val">+14.0</td></tr>
+                        <tr data-seed="7"><td class="rank-col">30</td><td class="team-col"><span class="seed-badge">7</span>Miami FL</td><td class="off-val">114.5</td><td class="def-val">101.5</td><td class="eff-val">+13.0</td></tr>
+                        <tr data-seed="8"><td class="rank-col">32</td><td class="team-col"><span class="seed-badge">8</span>Clemson</td><td class="off-val">113.0</td><td class="def-val">100.5</td><td class="eff-val">+12.5</td></tr>
+                        <tr data-seed="8"><td class="rank-col">33</td><td class="team-col"><span class="seed-badge">8</span>Ohio State</td><td class="off-val">113.5</td><td class="def-val">101.5</td><td class="eff-val">+12.0</td></tr>
+                        <tr data-seed="8"><td class="rank-col">35</td><td class="team-col"><span class="seed-badge">8</span>Villanova</td><td class="off-val">113.0</td><td class="def-val">101.5</td><td class="eff-val">+11.5</td></tr>
+                        <tr data-seed="9"><td class="rank-col">34</td><td class="team-col"><span class="seed-badge">9</span>Iowa</td><td class="off-val">115.0</td><td class="def-val">103.5</td><td class="eff-val">+11.5</td></tr>
+                        <tr data-seed="8"><td class="rank-col">36</td><td class="team-col"><span class="seed-badge">8</span>Georgia</td><td class="off-val">114.0</td><td class="def-val">103.0</td><td class="eff-val">+11.0</td></tr>
+                        <tr data-seed="10"><td class="rank-col">38</td><td class="team-col"><span class="seed-badge">10</span>Texas A&amp;M</td><td class="off-val">112.5</td><td class="def-val">102.0</td><td class="eff-val">+10.5</td></tr>
+                        <tr data-seed="9"><td class="rank-col">37</td><td class="team-col"><span class="seed-badge">9</span>TCU</td><td class="off-val">113.0</td><td class="def-val">102.5</td><td class="eff-val">+10.5</td></tr>
+                        <tr data-seed="10"><td class="rank-col">40</td><td class="team-col"><span class="seed-badge">10</span>Missouri</td><td class="off-val">112.0</td><td class="def-val">102.0</td><td class="eff-val">+10.0</td></tr>
+                        <tr data-seed="9"><td class="rank-col">39</td><td class="team-col"><span class="seed-badge">9</span>Utah State</td><td class="off-val">112.5</td><td class="def-val">102.5</td><td class="eff-val">+10.0</td></tr>
+                        <tr data-seed="10"><td class="rank-col">42</td><td class="team-col"><span class="seed-badge">10</span>UCF</td><td class="off-val">112.0</td><td class="def-val">102.5</td><td class="eff-val">+9.5</td></tr>
+                        <tr data-seed="11"><td class="rank-col">43</td><td class="team-col"><span class="seed-badge">11</span>SMU</td><td class="off-val">113.0</td><td class="def-val">103.5</td><td class="eff-val">+9.5</td></tr>
+                        <tr data-seed="11"><td class="rank-col">45</td><td class="team-col"><span class="seed-badge">11</span>VCU</td><td class="off-val">111.5</td><td class="def-val">102.5</td><td class="eff-val">+9.0</td></tr>
+                        <tr data-seed="10"><td class="rank-col">44</td><td class="team-col"><span class="seed-badge">10</span>Santa Clara</td><td class="off-val">112.0</td><td class="def-val">103.0</td><td class="eff-val">+9.0</td></tr>
+                        <tr data-seed="11"><td class="rank-col">48</td><td class="team-col"><span class="seed-badge">11</span>South Florida</td><td class="off-val">110.5</td><td class="def-val">102.0</td><td class="eff-val">+8.5</td></tr>
+                        <tr data-seed="9"><td class="rank-col">46</td><td class="team-col"><span class="seed-badge">9</span>Saint Louis</td><td class="off-val">111.0</td><td class="def-val">102.5</td><td class="eff-val">+8.5</td></tr>
+                        <tr data-seed="11"><td class="rank-col">47</td><td class="team-col"><span class="seed-badge">11</span>NC State</td><td class="off-val">112.0</td><td class="def-val">103.5</td><td class="eff-val">+8.5</td></tr>
+                        <tr data-seed="12"><td class="rank-col">65</td><td class="team-col"><span class="seed-badge">12</span>Akron</td><td class="off-val">108.0</td><td class="def-val">103.0</td><td class="eff-val">+5.0</td></tr>
+                        <tr data-seed="12"><td class="rank-col">70</td><td class="team-col"><span class="seed-badge">12</span>McNeese</td><td class="off-val">107.5</td><td class="def-val">103.0</td><td class="eff-val">+4.5</td></tr>
+                        <tr data-seed="12"><td class="rank-col">68</td><td class="team-col"><span class="seed-badge">12</span>Northern Iowa</td><td class="off-val">107.0</td><td class="def-val">102.5</td><td class="eff-val">+4.5</td></tr>
+                        <tr data-seed="12"><td class="rank-col">75</td><td class="team-col"><span class="seed-badge">12</span>High Point</td><td class="off-val">108.0</td><td class="def-val">104.0</td><td class="eff-val">+4.0</td></tr>
+                        <tr data-seed="13"><td class="rank-col">80</td><td class="team-col"><span class="seed-badge">13</span>Hofstra</td><td class="off-val">107.0</td><td class="def-val">103.5</td><td class="eff-val">+3.5</td></tr>
+                        <tr data-seed="15"><td class="rank-col">85</td><td class="team-col"><span class="seed-badge">15</span>Furman</td><td class="off-val">106.5</td><td class="def-val">103.5</td><td class="eff-val">+3.0</td></tr>
+                        <tr data-seed="13"><td class="rank-col">90</td><td class="team-col"><span class="seed-badge">13</span>Troy</td><td class="off-val">106.0</td><td class="def-val">103.5</td><td class="eff-val">+2.5</td></tr>
+                        <tr data-seed="13"><td class="rank-col">95</td><td class="team-col"><span class="seed-badge">13</span>Hawaii</td><td class="off-val">105.5</td><td class="def-val">103.5</td><td class="eff-val">+2.0</td></tr>
+                        <tr data-seed="14"><td class="rank-col">100</td><td class="team-col"><span class="seed-badge">14</span>Penn</td><td class="off-val">105.0</td><td class="def-val">103.5</td><td class="eff-val">+1.5</td></tr>
+                        <tr data-seed="14"><td class="rank-col">110</td><td class="team-col"><span class="seed-badge">14</span>Wright State</td><td class="off-val">104.5</td><td class="def-val">103.5</td><td class="eff-val">+1.0</td></tr>
+                        <tr data-seed="14"><td class="rank-col">115</td><td class="team-col"><span class="seed-badge">14</span>Kennesaw State</td><td class="off-val">104.0</td><td class="def-val">103.5</td><td class="eff-val">+0.5</td></tr>
+                        <tr data-seed="13"><td class="rank-col">120</td><td class="team-col"><span class="seed-badge">13</span>Cal Baptist</td><td class="off-val">103.5</td><td class="def-val">103.5</td><td class="eff-val">+0.0</td></tr>
+                        <tr data-seed="14"><td class="rank-col">125</td><td class="team-col"><span class="seed-badge">14</span>North Dakota St</td><td class="off-val">103.0</td><td class="def-val">103.5</td><td class="eff-val">-0.5</td></tr>
+                        <tr data-seed="16"><td class="rank-col">130</td><td class="team-col"><span class="seed-badge">16</span>Lehigh</td><td class="off-val">103.0</td><td class="def-val">104.0</td><td class="eff-val">-1.0</td></tr>
+                        <tr data-seed="15"><td class="rank-col">135</td><td class="team-col"><span class="seed-badge">15</span>Idaho</td><td class="off-val">102.5</td><td class="def-val">104.0</td><td class="eff-val">-1.5</td></tr>
+                        <tr data-seed="15"><td class="rank-col">140</td><td class="team-col"><span class="seed-badge">15</span>Queens</td><td class="off-val">102.0</td><td class="def-val">104.0</td><td class="eff-val">-2.0</td></tr>
+                        <tr data-seed="15"><td class="rank-col">150</td><td class="team-col"><span class="seed-badge">15</span>Tennessee State</td><td class="off-val">101.5</td><td class="def-val">104.5</td><td class="eff-val">-3.0</td></tr>
+                        <tr data-seed="16"><td class="rank-col">160</td><td class="team-col"><span class="seed-badge">16</span>Siena</td><td class="off-val">101.0</td><td class="def-val">105.0</td><td class="eff-val">-4.0</td></tr>
+                        <tr data-seed="16"><td class="rank-col">170</td><td class="team-col"><span class="seed-badge">16</span>Howard</td><td class="off-val">100.5</td><td class="def-val">105.5</td><td class="eff-val">-5.0</td></tr>
+                        <tr data-seed="16"><td class="rank-col">175</td><td class="team-col"><span class="seed-badge">16</span>LIU</td><td class="off-val">100.0</td><td class="def-val">105.5</td><td class="eff-val">-5.5</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upsets Tab -->
+    <div class="section" id="upsets">
+        <div class="insight-card">
+            <h3>Predicted Upsets</h3>
+            <div class="upset-row"><span class="upset-winner">(5) St. John's</span> over <span class="upset-loser">(4) Kansas</span><span class="upset-round">Round of 32</span></div>
+<div class="upset-row"><span class="upset-winner">(3) Michigan State</span> over <span class="upset-loser">(2) UConn</span><span class="upset-round">Sweet 16</span></div>
+<div class="upset-row"><span class="upset-winner">(5) Wisconsin</span> over <span class="upset-loser">(4) Arkansas</span><span class="upset-round">Round of 32</span></div>
+<div class="upset-row"><span class="upset-winner">(3) Gonzaga</span> over <span class="upset-loser">(2) Purdue</span><span class="upset-round">Sweet 16</span></div>
+<div class="upset-row"><span class="upset-winner">(5) Vanderbilt</span> over <span class="upset-loser">(4) Nebraska</span><span class="upset-round">Round of 32</span></div>
+<div class="upset-row"><span class="upset-winner">(3) Illinois</span> over <span class="upset-loser">(2) Houston</span><span class="upset-round">Sweet 16</span></div>
+<div class="upset-row"><span class="upset-winner">(5) Texas Tech</span> over <span class="upset-loser">(4) Alabama</span><span class="upset-round">Round of 32</span></div>
+<div class="upset-row"><span class="upset-winner">(3) Virginia</span> over <span class="upset-loser">(2) Iowa State</span><span class="upset-round">Sweet 16</span></div>
+
+        </div>
+    </div>
+
+    <!-- Seed History Tab -->
+    <div class="section" id="history">
+        <div class="insight-card">
+            <h3>Historical Seed Performance (1985-2025)</h3>
+            <p class="history-intro">How often does each seed advance to each round? Based on 40 years of NCAA Tournament data.</p>
+            <div class="history-table-wrap">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Seed</th>
+                            <th>Win R64</th>
+                            <th>Make S16</th>
+                            <th>Make E8</th>
+                            <th>Make F4</th>
+                            <th>Make Final</th>
+                            <th>Win Title</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="seed-col">1</td>
+                            <td class="pct-high">99%</td>
+                            <td class="pct-high">68%</td>
+                            <td class="pct-high">51%</td>
+                            <td class="pct-high">35%</td>
+                            <td class="pct-mid">22%</td>
+                            <td class="pct-mid">14%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">2</td>
+                            <td class="pct-high">94%</td>
+                            <td class="pct-high">50%</td>
+                            <td class="pct-mid">33%</td>
+                            <td class="pct-mid">19%</td>
+                            <td class="pct-low">11%</td>
+                            <td class="pct-low">6%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">3</td>
+                            <td class="pct-high">85%</td>
+                            <td class="pct-mid">36%</td>
+                            <td class="pct-mid">20%</td>
+                            <td class="pct-low">10%</td>
+                            <td class="pct-low">5%</td>
+                            <td class="pct-rare">3%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">4</td>
+                            <td class="pct-high">79%</td>
+                            <td class="pct-mid">31%</td>
+                            <td class="pct-mid">16%</td>
+                            <td class="pct-low">8%</td>
+                            <td class="pct-rare">4%</td>
+                            <td class="pct-rare">2%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">5</td>
+                            <td class="pct-high">65%</td>
+                            <td class="pct-mid">19%</td>
+                            <td class="pct-low">9%</td>
+                            <td class="pct-rare">4%</td>
+                            <td class="pct-rare">2%</td>
+                            <td class="pct-rare">1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">6</td>
+                            <td class="pct-high">63%</td>
+                            <td class="pct-mid">17%</td>
+                            <td class="pct-low">8%</td>
+                            <td class="pct-rare">3%</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">7</td>
+                            <td class="pct-high">61%</td>
+                            <td class="pct-mid">14%</td>
+                            <td class="pct-low">6%</td>
+                            <td class="pct-rare">2%</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">8</td>
+                            <td class="pct-mid">51%</td>
+                            <td class="pct-low">10%</td>
+                            <td class="pct-rare">4%</td>
+                            <td class="pct-rare">2%</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">9</td>
+                            <td class="pct-mid">49%</td>
+                            <td class="pct-low">7%</td>
+                            <td class="pct-rare">3%</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">10</td>
+                            <td class="pct-mid">39%</td>
+                            <td class="pct-low">6%</td>
+                            <td class="pct-rare">2%</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">11</td>
+                            <td class="pct-mid">37%</td>
+                            <td class="pct-low">7%</td>
+                            <td class="pct-rare">3%</td>
+                            <td class="pct-rare">2%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">12</td>
+                            <td class="pct-mid">35%</td>
+                            <td class="pct-rare">4%</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">13</td>
+                            <td class="pct-mid">21%</td>
+                            <td class="pct-rare">2%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">0%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">14</td>
+                            <td class="pct-mid">15%</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">0%</td>
+                            <td class="pct-rare">0%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">15</td>
+                            <td class="pct-low">6%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">0%</td>
+                            <td class="pct-rare">0%</td>
+                        </tr>
+                        <tr>
+                            <td class="seed-col">16</td>
+                            <td class="pct-rare">1%</td>
+                            <td class="pct-rare">&lt;1%</td>
+                            <td class="pct-rare">0%</td>
+                            <td class="pct-rare">0%</td>
+                            <td class="pct-rare">0%</td>
+                            <td class="pct-rare">0%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="history-callouts">
+            <div class="history-callout">
+                <h4>Cinderella Seeds</h4>
+                <p><span class="stat">11 seeds</span> are the most dangerous mid-majors &mdash; they make the Sweet 16 <span class="stat">7%</span> of the time and the Final Four <span class="stat">2%</span>. Loyola-Chicago (2018) and VCU (2011) both made the F4 as 11 seeds.</p>
+            </div>
+            <div class="history-callout">
+                <h4>The 8/9 Coin Flip</h4>
+                <p>The 8 vs 9 matchup is nearly a <span class="stat">51/49</span> toss-up. But an 8 seed making the Final Four? Only <span class="stat">2%</span> of the time. They almost always run into the 1 seed in Round 2.</p>
+            </div>
+            <div class="history-callout">
+                <h4>12 Over 5 Magic</h4>
+                <p>The famous <span class="stat">12-over-5</span> upset hits <span class="stat">35%</span> of the time &mdash; roughly once per year. It's the most popular upset pick in bracket pools for good reason.</p>
+            </div>
+            <div class="history-callout">
+                <h4>1 Seeds Aren't Safe</h4>
+                <p>A 1 seed wins it all only <span class="stat">14%</span> of the time (about 1 in 7). They lose before the Elite Eight <span class="stat">32%</span> of the time. Even top seeds face March chaos.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    Generated by March Madness Bot &bull; Data: 630 historical games (2015-2025) &bull; Model: Gradient Boosted Machine
+</footer>
+
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+});
+
+// Ratings filter
+document.querySelectorAll('.ratings-filter button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.ratings-filter button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('#ratingsTable tbody tr').forEach(row => {
+            const seed = parseInt(row.dataset.seed);
+            if (filter === 'all') row.style.display = '';
+            else if (filter === 'top') row.style.display = seed <= 4 ? '' : 'none';
+            else if (filter === 'mid') row.style.display = (seed >= 5 && seed <= 8) ? '' : 'none';
+            else if (filter === 'low') row.style.display = seed >= 9 ? '' : 'none';
+        });
+    });
+});
+
+// Ratings sort
+document.querySelectorAll('#ratingsTable th[data-sort]').forEach(th => {
+    th.addEventListener('click', () => {
+        const key = th.dataset.sort;
+        const tbody = document.querySelector('#ratingsTable tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const isAsc = th.classList.contains('sort-asc');
+        document.querySelectorAll('#ratingsTable th').forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
+        th.classList.add(isAsc ? 'sort-desc' : 'sort-asc');
+        rows.sort((a, b) => {
+            let va, vb;
+            if (key === 'team') {
+                va = a.cells[1].textContent.trim();
+                vb = b.cells[1].textContent.trim();
+                return isAsc ? vb.localeCompare(va) : va.localeCompare(vb);
+            }
+            const ci = key === 'rank' ? 0 : key === 'off' ? 2 : key === 'def' ? 3 : 4;
+            va = parseFloat(a.cells[ci].textContent);
+            vb = parseFloat(b.cells[ci].textContent);
+            if (key === 'def') return isAsc ? vb - va : va - vb;
+            return isAsc ? va - vb : vb - va;
+        });
+        rows.forEach(r => tbody.appendChild(r));
+    });
+});
+</script>
+
+</body>
+</html>

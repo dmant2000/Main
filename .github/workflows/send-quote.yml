@@ -2,8 +2,8 @@ name: Send Movie Quote
 
 on:
   schedule:
-    # 10 AM EDT / 9 AM EST = 2 PM UTC
-    - cron: '0 14 * * *'
+    # 12 PM EST = 5 PM UTC (EST is UTC-5)
+    - cron: '0 17 * * *'
   workflow_dispatch:
 
 permissions:

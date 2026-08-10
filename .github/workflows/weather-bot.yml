@@ -1,0 +1,58 @@
+name: Weather Bot
+
+on:
+  schedule:
+    # Morning brief at 7:00 AM ET (11:00 UTC)
+    - cron: '0 11 * * *'
+    # Rain checks every 30 min from 8am-10pm ET (12:00-02:00+1 UTC)
+    - cron: '0,30 12-23,0-2 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run mode: brief or rain'
+        required: false
+        default: 'brief'
+
+jobs:
+  weather:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Determine mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "mode=${{ github.event.inputs.mode }}" >> $GITHUB_OUTPUT
+          else
+            HOUR=$(TZ=America/New_York date +%H)
+            if [ "$HOUR" = "07" ]; then
+              echo "mode=brief" >> $GITHUB_OUTPUT
+            else
+              echo "mode=rain" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      - name: Run weather bot
+        env:
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          WEATHER_LAT: ${{ vars.WEATHER_LAT || '38.9072' }}
+          WEATHER_LON: ${{ vars.WEATHER_LON || '-77.0369' }}
+          WEATHER_LOCATION: ${{ vars.WEATHER_LOCATION || 'DC' }}
+        run: python weather_bot.py ${{ steps.mode.outputs.mode }}
+
+      - name: Track rain alerts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add last_rain_alert.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "Update rain alert tracker"
+          git push || true
