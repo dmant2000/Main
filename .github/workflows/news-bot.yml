@@ -1,0 +1,27 @@
+name: Morning News Digest
+
+on:
+  schedule:
+    # 7:30 AM ET (11:30 UTC)
+    - cron: '30 11 * * *'
+  workflow_dispatch:
+
+jobs:
+  news-digest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Send news digest
+        env:
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        run: python news/news_bot.py
