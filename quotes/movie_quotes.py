@@ -50,7 +50,9 @@ def save_quotes(quotes):
 
 
 def format_message(quote):
-    """Format quote for SMS."""
+    """Format quote for SMS. Facts are stated plainly, not quoted."""
+    if quote.get("source") == "Fact":
+        return f'{quote["quote"]}\n- {quote["character"]}'
     return f'"{quote["quote"]}"\n- {quote["character"]}'
 
 

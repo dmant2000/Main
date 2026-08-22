@@ -574,5 +574,407 @@
         "character": "Charles Darwin",
         "source": "Historical",
         "used": false
+    },
+    {
+        "quote": "Nearly all men can stand adversity, but if you want to test a man's character, give him power.",
+        "character": "Abraham Lincoln",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "Do what you can, with what you have, where you are.",
+        "character": "Theodore Roosevelt",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "Speak softly and carry a big stick.",
+        "character": "Theodore Roosevelt",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "It always seems impossible until it's done.",
+        "character": "Nelson Mandela",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "I have not failed. I've just found ten thousand ways that won't work.",
+        "character": "Thomas Edison",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "The only true wisdom is in knowing you know nothing.",
+        "character": "Socrates",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "Knowing yourself is the beginning of all wisdom.",
+        "character": "Aristotle",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "Luck is what happens when preparation meets opportunity.",
+        "character": "Seneca",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "It's not what happens to you, but how you react to it that matters.",
+        "character": "Epictetus",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "By failing to prepare, you are preparing to fail.",
+        "character": "Benjamin Franklin",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "Without struggle, there is no progress.",
+        "character": "Frederick Douglass",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "The arc of the moral universe is long, but it bends toward justice.",
+        "character": "Martin Luther King Jr.",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "The most difficult thing is the decision to act. The rest is merely tenacity.",
+        "character": "Amelia Earhart",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "Simplicity is the ultimate sophistication.",
+        "character": "Leonardo da Vinci",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "If I have seen further, it is by standing on the shoulders of giants.",
+        "character": "Isaac Newton",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "It does not matter how slowly you go as long as you do not stop.",
+        "character": "Confucius",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "Alone we can do so little. Together we can do so much.",
+        "character": "Helen Keller",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "A person who never made a mistake never tried anything new.",
+        "character": "Albert Einstein",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "The man who moves a mountain begins by carrying away small stones.",
+        "character": "Confucius",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "Float like a butterfly, sting like a bee.",
+        "character": "Muhammad Ali",
+        "source": "Historical",
+        "used": false
+    },
+    {
+        "quote": "The supreme art of war is to subdue the enemy without fighting.",
+        "character": "Sun Tzu",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "Know thy enemy and know thyself, and you need not fear a hundred battles.",
+        "character": "Sun Tzu",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "Every battle is won before it is ever fought.",
+        "character": "Sun Tzu",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "In the midst of chaos, there is also opportunity.",
+        "character": "Sun Tzu",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "A good plan violently executed now is better than a perfect plan next week.",
+        "character": "George S. Patton",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "Nobody ever won a war by dying for his country. He won it by making the other guy die for his.",
+        "character": "George S. Patton",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "Never interrupt your enemy when he is making a mistake.",
+        "character": "Napoleon Bonaparte",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "An army marches on its stomach.",
+        "character": "Napoleon Bonaparte",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "Never was so much owed by so many to so few.",
+        "character": "Winston Churchill",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "Victory at all costs, victory in spite of all terror, however long and hard the road may be.",
+        "character": "Winston Churchill",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "In preparing for battle, plans are useless, but planning is indispensable.",
+        "character": "Dwight D. Eisenhower",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "The eyes of the world are upon you.",
+        "character": "Dwight D. Eisenhower",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "I propose to fight it out on this line if it takes all summer.",
+        "character": "Ulysses S. Grant",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "War is hell.",
+        "character": "William T. Sherman",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "It is well that war is so terrible, otherwise we should grow too fond of it.",
+        "character": "Robert E. Lee",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "Old soldiers never die. They just fade away.",
+        "character": "Douglas MacArthur",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "Uncommon valor was a common virtue.",
+        "character": "Chester W. Nimitz",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "I have not yet begun to fight.",
+        "character": "John Paul Jones",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "These are the times that try men's souls.",
+        "character": "Thomas Paine",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "Sweat saves blood, blood saves lives, but brains save both.",
+        "character": "Erwin Rommel",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "We will either find a way, or make one.",
+        "character": "Hannibal",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "If you want peace, prepare for war.",
+        "character": "Vegetius",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "Come and take them.",
+        "character": "King Leonidas",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "I came, I saw, I conquered.",
+        "character": "Julius Caesar",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "The secret of freedom is courage.",
+        "character": "Pericles",
+        "source": "War",
+        "used": false
+    },
+    {
+        "quote": "Honey never spoils. Archaeologists found 3,000-year-old honey in Egyptian tombs that was still edible.",
+        "character": "History Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "Cleopatra lived closer in time to the Moon landing than to the building of the Great Pyramid.",
+        "character": "History Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "Oxford University was already teaching students 200 years before the Aztec Empire was founded.",
+        "character": "History Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "There are more possible chess games than there are atoms in the observable universe.",
+        "character": "Science Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "The Eiffel Tower grows about six inches taller in summer, because heat expands the iron.",
+        "character": "Science Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "A day on Venus is longer than a year on Venus. It spins slower than it orbits.",
+        "character": "Space Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "Sharks are older than trees. They have been around roughly 450 million years.",
+        "character": "Nature Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "The last woolly mammoths were still alive while the Great Pyramid of Giza stood finished.",
+        "character": "History Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "Harvard University was founded before calculus was invented.",
+        "character": "History Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "The fax machine was invented before the telephone. Patented in 1843, 33 years earlier.",
+        "character": "History Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "There are more trees on Earth than there are stars in the Milky Way.",
+        "character": "Nature Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "The Hundred Years' War lasted 116 years.",
+        "character": "History Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "The shortest war in history lasted 38 minutes. Britain versus Zanzibar, 1896.",
+        "character": "History Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "Octopuses have three hearts and blue blood.",
+        "character": "Nature Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "A blue whale's heart weighs about 400 pounds, roughly the size of a small car.",
+        "character": "Nature Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "The Wright brothers' first flight was shorter than the wingspan of a Boeing 747.",
+        "character": "History Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "The US bought Alaska from Russia for about two cents an acre.",
+        "character": "History Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "Pluto has not completed a single orbit since it was discovered in 1930. One year takes 248.",
+        "character": "Space Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "The Statue of Liberty was originally copper brown. Oxidation turned it green.",
+        "character": "History Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "Nintendo was founded in 1889, seven years before the first modern Olympics.",
+        "character": "History Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "Bananas are botanically berries. Strawberries are not.",
+        "character": "Nature Fact",
+        "source": "Fact",
+        "used": false
+    },
+    {
+        "quote": "Anne Frank and Martin Luther King Jr. were born in the same year, 1929.",
+        "character": "History Fact",
+        "source": "Fact",
+        "used": false
     }
 ]
