@@ -1,11 +1,12 @@
 name: Weather Bot
 
 on:
-  schedule:
-    # Morning brief at 7:00 AM ET (11:00 UTC)
-    - cron: '0 11 * * *'
-    # Rain checks every 30 min from 8am-10pm ET (12:00-02:00+1 UTC)
-    - cron: '0,30 12-23,0-2 * * *'
+  # Disabled — uncomment to re-enable weather texts
+  # schedule:
+  #   # Morning brief at 7:00 AM ET (11:00 UTC)
+  #   - cron: '0 11 * * *'
+  #   # Rain checks every 30 min from 8am-10pm ET (12:00-02:00+1 UTC)
+  #   - cron: '0,30 12-23,0-2 * * *'
   workflow_dispatch:
     inputs:
       mode:
