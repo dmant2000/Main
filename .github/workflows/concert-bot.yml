@@ -1,0 +1,52 @@
+name: Concert Roundup
+
+on:
+  schedule:
+    # Monday 9:00 AM ET (14:00 UTC)
+    - cron: '0 14 * * 1'
+  workflow_dispatch:
+    inputs:
+      seed:
+        description: 'Seed tracking file without texting (true/false)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+jobs:
+  concerts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run concert bot
+        env:
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
+          CONCERT_LAT: ${{ vars.CONCERT_LAT || '38.9072' }}
+          CONCERT_LON: ${{ vars.CONCERT_LON || '-77.0369' }}
+          CONCERT_RADIUS: ${{ vars.CONCERT_RADIUS || '50' }}
+          CONCERT_AREA: ${{ vars.CONCERT_AREA || 'DC' }}
+        run: |
+          if [ "${{ github.event.inputs.seed }}" = "true" ]; then
+            python concerts/concert_bot.py --seed
+          else
+            python concerts/concert_bot.py
+          fi
+
+      - name: Track announced events
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add concerts/seen_events.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "Update concert tracker"
+          git push || true

@@ -1,0 +1,15 @@
+{
+  "_note": "Add the artists you want priority alerts for. Names are matched loosely against Ticketmaster listings, so 'Zach Bryan' or 'zach bryan' both work. Delete the examples and put your own in.",
+  "watchlist": [
+    "Zach Bryan",
+    "Tyler Childers",
+    "Noah Kahan",
+    "Hozier",
+    "The Killers",
+    "Vampire Weekend",
+    "Kendrick Lamar",
+    "Fred again..",
+    "ODESZA",
+    "Turnpike Troubadours"
+  ]
+}
