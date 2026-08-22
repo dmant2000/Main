@@ -1,11 +1,5 @@
 [
     {
-        "quote": "We're all told at some point in time that we can no longer play the children's game. We just don't know when that's gonna be. Some of us are told at eighteen, some of us are told at forty, but we're all told.",
-        "character": "Mets Scout",
-        "source": "Moneyball",
-        "used": false
-    },
-    {
         "quote": "How can you not be romantic about baseball?",
         "character": "Billy Beane",
         "source": "Moneyball",
@@ -108,12 +102,6 @@
         "used": false
     },
     {
-        "quote": "The problem we're trying to solve is that there are rich teams and there are poor teams. Then there's fifty feet of crap, and then there's us.",
-        "character": "Billy Beane",
-        "source": "Moneyball",
-        "used": false
-    },
-    {
         "quote": "We're like organ donors for the rich. Boston's taken our kidneys, Yankees have taken our heart.",
         "character": "Billy Beane",
         "source": "Moneyball",
@@ -174,12 +162,6 @@
         "used": false
     },
     {
-        "quote": "I have a feeling in a few years people are going to be doing what they always do when the economy tanks. They will be blaming immigrants and poor people.",
-        "character": "Mark Baum",
-        "source": "The Big Short",
-        "used": false
-    },
-    {
         "quote": "I'm standing in front of a burning house, and I'm offering you fire insurance on it.",
         "character": "Jared Vennett",
         "source": "The Big Short",
@@ -230,12 +212,6 @@
     {
         "quote": "If we're right, people lose homes. People lose jobs. People lose retirement savings, people lose pensions.",
         "character": "Charlie Geller",
-        "source": "The Big Short",
-        "used": false
-    },
-    {
-        "quote": "In the years that followed, hundreds of bankers and rating agencies executives went to jail. The SEC was completely restructured. Just kidding.",
-        "character": "Narrator",
         "source": "The Big Short",
         "used": false
     },
