@@ -951,7 +951,7 @@
         "quote": "Pluto has not completed a single orbit since it was discovered in 1930. One year takes 248.",
         "character": "Space Fact",
         "source": "Fact",
-        "used": false
+        "used": true
     },
     {
         "quote": "The Statue of Liberty was originally copper brown. Oxidation turned it green.",
