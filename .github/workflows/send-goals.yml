@@ -1,0 +1,26 @@
+name: Send Daily Goals
+
+on:
+  schedule:
+    # ~8 AM ET
+    - cron: '27 13 * * *'
+  workflow_dispatch:
+
+jobs:
+  send-goals:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Send goals
+        env:
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: python goals/send_goals.py

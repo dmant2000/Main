@@ -1,0 +1,40 @@
+name: Check Stock Alerts
+
+on:
+  schedule:
+    # ~4:50 PM ET on weekdays, after market close
+    - cron: '50 21 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check-stocks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r stocks/requirements.txt
+
+      - name: Check stocks
+        env:
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: python stocks/stock_alerts.py force
+
+      - name: Commit updated alert state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add stocks/alert_state.json
+          git diff --staged --quiet || git commit -m "Update alert state"
+          git push

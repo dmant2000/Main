@@ -1,0 +1,26 @@
+name: Red Light Therapy Reminder
+
+on:
+  schedule:
+    # ~9 AM ET; runs daily, script decides if it's a therapy day
+    - cron: '7 13 * * *'
+  workflow_dispatch:
+
+jobs:
+  red-light:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check therapy day
+        env:
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: python red-light/red_light.py
