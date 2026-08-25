@@ -903,7 +903,7 @@
         "quote": "The fax machine was invented before the telephone. Patented in 1843, 33 years earlier.",
         "character": "History Fact",
         "source": "Fact",
-        "used": false
+        "used": true
     },
     {
         "quote": "There are more trees on Earth than there are stars in the Milky Way.",
