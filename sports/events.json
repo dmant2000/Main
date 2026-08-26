@@ -1,0 +1,39 @@
+{
+    "_comment": "Major sporting events calendar. 'exact' false means the date is an estimate based on the usual slot and should be confirmed. Run 'python sports/sports_bot.py --check' to see when this calendar needs topping up.",
+    "events": [
+        {"name": "US Open tennis", "category": "Tennis", "start": "2026-08-30", "end": "2026-09-13", "venue": "Flushing Meadows", "exact": true},
+        {"name": "Italian GP", "category": "F1", "start": "2026-09-06", "venue": "Monza", "exact": true},
+        {"name": "Spanish GP", "category": "F1", "start": "2026-09-13", "venue": "Madrid", "exact": true},
+        {"name": "Azerbaijan GP", "category": "F1", "start": "2026-09-27", "venue": "Baku", "exact": true},
+        {"name": "MLB playoffs begin", "category": "MLB", "start": "2026-09-29", "exact": true},
+        {"name": "Singapore GP", "category": "F1", "start": "2026-10-11", "venue": "Marina Bay", "exact": true},
+        {"name": "United States GP", "category": "F1", "start": "2026-10-25", "venue": "Austin", "exact": true},
+        {"name": "World Series", "category": "MLB", "start": "2026-10-23", "exact": false},
+        {"name": "Mexico City GP", "category": "F1", "start": "2026-11-01", "exact": true},
+        {"name": "Breeders Cup", "category": "Horse racing", "start": "2026-10-30", "end": "2026-10-31", "venue": "Keeneland", "exact": true},
+        {"name": "Brazilian GP", "category": "F1", "start": "2026-11-08", "venue": "Interlagos", "exact": true},
+        {"name": "Las Vegas GP", "category": "F1", "start": "2026-11-21", "exact": true},
+
+        {"name": "Australian Open", "category": "Tennis major", "start": "2027-01-17", "end": "2027-01-31", "venue": "Melbourne", "exact": true},
+        {"name": "Super Bowl LXI", "category": "NFL", "start": "2027-02-14", "venue": "SoFi Stadium", "exact": true},
+        {"name": "Daytona 500", "category": "NASCAR", "start": "2027-02-21", "exact": false},
+        {"name": "March Madness begins", "category": "NCAA", "start": "2027-03-16", "exact": false},
+        {"name": "The Masters", "category": "Golf major", "start": "2027-04-08", "end": "2027-04-11", "venue": "Augusta National", "exact": true},
+        {"name": "Kentucky Derby", "category": "Triple Crown", "start": "2027-05-01", "venue": "Churchill Downs", "exact": true},
+        {"name": "Preakness Stakes", "category": "Triple Crown", "start": "2027-05-15", "exact": false},
+        {"name": "PGA Championship", "category": "Golf major", "start": "2027-05-20", "end": "2027-05-23", "venue": "Fields Ranch East", "exact": true},
+        {"name": "French Open", "category": "Tennis major", "start": "2027-05-23", "venue": "Roland Garros", "exact": false},
+        {"name": "Indianapolis 500", "category": "IndyCar", "start": "2027-05-30", "exact": true},
+        {"name": "Belmont Stakes", "category": "Triple Crown", "start": "2027-06-05", "exact": false},
+        {"name": "NBA Finals begin", "category": "NBA", "start": "2027-06-03", "exact": false},
+        {"name": "Stanley Cup Final", "category": "NHL", "start": "2027-06-05", "exact": false},
+        {"name": "US Open golf", "category": "Golf major", "start": "2027-06-17", "venue": "Pebble Beach", "exact": false},
+        {"name": "Wimbledon", "category": "Tennis major", "start": "2027-06-28", "end": "2027-07-11", "exact": true},
+        {"name": "Tour de France", "category": "Cycling", "start": "2027-07-02", "venue": "Grand Depart Edinburgh", "exact": true},
+        {"name": "The Open", "category": "Golf major", "start": "2027-07-15", "venue": "St Andrews", "exact": false},
+        {"name": "US Open tennis", "category": "Tennis major", "start": "2027-08-30", "end": "2027-09-12", "venue": "Flushing Meadows", "exact": true},
+        {"name": "Ryder Cup", "category": "Golf", "start": "2027-09-17", "venue": "Adare Manor", "exact": false},
+
+        {"name": "Summer Olympics", "category": "Olympics", "start": "2028-07-14", "end": "2028-07-30", "venue": "Los Angeles", "exact": true}
+    ]
+}

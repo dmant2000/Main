@@ -1,0 +1,46 @@
+name: Sports Events
+
+on:
+  schedule:
+    # Daily at 8:00 AM ET (12:00 UTC). Only texts when an event is
+    # 3 days out or starting that day.
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Pretend today is this date (YYYY-MM-DD), for testing'
+        required: false
+      dry_run:
+        description: 'Print instead of sending (true/false)'
+        required: false
+        default: 'false'
+
+jobs:
+  sports:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate calendar
+        run: python sports/sports_bot.py --check
+
+      - name: Send sports alerts
+        env:
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.date }}" ]; then
+            ARGS="$ARGS --date ${{ github.event.inputs.date }}"
+          fi
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          python sports/sports_bot.py $ARGS
