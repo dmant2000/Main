@@ -879,7 +879,7 @@
         "quote": "A day on Venus is longer than a year on Venus. It spins slower than it orbits.",
         "character": "Space Fact",
         "source": "Fact",
-        "used": false
+        "used": true
     },
     {
         "quote": "Sharks are older than trees. They have been around roughly 450 million years.",
