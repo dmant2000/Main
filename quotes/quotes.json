@@ -933,7 +933,7 @@
         "quote": "A blue whale's heart weighs about 400 pounds, roughly the size of a small car.",
         "character": "Nature Fact",
         "source": "Fact",
-        "used": false
+        "used": true
     },
     {
         "quote": "The Wright brothers' first flight was shorter than the wingspan of a Boeing 747.",
