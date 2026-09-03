@@ -861,7 +861,7 @@
         "quote": "Oxford University was already teaching students 200 years before the Aztec Empire was founded.",
         "character": "History Fact",
         "source": "Fact",
-        "used": false
+        "used": true
     },
     {
         "quote": "There are more possible chess games than there are atoms in the observable universe.",
