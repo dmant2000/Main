@@ -969,7 +969,7 @@
         "quote": "Bananas are botanically berries. Strawberries are not.",
         "character": "Nature Fact",
         "source": "Fact",
-        "used": false
+        "used": true
     },
     {
         "quote": "Anne Frank and Martin Luther King Jr. were born in the same year, 1929.",
